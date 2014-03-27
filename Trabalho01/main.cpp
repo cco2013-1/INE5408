@@ -27,10 +27,9 @@ int obterInteiro();
 void esvaziarPilha();
 void mostrarPilha();
 
-Pilha p;
+Pilha<int> p;
 
 int main() {
-
     run();
     return 0;
 }
