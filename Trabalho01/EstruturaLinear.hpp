@@ -13,49 +13,49 @@
  */
 #define TAMANHO_MAX 30
 #define ERRO_ESTRUTURA_CHEIA -1
-#define ERRO_ESTRUTURA_VAZIA -2 
+#define ERRO_ESTRUTURA_VAZIA -2
 
-template<typename T> 
+template<typename T>
 class EstruturaLinear {
-    
+
 public:
     EstruturaLinear();
     ~EstruturaLinear();
     void inserir(T elemento);
-    virtual T extrair();
+    virtual T extrair() = 0;
     bool estaVazia();
     bool estaCheia();
 protected:
     T dados[TAMANHO_MAX];
     int posicaoAtual;
- 
+
 };
 
-template<typename T> 
+template<typename T>
 EstruturaLinear<T>::EstruturaLinear() {
 	posicaoAtual = -1;
 }
 
-template<typename T> 
+template<typename T>
 EstruturaLinear<T>::~EstruturaLinear() {
 
 }
 
-template<typename T> 
+template<typename T>
 bool EstruturaLinear<T>::estaVazia() {
     return posicaoAtual == -1;
 }
 
-template<typename T> 
-bool EstruturaLinear<T>::estaCheia(){   
+template<typename T>
+bool EstruturaLinear<T>::estaCheia(){
     return posicaoAtual == TAMANHO_MAX - 1;
 }
 
-template<typename T> 
+template<typename T>
 void EstruturaLinear<T>::inserir(T elemento) {
     if(!estaCheia()) {
     	dados[++posicaoAtual] = elemento;
-    	return;	
+    	return;
     }
     throw(ERRO_ESTRUTURA_CHEIA);
 }

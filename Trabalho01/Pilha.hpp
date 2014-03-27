@@ -18,25 +18,25 @@ template<typename T>
 class Pilha: public EstruturaLinear<T> {
 public:
 	Pilha();
-	~Pilha(); 
+	~Pilha();
 	T extrair();
 };
 
-template<typename T> 
+template<typename T>
 Pilha<T>::Pilha() {
 
 }
 
-template<typename T> 
+template<typename T>
 Pilha<T>::~Pilha() {
 
 }
 
-template<typename T> 
+template<typename T>
 T Pilha<T>::extrair(){
-	if(!estaVazia()) {
-		return dados[posicaoAtual--];	
+	if(!this->estaVazia()) {
+		return this->dados[this->posicaoAtual--];
 	}
 	throw(ERRO_ESTRUTURA_VAZIA);
-	
+
 }
