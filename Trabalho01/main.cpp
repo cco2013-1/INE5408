@@ -16,7 +16,7 @@
 #include <string>
 #include <sstream>
 #include <stdio.h>
-#include "Pilha.h"
+#include "Pilha.hpp"
 
 using namespace std;
 
@@ -44,9 +44,10 @@ void run() {
         case 1:
             cout << "Digite o elemento a ser empilhado" << endl;
             elem = obterInteiro();
-            if (p.empilha(elem) >= 0) {
+            try {
+                p.inserir(elem);
                 cout << "Valor empilhado corretamente" << endl;
-            } else {
+            } catch(int e) {
                 cout << "Erro: pilha cheia" << endl;
             }
             cout << "\n\n\n";
@@ -54,11 +55,10 @@ void run() {
             break;
         case 2:
             cout << "Desempilhando um valor" << endl;
-            elem = p.desempilha();
-
-            if (elem != ERROPILHAVAZIA) {
+            try {
+                elem = p.extrair();
                 cout << "Valor desempilhado " << elem << endl;
-            } else {
+            } catch (int e) {
                 cout << "Erro: pilha vazia" << endl;
             }
             cout << "\n\n\n";
@@ -125,22 +125,31 @@ int obterInteiro() {
 }
 
 void esvaziarPilha() {
-    while (!p.pilhaVazia()) {
-        p.desempilha();
+    while (true) {
+        try {
+            p.extrair();
+        } catch (int e) {
+            break;
+        }
     }
 }
 
 void mostrarPilha() {
-    Pilha pilhaAuxiliar;
+    Pilha<int> pilhaAuxiliar;
     int count = 1;
-    while (!p.pilhaVazia()) {
-        int elem = p.desempilha();
-        pilhaAuxiliar.empilha(elem);
-        // cout << count++ << "  " << elem << endl;
-        printf("%7d %5d\n", count++, elem);
+    
+    while (true) {
+        
+        try {
+            int elem = p.extrair();
+            pilhaAuxiliar.inserir(elem);
+            printf("%7d %5d\n", count++, elem);
+        } catch (int e) {
+            break;
+        }
     }
 
-    while (!pilhaAuxiliar.pilhaVazia()) {
-        p.empilha(pilhaAuxiliar.desempilha());
+    while (!pilhaAuxiliar.estaVazia()) {
+        p.inserir(pilhaAuxiliar.extrair());
     }
 }
