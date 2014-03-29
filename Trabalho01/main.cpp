@@ -16,6 +16,7 @@
 #include <string>
 #include <sstream>
 #include <stdio.h>
+#include <stdlib.h>
 #include "Pilha.hpp"
 
 using namespace std;
@@ -35,22 +36,20 @@ int main() {
 }
 
 void run() {
-
     mostrarOpcoes();
     int opt = obterOpcao();
     int elem;
 
     switch (opt) {
         case 1:
-            cout << "Digite o elemento a ser empilhado" << endl;
+            cout << "Digite o elemento a ser empilhado:" << endl;
             elem = obterInteiro();
             try {
                 p.inserir(elem);
-                cout << "Valor empilhado corretamente" << endl;
+                cout << "Valor empilhado corretamente." << endl;
             } catch(int e) {
                 cout << "Erro: pilha cheia" << endl;
             }
-            cout << "\n\n\n";
             run();
             break;
         case 2:
@@ -61,47 +60,41 @@ void run() {
             } catch (int e) {
                 cout << "Erro: pilha vazia" << endl;
             }
-            cout << "\n\n\n";
             run();
             break;
         case 3:
             esvaziarPilha();
             cout << "Pilha limpa" << endl;
-            cout << "\n\n\n";
-            run();
-            break;
+            exit(0);
         case 4:
-            cout << "Posição Valor" << endl;
-            mostrarPilha();
-            cout << "\n\n\n";
+            cout << "Posição  Valor" << endl;
+            if (p.estaVazia()) {
+                cout << "Erro: pilha vazia" << endl;
+            } else {
+                mostrarPilha();
+            }
             run();
             break;
         default:
-            cout << "Encerrando o programa" << endl;
+            exit(0);
     }
 
 }
 
 void mostrarOpcoes() {
-    cout << "Pilhas" << endl;
-    cout << "Digite o número da opção desejada:" << endl;
-    cout << "1) Empilhar elemento" << endl;
-    cout << "2) Desempilhar elemento" << endl;
-    cout << "3) Limpar pilha" << endl;
-    cout << "4) Mostrar pilha" << endl;
+    cout << "Pilhas:" << endl;
+    cout << "Digite o numero da opção desejada:" << endl;
+    cout << "1) Empilhar Elemento" << endl;
+    cout << "2) Desempilhar Elemento" << endl;
+    cout << "3) Limpar Pilha" << endl;
+    cout << "4) Mostrar Pilha" << endl;
     cout << "5) Sair do programa" << endl;
 }
 
 int obterOpcao() {
     int opt = 0;
 
-    while (true) {
-        opt = obterInteiro();
-        if (opt > 0 && opt <= 5){
-            break;
-        }
-        cout << "Opção inválida. Insira uma opção entre 1 e 5" << endl;
-    }
+    opt = obterInteiro();
 
     return opt;
 }
@@ -110,16 +103,10 @@ int obterInteiro() {
     string input = "";
     int inteiro = 0;
 
-    while (true) {
-        getline(cin, input);
+    getline(cin, input);
 
-        stringstream myStream(input);
-        if (myStream >> inteiro) {
-            break;
-        }
-
-        cout << "Formato inválido. Insira um inteiro" << endl;
-    }
+    stringstream myStream(input);
+    myStream >> inteiro;
 
     return inteiro;
 }
@@ -136,20 +123,21 @@ void esvaziarPilha() {
 
 void mostrarPilha() {
     Pilha<int> pilhaAuxiliar;
-    int count = 1;
-    
+    int count = 0;
+
     while (true) {
-        
+
         try {
             int elem = p.extrair();
             pilhaAuxiliar.inserir(elem);
-            printf("%7d %5d\n", count++, elem);
         } catch (int e) {
             break;
         }
     }
 
     while (!pilhaAuxiliar.estaVazia()) {
-        p.inserir(pilhaAuxiliar.extrair());
+        int elem = pilhaAuxiliar.extrair();
+        p.inserir(elem);
+        printf("%3d %11d\n", count++, elem);
     }
 }
