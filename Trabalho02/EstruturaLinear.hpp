@@ -5,13 +5,14 @@
  * Ciências da Computação
  * INE5408 - Estruturas de Dados
  *
- * Trabalho 01 - Implementação de pilhas com Vetor em C++
+ * Trabalho 02 - Implementação de filas de char com Vetores em C++
  * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
  *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
  *
  * EstruturaLinear.hpp
  */
-#define TAMANHO_MAX 30
+
+#define TAMANHO_MAX 100
 #define ERRO_ESTRUTURA_CHEIA -1
 #define ERRO_ESTRUTURA_VAZIA -2
 
