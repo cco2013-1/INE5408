@@ -151,6 +151,6 @@ void mostrarFila() {
     while (!filaAuxiliar.estaVazia()) {
         char elem[40] = { *filaAuxiliar.extrair() };
         f.inserir(elem);
-        printf("%3d %40s\n", count++,elem);
+        printf("%3d %s\n", count++,elem);
     }
 }
