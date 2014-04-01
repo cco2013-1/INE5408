@@ -29,7 +29,7 @@ char obterChar();
 void esvaziarFila();
 void mostrarFila();
 
-Fila<char> f;
+Fila<char*> f;
 
 int main() {
     run();
@@ -39,12 +39,12 @@ int main() {
 void run() {
     mostrarOpcoes();
     int opt = obterOpcao();
-    char elem;
+    char elem[40];
 
     switch (opt) {
         case 1:
             cout << "Digite o elemento a ser enfileirado:" << endl;
-            elem = obterChar();
+            elem[40] = obterChar();
             try {
                 f.inserir(elem);
                 cout << "Valor enfileirado corretamente." << endl;
@@ -56,7 +56,7 @@ void run() {
         case 2:
             cout << "Desenfileirando um valor" << endl;
             try {
-                elem = f.extrair();
+                elem[40] = *f.extrair();
                 cout << "Valor desenfileirado " << elem << endl;
             } catch (int e) {
                 cout << "Erro: fila vazia" << endl;
@@ -114,14 +114,14 @@ int obterInteiro() {
 
 char obterChar() {
     string input = "";
-    char caractere = ' ';
+    char caractere[40] =  { ' ' };
 
     getline(cin, input);
 
     stringstream myStream(input);
     myStream >> caractere;
 
-    return caractere;
+    return *caractere;
 }
 
 void esvaziarFila() {
@@ -135,13 +135,13 @@ void esvaziarFila() {
 }
 
 void mostrarFila() {
-    Fila<char> filaAuxiliar;
+    Fila<char*> filaAuxiliar;
     int count = 0;
 
     while (true) {
 
         try {
-            char elem = f.extrair();
+            char elem[40] = { *f.extrair() };
             filaAuxiliar.inserir(elem);
         } catch (int e) {
             break;
@@ -149,8 +149,8 @@ void mostrarFila() {
     }
 
     while (!filaAuxiliar.estaVazia()) {
-        char elem = filaAuxiliar.extrair();
+        char elem[40] = { *filaAuxiliar.extrair() };
         f.inserir(elem);
-        printf("%3d %11d\n", count++, elem);
+        printf("%3d %40s\n", count++,elem);
     }
 }
