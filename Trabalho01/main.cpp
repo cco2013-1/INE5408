@@ -65,7 +65,8 @@ void run() {
         case 3:
             esvaziarPilha();
             cout << "Pilha limpa" << endl;
-            exit(0);
+            run();
+            break;
         case 4:
             cout << "Posição  Valor" << endl;
             if (p.estaVazia()) {
@@ -138,6 +139,6 @@ void mostrarPilha() {
     while (!pilhaAuxiliar.estaVazia()) {
         int elem = pilhaAuxiliar.extrair();
         p.inserir(elem);
-        printf("%3d %11d\n", count++, elem);
+        printf("%3d %10d\n", count++, elem);
     }
 }
