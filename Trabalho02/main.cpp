@@ -40,18 +40,16 @@ int main() {
 void run() {
     mostrarOpcoes();
     int opt = obterOpcao();
-    char elem[40];
 
     switch (opt) {
         case 1:
-            cout << "Digite o elemento a ser enfileirado:" << endl;
+            cout << "Digite uma string (sem espaços) a ser enfileirada:" << endl;
+            char elem[40];
             obterChar(elem);
-
-            imprimirCaracteres(elem);
 
             try {
                 f.inserir(elem);
-                cout << "Valor enfileirado corretamente." << endl;
+                cout << "String enfileirada corretamente." << endl;
             } catch(int e) {
                 cout << "Erro: fila cheia" << endl;
             }
@@ -60,9 +58,11 @@ void run() {
         case 2:
             cout << "Desenfileirando um valor" << endl;
             try {
-                char e[40];
-                strcpy(e, f.extrair());
-                cout << "Valor desenfileirado " << e << endl;
+                // char elem[40];
+                // strcpy(elem, f.extrair());
+                cout << "Valor desenfileirando: ";
+                imprimirCaracteres(f.extrair());
+                cout << endl;
             } catch (int e) {
                 cout << "Erro: fila vazia" << endl;
             }
@@ -71,7 +71,8 @@ void run() {
         case 3:
             esvaziarFila();
             cout << "Fila limpa" << endl;
-            exit(0);
+            run();
+            break;
         case 4:
             cout << "Posição  Valor" << endl;
             if (f.estaVazia()) {
@@ -132,7 +133,7 @@ void obterChar(char * destino) {
 }
 
 void imprimirCaracteres(char *caracteres) {
-    for (int i = 0; i < strlen(caracteres); i++) {
+    for (int i = 0; i < strlen(caracteres) - 1; i++) {
         cout << caracteres[i];
     }
 }
@@ -154,7 +155,10 @@ void mostrarFila() {
     while (true) {
 
         try {
-            char elem[40] = { *f.extrair() };
+            char *elem = f.extrair();
+            printf("%3d", count++);
+            imprimirCaracteres(elem);
+            cout << endl;
             filaAuxiliar.inserir(elem);
         } catch (int e) {
             break;
@@ -162,8 +166,7 @@ void mostrarFila() {
     }
 
     while (!filaAuxiliar.estaVazia()) {
-        char elem[40] = { *filaAuxiliar.extrair() };
+        char *elem = filaAuxiliar.extrair();
         f.inserir(elem);
-        printf("%3d %s\n", count++,elem);
     }
 }

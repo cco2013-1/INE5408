@@ -36,7 +36,7 @@ template<typename T>
 T Fila<T>::extrair() {
 	if (!this->estaVazia()) {
 		T elemento = this->dados[0];
-		for (int i = 0 ; i < this->posicaoAtual - 1 ; i++) {
+		for (int i = 0; i < this->posicaoAtual; i++) {
 			this->dados[i] = this->dados[i + 1];
 		}
 		this->posicaoAtual--;
