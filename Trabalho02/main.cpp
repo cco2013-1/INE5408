@@ -13,7 +13,7 @@
  */
 
 #include <iostream>
-#include <string>
+#include <string.h>
 #include <sstream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,9 +25,10 @@ void run();
 void mostrarOpcoes();
 int obterOpcao();
 int obterInteiro();
-char obterChar();
+void obterChar(char * destino);
 void esvaziarFila();
 void mostrarFila();
+void imprimirCaracteres(char *caracteres);
 
 Fila<char*> f;
 
@@ -44,7 +45,10 @@ void run() {
     switch (opt) {
         case 1:
             cout << "Digite o elemento a ser enfileirado:" << endl;
-            elem[40] = obterChar();
+            obterChar(elem);
+
+            imprimirCaracteres(elem);
+
             try {
                 f.inserir(elem);
                 cout << "Valor enfileirado corretamente." << endl;
@@ -56,8 +60,9 @@ void run() {
         case 2:
             cout << "Desenfileirando um valor" << endl;
             try {
-                elem[40] = *f.extrair();
-                cout << "Valor desenfileirado " << elem << endl;
+                char e[40];
+                strcpy(e, f.extrair());
+                cout << "Valor desenfileirado " << e << endl;
             } catch (int e) {
                 cout << "Erro: fila vazia" << endl;
             }
@@ -112,16 +117,24 @@ int obterInteiro() {
     return inteiro;
 }
 
-char obterChar() {
+void obterChar(char * destino) {
     string input = "";
-    char caractere[40] =  { ' ' };
 
     getline(cin, input);
 
-    stringstream myStream(input);
-    myStream >> caractere;
+    if (input.length() > 40) {
+        input = input.substr(0, 40);
+    }
 
-    return *caractere;
+    for (int i = 0; i < input.length(); i++) {
+        destino[i] = input.at(i);
+    }
+}
+
+void imprimirCaracteres(char *caracteres) {
+    for (int i = 0; i < strlen(caracteres); i++) {
+        cout << caracteres[i];
+    }
 }
 
 void esvaziarFila() {
