@@ -9,7 +9,7 @@
  * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
  *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
  *
- * mainFila.cpp
+ * main.cpp
  */
 
 #include <iostream>
@@ -58,8 +58,6 @@ void run() {
         case 2:
             cout << "Desenfileirando um valor" << endl;
             try {
-                // char elem[40];
-                // strcpy(elem, f.extrair());
                 cout << "Valor desenfileirando: ";
                 imprimirCaracteres(f.extrair());
                 cout << endl;
