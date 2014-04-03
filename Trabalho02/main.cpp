@@ -131,7 +131,7 @@ void obterChar(char * destino) {
 }
 
 void imprimirCaracteres(char *caracteres) {
-    for (int i = 0; i < strlen(caracteres) - 1; i++) {
+    for (int i = 0; i < strlen(caracteres) ; i++) {
         cout << caracteres[i];
     }
 }
