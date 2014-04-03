@@ -19,6 +19,8 @@
 #include <stdlib.h>
 #include "Fila.hpp"
 
+ #define MAX_CHAR 40
+
 using namespace std;
 
 void run();
@@ -44,7 +46,7 @@ void run() {
     switch (opt) {
         case 1:
             cout << "Digite uma string (sem espaços) a ser enfileirada:" << endl;
-            char elem[40];
+            char elem[MAX_CHAR];
             obterChar(elem);
 
             try {
@@ -121,13 +123,18 @@ void obterChar(char * destino) {
 
     getline(cin, input);
 
-    if (input.length() > 40) {
-        input = input.substr(0, 40);
+    if (input.length() > MAX_CHAR) {
+        input = input.substr(0, MAX_CHAR - 1);
     }
 
-    for (int i = 0; i < input.length(); i++) {
+    int i;
+
+    for (i = 0; i < input.length(); i++) {
         destino[i] = input.at(i);
     }
+
+    destino[i] = '\0';
+
 }
 
 void imprimirCaracteres(char *caracteres) {
