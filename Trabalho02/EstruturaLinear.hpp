@@ -12,7 +12,7 @@
  * EstruturaLinear.hpp
  */
 
-#define TAMANHO_MAX 100
+#define TAMANHO_MAX 10
 #define ERRO_ESTRUTURA_CHEIA -1
 #define ERRO_ESTRUTURA_VAZIA -2
 

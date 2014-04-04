@@ -27,7 +27,7 @@ void run();
 void mostrarOpcoes();
 int obterOpcao();
 int obterInteiro();
-void obterChar(char * destino);
+bool obterChar(char * destino);
 void esvaziarFila();
 void mostrarFila();
 void imprimirCaracteres(char *caracteres);
@@ -47,7 +47,11 @@ void run() {
         case 1:
             cout << "Digite uma string (sem espaços) a ser enfileirada:" << endl;
             char elem[MAX_CHAR];
-            obterChar(elem);
+            if(!obterChar(elem)) {
+                cout << "String muito grande para enfileirar." << endl;
+                run();
+                break;
+            }
 
             try {
                 f.inserir(elem);
@@ -118,13 +122,13 @@ int obterInteiro() {
     return inteiro;
 }
 
-void obterChar(char * destino) {
+bool obterChar(char * destino) {
     string input = "";
 
     getline(cin, input);
 
     if (input.length() > MAX_CHAR) {
-        input = input.substr(0, MAX_CHAR - 1);
+        return false;
     }
 
     int i;
@@ -134,6 +138,8 @@ void obterChar(char * destino) {
     }
 
     destino[i] = '\0';
+
+    return true;
 
 }
 
@@ -161,7 +167,7 @@ void mostrarFila() {
 
         try {
             char *elem = f.extrair();
-            printf("%3d", count++);
+            printf("%3d         ", count++);
             imprimirCaracteres(elem);
             cout << endl;
             filaAuxiliar.inserir(elem);
