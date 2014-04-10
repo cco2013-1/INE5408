@@ -15,7 +15,7 @@
 #ifndef __lista_hpp__
 #define __lista_hpp__
 
-#define TAMANHO_MAX 100
+#define TAMANHO_MAX 10
 #define ERRO_LISTA_CHEIA -1
 #define ERRO_LISTA_VAZIA -2
 #define ERRO_POSICAO_INEXISTENTE -3

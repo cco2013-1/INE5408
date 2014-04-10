@@ -13,13 +13,15 @@
  */
 
 #include "Lancamento.h"
+#include <cstring> 
 
 Lancamento::Lancamento() {
 
 }
 
 Lancamento::Lancamento(char* nomeLancado, double valorLancado) {
- 	nomeLancamento = nomeLancado;
+ 	nomeLancamento = new char[strlen(nomeLancado)+1];
+ 	strcpy(nomeLancamento, nomeLancado);
  	valorLancamento = valorLancado;
 }
 
