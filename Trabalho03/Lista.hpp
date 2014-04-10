@@ -145,4 +145,26 @@ int Lista<T>::posicao(T elemento) {
     throw(ERRO_LISTA_VAZIA);
 }
 
+template <typename T>
+void Lista<T>::deslocarDireita(int posicao) {
+	if(!estaCheia()) {
+		for(int i = posicao ; i < ultimo ; i++){
+			dados[i++] = dados[i];
+		}
+		ultimo++;
+	}
+	throw (ERRO_LISTA_CHEIA);
+}
+
+template <typename T>
+void Lista<T>::deslocarEsquerda(int posicao) {
+	if(!estaVazia()) {
+		for(int i = posicao ; i < ultimo ; i++){
+			dados[i] = dados[++i];
+		}
+		ultimo--;
+	}
+	throw (ERRO_LISTA_VAZIA);
+}
+
 #endif
