@@ -16,6 +16,7 @@
 #define ERRO_LISTA_CHEIA = -1;
 #define ERRO_LISTA_VAZIA = -2; 
 #define ERRO_POSICAO_INEXISTENTE = -3;
+#define ERRO_ELEMENTO_INEXISTENTE = -4; 
 
 template typename<T>
  class Lista {
@@ -33,9 +34,6 @@ template typename<T>
  	bool listaVazia();
  	int posicao(T elemento);
  	bool contem(T elemento);
- 	bool igual(T elemento1, T elemento2);
- 	bool maior(T elemento1, T elemento2); //retorna true caso o elemento 1 for maior que o elemento 2 (verificar necessidade)
- 	bool menor(T elemento1, T elemento2); //retorna true caso o elemento 1 for menor que o elemento 2 (verificar necessidade)
 private:
 	T dados[TAMANHO_MAX];
 	int ultimo; //valor da posição do ultimo elemento inserido na lista
@@ -109,7 +107,7 @@ T Lista<T>::retiraDaPosicao(int posicao) {
 
 template typename<T>
 void Lista<T>::adicionaNaPosicao(T elemento, int posicao) {
-	if(!estaCheia() & posicao =< TAMANHO_MAX & posicao >= 0) {
+	if(!estaCheia() && posicao <= TAMANHO_MAX && posicao >= 0) {
 		deslocarDireita(posicao);
 		dados[posicao] = elemento;
 		ultimo++;
@@ -118,8 +116,42 @@ void Lista<T>::adicionaNaPosicao(T elemento, int posicao) {
 }
 
 template typename<T>
-void Lista<T>::adicionaEmOrdem(T elemento) {  //A fun 
+void Lista<T>::adicionaEmOrdem(T elemento) {   
 	if(!estaCheia()) {
 
 	}
+}
+
+template typename<T>
+T Lista<T>::retiraEspecifico(T elemento) {
+	if(contem(T elemento)) {
+		return dados[posicao(T elemento)];
+	}
+	throw (ERRO_ELEMENTO_INEXISTENTE);
+}
+
+template typename<T>
+bool Lista<T>::contem(T elemento) {
+	if(!estaVazia()) {
+		for(int i = 0 ; i == posicao ; i++) {
+			if(T elemento == dados[i]) {
+				return true;
+			}
+		}
+		return false;
+	}
+	throw(ERRO_LISTA_VAZIA);
+}
+
+template typename<T>
+int Lista<T>::posicao(T elemento) {
+	if(!estaVazia()) {
+		for(int i = 0 ; i == posicao ; i++) {
+			if(T elemento == dados[i]) {
+				return i;
+			}
+			throw (ERRO_ELEMENTO_INEXISTENTE);
+		}	
+	}
+	throw (ERRO_LISTA_VAZIA);
 }
