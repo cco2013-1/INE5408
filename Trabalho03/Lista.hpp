@@ -29,6 +29,7 @@ public:
     void adiciona(T elemento); //adiciona o elemento na ultima posicao livre
     void adicionaNoInicio(T elemento); //adiciona o elemento no inicio da lista
     void adicionaNaPosicao(T elemento, int posicao); //adiciona o elemento na posicao desejada
+    T elementoNaPosicao(int posicao);
     T retira(); //retira o ultimo elemento da lista
     T retiraDaPosicao(int posicao);
     T retiraEspecifico(T elemento);
@@ -36,6 +37,7 @@ public:
     bool estaVazia();
     int posicao(T elemento);
     bool contem(T elemento);
+    int tamanho();
 private:
     T dados[TAMANHO_MAX];
     int ultimo; //valor da posição do ultimo elemento inserido na lista
@@ -89,6 +91,11 @@ T Lista<T>::retira() {
 template <typename T>
 void Lista<T>::adicionaNoInicio(T elemento) {
     adicionaNaPosicao(elemento, 0);
+}
+
+template <typename T>
+T Lista<T>::elementoNaPosicao(int posicao) {
+	return dados[posicao];
 }
 
 template <typename T>
@@ -165,6 +172,11 @@ void Lista<T>::deslocarEsquerda(int posicao) {
 		ultimo--;
 	}
 	throw (ERRO_LISTA_VAZIA);
+}
+
+template <typename T>
+int Lista<T>::tamanho() {
+	return ultimo + 1;
 }
 
 #endif
