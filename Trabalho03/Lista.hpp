@@ -26,8 +26,7 @@ template typename<T>
  	void adicionaNoInicio(T elemento); //adiciona o elemento no inicio da lista
  	void adicionaNaPosicao(T elemento, int posicao); //adiciona o elemento na posicao desejada
  	void adicionaEmOrdem(T elemento); //adiciona o elemento na ordem definida pelo programador
- 	T retira(); //retira o ultimo elemento da lista
- 	T retiraDoInicio(); 
+ 	T retira(); //retira o ultimo elemento da lista 
  	T retiraDaPosicao(int posicao);
  	T retiraEspecifico(T elemento); 
  	bool listaCheia();
@@ -81,62 +80,46 @@ void Lista<T>::adiciona(T elemento) {
 
 template typename<T>
 T Lista<T>::retira() {
-	if(!estaCheia()) {
+	if(!estaVazia()) {
 		return dados[ultimo--];
 	}
 	throw (ERRO_LISTA_CHEIA);
 }
 
-
-/* Os métodos abaixo servirão de base para implementar métodos instanciados acima*/
-
-
-
-template typename<T>	
-void Lista<T>::inserirNaPosicao(T elemento, int posicao) {
+template typename<T>
+void Lista<T>::adicionaNoInicio(T elemento) {
 	if(!estaCheia()) {
-		if(posicao =< TAMANHO_MAX & posicao >= 0) {
-			deslocarDireita(posicao);
-			dados[posicao] = elemento;
-			return;
-		}
-		throw (ERRO_POSICAO_INEXISTENTE);
+		deslocarDireita(0); //desloco todos os elementos da lista a partir da posição zero
+		dados[0] = elemento;
+		ultimo++;
 	}
 	throw (ERRO_LISTA_CHEIA);
 }
 
 template typename<T>
-void Lista<T>::retirarDaPosicao(int posicao) {
+T Lista<T>::retiraDaPosicao(int posicao) {
 	if(!estaVazia()) {
-		if(posicao =< TAMANHO_MAX & posicao >= 0) {
-			deslocarEsquerda(posicao);
-			return; 
-		}
-		throw(ERRO_POSICAO_INEXISTENTE);	
+		T elementoRetirado = dados[posicao];
+		deslocarEsquerda(posicao);
+		ultimo--;
+		return elementoRetirado;
 	}
-	throw(ERRO_LISTA_VAZIA);
-	
+	throw (ERRO_LISTA_VAZIA);
 }
 
 template typename<T>
-void Lista<T>::retirarElemento(T elemento) {
-
-}
-
-template typename<T>
-T Lista<T>::pegarElemento(T elemento) {
-
-}
-
-template typename<T>
-T Lista<T>::pegarElementoEm(int posicao) {
-	if(posicao =< TAMANHO_MAX & posicao >= 0) {
-		return dados[posicao];
+void Lista<T>::adicionaNaPosicao(T elemento, int posicao) {
+	if(!estaCheia() & posicao =< TAMANHO_MAX & posicao >= 0) {
+		deslocarDireita(posicao);
+		dados[posicao] = elemento;
+		ultimo++;
 	}
-	throw(ERRO_POSICAO_INEXISTENTE);
+	throw (ERRO_LISTA_CHEIA)
 }
 
 template typename<T>
-bool Lista<T>::estaCheia() {
-	if()
+void Lista<T>::adicionaEmOrdem(T elemento) {  //A fun 
+	if(!estaCheia()) {
+
+	}
 }
