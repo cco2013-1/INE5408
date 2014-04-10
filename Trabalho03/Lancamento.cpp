@@ -11,3 +11,22 @@
  *
  * Lancamento.cpp
  */
+
+#include "Lancamento.h"
+
+Lancamento::Lancamento() {
+
+}
+
+Lancamento::Lancamento(char* nomeLancado, double valorLancado) {
+ 	nomeLancamento = nomeLancado;
+ 	valorLancamento = valorLancado;
+}
+
+char* Lancamento::nome() {
+	return nomeLancamento;
+}
+
+double Lancamento::valor() {
+	return valorLancamento;
+}

@@ -9,24 +9,7 @@
  * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
  *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
  *
- * Lancamento.h
+ * ListaContabil.h
  */
 
-#ifndef __lancamento_h__
-#define __lancamento_h__
-
-class Lancamento {
-public:
-	Lancamento();
-	Lancamento(char*, double);
-	~Lancamento();
-	char* nome();
-	double valor();
-private:
- 	char *nomeLancamento;
- 	double valorLancamento;
- };
-<<<<<<< HEAD
-
-#endif
-
+ #include "Lista.hpp"
