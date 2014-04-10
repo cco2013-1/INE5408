@@ -9,5 +9,5 @@
  * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
  *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
  *
- * Lancamento.hpp
+ * Lancamento.cpp
  */
