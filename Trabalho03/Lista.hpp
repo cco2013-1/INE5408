@@ -12,13 +12,16 @@
  * Lista.hpp
  */
 
-#define TAMANHO_MAX = 100
-#define ERRO_LISTA_CHEIA = -1
-#define ERRO_LISTA_VAZIA = -2
-#define ERRO_POSICAO_INEXISTENTE = -3
-#define ERRO_ELEMENTO_INEXISTENTE = -4
+#ifndef __lista_hpp__
+#define __lista_hpp__
 
-template typename<T>
+#define TAMANHO_MAX 100
+#define ERRO_LISTA_CHEIA -1
+#define ERRO_LISTA_VAZIA -2
+#define ERRO_POSICAO_INEXISTENTE -3
+#define ERRO_ELEMENTO_INEXISTENTE -4
+
+template <typename T>
 class Lista {
 public:
     Lista();
@@ -29,8 +32,8 @@ public:
     T retira(); //retira o ultimo elemento da lista
     T retiraDaPosicao(int posicao);
     T retiraEspecifico(T elemento);
-    bool listaCheia();
-    bool listaVazia();
+    bool estaCheia();
+    bool estaVazia();
     int posicao(T elemento);
     bool contem(T elemento);
 private:
@@ -40,17 +43,17 @@ private:
     void deslocarDireita(int posicao); //desloca os elementos da lista para a direita a partir da posição passada por parâmetro
  };
 
-template typename<T>
+template <typename T>
 Lista<T>::Lista() {
     ultimo = -1;
 }
 
-template typename<T>
+template <typename T>
 Lista<T>::~Lista() {
     ultimo = -1;
 }
 
-template typename<T>
+template <typename T>
 bool Lista<T>::estaCheia() {
     if(ultimo == TAMANHO_MAX - 1) {
         return true;
@@ -58,7 +61,7 @@ bool Lista<T>::estaCheia() {
     return false;
 }
 
-template typename<T>
+template <typename T>
 bool Lista<T>::estaVazia() {
     if(ultimo == -1) {
         return true;
@@ -66,7 +69,7 @@ bool Lista<T>::estaVazia() {
     return false;
 }
 
-template typename<T>
+template <typename T>
 void Lista<T>::adiciona(T elemento) {
     if(!estaCheia()) {
         dados[++ultimo]=elemento;
@@ -75,7 +78,7 @@ void Lista<T>::adiciona(T elemento) {
     throw (ERRO_LISTA_CHEIA);
 }
 
-template typename<T>
+template <typename T>
 T Lista<T>::retira() {
     if(!estaVazia()) {
         return dados[ultimo--];
@@ -83,12 +86,12 @@ T Lista<T>::retira() {
     throw (ERRO_LISTA_CHEIA);
 }
 
-template typename<T>
+template <typename T>
 void Lista<T>::adicionaNoInicio(T elemento) {
     adicionaNaPosicao(elemento, 0);
 }
 
-template typename<T>
+template <typename T>
 T Lista<T>::retiraDaPosicao(int posicao) {
     if(!estaVazia()) {
         T elementoRetirado = dados[posicao];
@@ -99,46 +102,47 @@ T Lista<T>::retiraDaPosicao(int posicao) {
     throw (ERRO_LISTA_VAZIA);
 }
 
-template typename<T>
+template <typename T>
 void Lista<T>::adicionaNaPosicao(T elemento, int posicao) {
     if(!estaCheia() && posicao <= TAMANHO_MAX && posicao >= 0) {
         deslocarDireita(posicao);
         dados[posicao] = elemento;
         ultimo++;
     }
-    throw (ERRO_LISTA_CHEIA)
+    throw (ERRO_LISTA_CHEIA);
 }
 
-template typename<T>
+template <typename T>
 T Lista<T>::retiraEspecifico(T elemento) {
-    if(contem(T elemento)) {
-        return dados[posicao(T elemento)];
+    if(contem(elemento)) {
+        return dados[posicao(elemento)];
     }
     throw (ERRO_ELEMENTO_INEXISTENTE);
 }
 
-template typename<T>
+template <typename T>
 bool Lista<T>::contem(T elemento) {
-    if(!estaVazia()) {
-        for(int i = 0 ; i == posicao ; i++) {
-            if(T elemento == dados[i]) {
+    if (!estaVazia()) {
+        for (int i = 0 ; i <= ultimo ; i++) {
+            if (elemento == dados[i]) {
                 return true;
             }
         }
-        return false;
+    }
+    return false;
+}
+
+template <typename T>
+int Lista<T>::posicao(T elemento) {
+    if (!estaVazia()) {
+        for (int i = 0 ; i <= ultimo ; i++) {
+            if (elemento == dados[i]) {
+                return i;
+            }
+            throw(ERRO_ELEMENTO_INEXISTENTE);
+        }
     }
     throw(ERRO_LISTA_VAZIA);
 }
 
-template typename<T>
-int Lista<T>::posicao(T elemento) {
-    if(!estaVazia()) {
-        for(int i = 0 ; i == posicao ; i++) {
-            if(T elemento == dados[i]) {
-                return i;
-            }
-            throw (ERRO_ELEMENTO_INEXISTENTE);
-        }
-    }
-    throw (ERRO_LISTA_VAZIA);
-}
+#endif
