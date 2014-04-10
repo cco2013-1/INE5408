@@ -12,11 +12,11 @@
  * Lancamento.h
  */
 
-#ifndef LANCAMENTO_H
-#define LANCAMENTO_H 
+#ifndef __lancamento_h__
+#define __lancamento_h__
 
- class Lancamento { 
-public: 
+class Lancamento {
+public:
 	Lancamento();
 	~Lancamento();
 private:
@@ -24,3 +24,4 @@ private:
  	double valor;
  };
 
+#endif
