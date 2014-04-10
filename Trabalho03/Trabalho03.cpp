@@ -1,7 +1,20 @@
+/**
+ * Universidade Federal de Santa Catarina
+ * Centro Tecnológico
+ * Departamento de Informática e Estatística
+ * Ciências da Computação
+ * INE5408 - Estruturas de Dados
+ *
+ * Trabalho 03 - Implementação de um programa com número variável
+ * de Listas com vetores usando a Classe lista com vetor
+ * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
+ *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
+ *
+ * Trabalho03.cpp
+ */
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
-#include "Lancamento.h"
 #include "ListaContabil.h"
 #include <sstream>
 #include <cstring>
@@ -36,7 +49,7 @@ void removerTransacoes() {
                 "(r) Remover transação específica\n"
                 "(s) Sair\n"
                 "\nLista atual: %s \n", listaAtualTexto.c_str());
-        listarTran();
+        listarTransacoes();
         opcao = getchar();
         getchar();
         switch (opcao) {
@@ -119,10 +132,10 @@ void mostraSaldo() {
     double tDebito = 0;
 
     for (int i = 0; i <= listaCredito.tamanho(); i++) {
-        tCredito += listaCredito.verTrasacao(i).valor();
+        tCredito += listaCredito.verTransacao(i).valor();
     }
     for (int i = 0; i <= listaDebito.tamanho(); i++) {
-        tDebito += listaDebito.verTrasacao(i).valor();
+        tDebito += listaDebito.verTransacao(i).valor();
     }
 
     printf("\nTotal (Créditos - Débitos): \n     %.2f", tCredito - tDebito);

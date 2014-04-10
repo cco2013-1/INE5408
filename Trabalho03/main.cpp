@@ -34,6 +34,8 @@ int main() {
     l.retiraEspecifico(10);
     imprimeLista();
 
+    printf("%s\n", "dasdfa");
+
     return 0;
 }
 

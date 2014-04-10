@@ -26,7 +26,6 @@ private:
  	char *nomeLancamento;
  	double valorLancamento;
  };
-<<<<<<< HEAD
 
 #endif
 

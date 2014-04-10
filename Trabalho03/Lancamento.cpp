@@ -23,6 +23,10 @@ Lancamento::Lancamento(char* nomeLancado, double valorLancado) {
  	valorLancamento = valorLancado;
 }
 
+Lancamento::~Lancamento() {
+
+}
+
 char* Lancamento::nome() {
 	return nomeLancamento;
 }

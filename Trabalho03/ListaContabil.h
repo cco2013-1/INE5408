@@ -19,7 +19,7 @@
  public:
  	ListaContabil();
  	~ListaContabil();
- 	Lancamento verTransicao();
+ 	Lancamento verTransacao(int posicao);
 
  };
 

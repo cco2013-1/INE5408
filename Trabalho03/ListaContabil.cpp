@@ -14,18 +14,16 @@
 
  #include "ListaContabil.h"
 
- 
+
 ListaContabil::ListaContabil() {
-	this->Lista();
 }
 
 ListaContabil::~ListaContabil() {
-	this->~Lista();
 }
 
-Lancamento ListaContabil::verTransicao(int posicao) {
+Lancamento ListaContabil::verTransacao(int posicao) {
 	return this->elementoNaPosicao(posicao);
 }
 
- 
+
 
