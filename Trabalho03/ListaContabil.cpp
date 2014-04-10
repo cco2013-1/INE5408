@@ -9,17 +9,23 @@
  * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
  *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
  *
- * ListaContabil.h
+ * ListaContabil.cpp
  */
 
- #include "Lista.hpp"
- #include "Lancamento.h"
+ #include "ListaContabil.h"
 
- class ListaContabil: public Lista<Lancamento> {
- public:
- 	ListaContabil();
- 	~ListaContabil();
- 	Lancamento verTransicao();
+ 
+ListaContabil::ListaContabil() {
+	this->Lista();
+}
 
- };
+ListaContabil::~ListaContabil() {
+	this->~Lista();
+}
+
+Lancamento ListaContabil::verTransicao(int posicao) {
+	return this->elementoNaPosicao(posicao);
+}
+
+ 
 

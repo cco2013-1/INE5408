@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include "Lancamento.h"
-#include "Lista.hpp"
+#include "ListaContabil.h"
 #include <sstream>
 #include <cstring>
 
@@ -11,9 +11,9 @@ using namespace std;
 string listaAtualTexto = "Débitos";
 char opcao;
 string mensagem = "";
-Lista<Lancamento> listaCredito = Lista<Lancamento>();
-Lista<Lancamento> listaDebito = Lista<Lancamento>();
-Lista<Lancamento> *listaAtual = &listaDebito;
+ListaContabil listaCredito = ListaContabil();
+ListaContabil listaDebito = ListaContabil();
+ListaContabil *listaAtual = &listaDebito;
 
 void listarTran() {
 	if (listaAtual->estaVazia())
@@ -41,7 +41,7 @@ void remTran() {
 		getchar();
 		switch (opcao) {
 		case 't':
-			listaAtual->~Lista();
+			listaAtual->~ListaContabil();
 			printf("Lista destruída!");
 		   sair = true;
 			break;
@@ -114,7 +114,7 @@ void lancarTran() {
 	}			
 }
 
-void elementoNaPosicaoSaldo() {
+void mostraSaldo() {
 	double tCredito = 0;
 	double tDebito = 0;
 
@@ -167,7 +167,7 @@ int main() {
 			remTran();
 			break;
 		case 's':
-			elementoNaPosicaoSaldo();
+			mostraSaldo();
 			break;
 		case 'q':
 			sair = true;
