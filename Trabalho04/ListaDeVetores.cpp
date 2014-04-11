@@ -15,7 +15,6 @@
  #include "ListaDeVetores.h"
  #include <cstring>
 
-
 ListaDeVetores::ListaDeVetores() : Lista<char*>(){
 }
 
@@ -38,7 +37,6 @@ bool ListaDeVetores::contem(char* elemento) {
                return true;
       	    }
     }
-
     return false;
 }
 

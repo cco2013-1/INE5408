@@ -21,6 +21,7 @@
 #define ERRO_POSICAO_INEXISTENTE -3
 #define ERRO_ELEMENTO_INEXISTENTE -4
 
+
 template <typename T>
 class Lista {
 public:
@@ -37,8 +38,8 @@ public:
     T retiraEspecifico(T elemento);
     bool estaCheia();
     bool estaVazia();
-    int posicao(T elemento);
-    bool contem(T elemento);
+    virtual int posicao(T elemento);
+    virtual bool contem(T elemento);
     int tamanho();
 protected:
     T dados[TAMANHO_MAX];
