@@ -19,5 +19,7 @@
  public:
  	ListaDeVetores();
  	virtual ~ListaDeVetores();
+ 	int posicao(char* elemento);
+ 	bool contem (char* elemento);
  };
 

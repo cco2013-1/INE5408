@@ -13,6 +13,7 @@
  */
 
  #include "ListaDeVetores.h"
+ #include <cstring>
 
 
 ListaDeVetores::ListaDeVetores() : Lista<char*>(){
@@ -21,5 +22,23 @@ ListaDeVetores::ListaDeVetores() : Lista<char*>(){
 ListaDeVetores::~ListaDeVetores() {
 }
 
+int ListaDeVetores::posicao(char* elemento) {
+    for (int i = 0 ; i <= ultimo ; i++) {
+       	if (strcmp(elemento, dados[i]) == 0) {
+               return i;
+      	    }
+      	}
+            
+    
+}
 
+bool ListaDeVetores::contem(char* elemento) {
+	for (int i = 0 ; i <= ultimo ; i++) {
+       	if (strcmp(elemento, dados[i]) == 0) {
+               return true;
+      	    }
+    }
+
+    return false;
+}
 

@@ -40,7 +40,7 @@ public:
     int posicao(T elemento);
     bool contem(T elemento);
     int tamanho();
-private:
+protected:
     T dados[TAMANHO_MAX];
     int ultimo; //valor da posição do ultimo elemento inserido na lista
     void deslocarEsquerda(int posicao); //desloca os elementos da lista para a esquerda a partir da posição passada por parâmetro
