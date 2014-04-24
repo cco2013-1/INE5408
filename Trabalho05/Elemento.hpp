@@ -26,8 +26,39 @@ public:
 	void adicionaInformacao(*T informacao);
 	T pegarInformacao();
 private:
-	Elemento<T> *proximoElemento;
+	*Elemento<T> proximoElemento;
 	T *informacao;
 
 };
+
+template <typename T>
+Elemento<T>::Elemento() {
+	proximoElemento = NULL;
+	informacao = NULL;
+}
+
+template <typename T>
+Elemento<T>::~Elemento() {
+
+}
+
+template <typename T>
+void Elemento<T>::adicionarProximoElemento(*Elemento<T> elemento) {
+	this->proximoElemento = elemento;
+}
+
+template <typename T>
+*Elemento<T> Elemento<T>::pegarProximoElemento() {
+	return this->proximoElemento;
+}
+
+template <typename T>
+void Elemento<T>::adicionaInformacao(*T informacaoRecebida) {
+	this->informacao = informacaoRecebida;
+}
+
+template <typename T>
+*T Elemento<T>::pegarInformacao() {
+	return this->informacao;
+}
 #endif

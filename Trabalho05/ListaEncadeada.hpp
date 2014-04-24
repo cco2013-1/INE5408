@@ -14,7 +14,7 @@
 
  #ifndef _ListaEncadeada_hpp_
  #define _ListaEncadeada_hpp_
-
+ #include "Elemento.hpp"
  #define ERRO_NAO_HA_ESPACO -1;
  #define ERRO_POSICAO_INVALIDA -2;
 
@@ -23,27 +23,27 @@ class ListaEncadeada {
 public:
 	ListaEncadeada();
 	~ListaEncadeada();
-	void adiciona(*T elemento);
-	void adicionaNoInicio(*T elemento);
-	void adicionaNaPosicao(*T elemnto, int posicao);
-	void adicionaEmOrdem(*T elemento);
+	void adiciona(T *elemento);
+	void adicionaNoInicio(T *elemento);
+	void adicionaNaPosicao(T *elemento, int posicao);
+	void adicionaEmOrdem(T *elemento);
 	T retira();
 	T retiraDoInicio();
 	T retiraDaPosicao(int posicao);
-	void retiraEspecifico(*T elemento);
+	void retiraEspecifico(T *elemento);
 	bool estaVazia();
-	int posicao(*T elemento);
-	bool contem(*T elemento);
+	int posicao(T *elemento);
+	bool contem(T *elemento);
 private:
-	*Elemento<T> dados;
+	Elemento<T> *dados;
 	int tamanho;
 };
 
  
 template <typename T>
 ListaEncadeada<T>::ListaEncadeada() {
-	tamanho = 0;
-	dados = NULL;
+	this->tamanho = 0;
+	this->dados = NULL;
 }
 
 template <typename T>
@@ -52,8 +52,16 @@ ListaEncadeada<T>::~ListaEncadeada() {
 }
 
 template <typename T>
-void ListaEncadeada<T>::adicionaNoInicio(*T elemento) {
-	Elemento<T> *novoElemento = new Elemento<T>();
+bool ListaEncadeada<T>::estaVazia() {
+	if(this->tamanho == 0) {
+		return true;
+	}
+	return false;
+}
+
+template <typename T>
+void ListaEncadeada<T>::adicionaNoInicio(T *elemento) {
+		Elemento<T> *novoElemento = new Elemento<T>();
 	if (novoElemento != NULL) {
 		novoElemento.adicionarProximoElemento(this->dados);
 		dados = novoElemento;
@@ -63,6 +71,19 @@ void ListaEncadeada<T>::adicionaNoInicio(*T elemento) {
 	}
 	throw (ERRO_NAO_HA_ESPACO);
 	
+}
+
+template <typename T>
+T ListaEncadeada<T>::retiraDoInicio() {
+	if(this->tamanho == 0) {
+		return NULL;
+	}
+	T informacao = this->dados.pegarInformacao();
+	Elemento<T> *elementoRetirado = this->dados;
+	this->dados = elementoRetirado.pegarProximoElemento();
+	elementoRetirado.~Elemento();
+	this->tamanho--;
+	return informacao;
 }
 
 template <typename T>
