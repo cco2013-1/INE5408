@@ -12,53 +12,53 @@
  * Elemento.hpp
  */
 
-#ifndef _ListaEncadeada_hpp_
-#define _ListaEncadeada_hpp_
+#ifndef _Elemento_hpp_
+#define _Elemento_hpp_
 
 
 template <typename T>
 class Elemento {
 public:
-	Elemento();
+	Elemento(const T&, Elemento<T>* proximo);
 	~Elemento();
-	void adicionarProximoElemento(*Elemento<T>);
-	Elemento<T> pegarProximoElemento();
-	void adicionaInformacao(*T informacao);
-	T pegarInformacao();
+	void adicionarProximoElemento(Elemento<T>*);
+	Elemento<T>* pegarProximoElemento();
+	void adicionaInformacao(T*);
+	T* pegarInformacao();
 private:
-	*Elemento<T> proximoElemento;
-	T *informacao;
+	Elemento<T>* proximoElemento;
+	T* informacao;
 
 };
 
 template <typename T>
-Elemento<T>::Elemento() {
-	proximoElemento = NULL;
-	informacao = NULL;
-}
+Elemento<T>::Elemento(const T& info, Elemento<T> *proximo):
+	proximoElemento(proximo),
+	informacao(new T(info))
+{}
 
 template <typename T>
 Elemento<T>::~Elemento() {
-
+	delete informacao;
 }
 
 template <typename T>
-void Elemento<T>::adicionarProximoElemento(*Elemento<T> elemento) {
+void Elemento<T>::adicionarProximoElemento(Elemento<T>* elemento) {
 	this->proximoElemento = elemento;
 }
 
 template <typename T>
-*Elemento<T> Elemento<T>::pegarProximoElemento() {
+Elemento<T>* Elemento<T>::pegarProximoElemento() {
 	return this->proximoElemento;
 }
 
 template <typename T>
-void Elemento<T>::adicionaInformacao(*T informacaoRecebida) {
+void Elemento<T>::adicionaInformacao(T* informacaoRecebida) {
 	this->informacao = informacaoRecebida;
 }
 
 template <typename T>
-*T Elemento<T>::pegarInformacao() {
+T* Elemento<T>::pegarInformacao() {
 	return this->informacao;
 }
 #endif

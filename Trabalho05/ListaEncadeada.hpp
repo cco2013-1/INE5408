@@ -12,28 +12,30 @@
  * ListaEncadeada.hpp
  */
 
- #ifndef _ListaEncadeada_hpp_
- #define _ListaEncadeada_hpp_
- #include "Elemento.hpp"
- #define ERRO_NAO_HA_ESPACO -1;
- #define ERRO_POSICAO_INVALIDA -2;
+#ifndef _ListaEncadeada_hpp_
+#define _ListaEncadeada_hpp_
+#include "Elemento.hpp"
+
+#include <stdexcept>
+
+#define ERRO_POSICAO_INVALIDA -2;
 
 template <typename T>
 class ListaEncadeada {
 public:
 	ListaEncadeada();
 	~ListaEncadeada();
-	void adiciona(T *elemento);
-	void adicionaNoInicio(T *elemento);
-	void adicionaNaPosicao(T *elemento, int posicao);
-	void adicionaEmOrdem(T *elemento);
+	void adiciona(const T& informacao);
+	void adicionaNoInicio(const T& informacao);
+	void adicionaNaPosicao(const T& informacao, int posicao);
+	void adicionaEmOrdem(const T& informacao);
 	T retira();
 	T retiraDoInicio();
 	T retiraDaPosicao(int posicao);
-	void retiraEspecifico(T *elemento);
+	void retiraEspecifico(const T& informacao);
 	bool estaVazia();
-	int posicao(T *elemento);
-	bool contem(T *elemento);
+	int posicao(const T& informacao);
+	bool contem(const T& informacao);
 private:
 	Elemento<T> *dados;
 	int tamanho;
@@ -41,72 +43,72 @@ private:
 
  
 template <typename T>
-ListaEncadeada<T>::ListaEncadeada() {
-	this->tamanho = 0;
-	this->dados = NULL;
-}
+ListaEncadeada<T>::ListaEncadeada():
+	tamanho(0),
+	dados(0)
+{}
 
 template <typename T>
 ListaEncadeada<T>::~ListaEncadeada() {
- 	
+	Elemento<T> *elemento = dados;
+	for (int i = 0; i < tamanho; ++i) {
+		Elemento<T> *proximo = elemento->pegarProximoElemento();
+		delete elemento;
+		elemento = proximo;
+	}	
 }
 
 template <typename T>
 bool ListaEncadeada<T>::estaVazia() {
-	if(this->tamanho == 0) {
-		return true;
-	}
-	return false;
+	return tamanho == 0;
 }
 
 template <typename T>
-void ListaEncadeada<T>::adicionaNoInicio(T *elemento) {
-		Elemento<T> *novoElemento = new Elemento<T>();
-	if (novoElemento != NULL) {
-		novoElemento.adicionarProximoElemento(this->dados);
+void ListaEncadeada<T>::adicionaNoInicio(const T& informacao) {
+	try {
+		Elemento<T> *novoElemento = new Elemento<T>(informacao, dados);
 		dados = novoElemento;
-		novoElemento.adicionaInformacao(elemento);
-		this->tamanho++;
-
+		++tamanho;
+	} catch (std::bad_alloc&) {
+		throw;
 	}
-	throw (ERRO_NAO_HA_ESPACO);
-	
 }
 
 template <typename T>
 T ListaEncadeada<T>::retiraDoInicio() {
-	if(this->tamanho == 0) {
-		return NULL;
+	if (this->tamanho == 0) {
+		throw std::range_error("Lista vazia!");
 	}
-	T informacao = this->dados.pegarInformacao();
-	Elemento<T> *elementoRetirado = this->dados;
-	this->dados = elementoRetirado.pegarProximoElemento();
-	elementoRetirado.~Elemento();
-	this->tamanho--;
+
+	T informacao(*this->dados->pegarInformacao());
+	Elemento<T> *elementoRetirado = dados;
+	dados = elementoRetirado->pegarProximoElemento();
+	delete elementoRetirado;
+	--tamanho;
 	return informacao;
 }
 
 template <typename T>
-void ListaEncadeada<T>::adicionaNaPosicao(*T elemento, int posicao) {
+void ListaEncadeada<T>::adicionaNaPosicao(const T& informacao, int posicao) {
 	if (posicao == 0){
-		this.adicionaNoInicio(elemento);
+		adicionaNoInicio(informacao);
 		return 0;
 	}
-	if(posicao <= this->tamanho){
-		Elemento<T> *novoElemento = new Elemento<T>();
+
+	if (posicao <= tamanho) {
 		Elemento<T> *ultimoElemento = dados;
-		if(novoElemento != NULL){
-			for(int i = 0 ; i < this->posicao - 1 ; i++) {
-			ultimoElemento = ultimoElemento.pegarProximoElemento();
-			}
-		ultimoElemento.adicionarProximoElemento(novoElemento);
-		novoElemento.adicionaInformacao(elemento);
-		this->tamanho++;	
+
+		for(int i = 0; i < (posicao - 1); i++) {
+			ultimoElemento = ultimoElemento->pegarProximoElemento();
 		}
-		throw (ERRO_NAO_HA_ESPACO);
+
+		Elemento<T> *novoElemento = new Elemento<T>(informacao, ultimoElemento->pegarProximoElemento());
+
+		ultimoElemento->adicionarProximoElemento(novoElemento);
+		++tamanho;
 	}
-	throw (ERRO_POSICAO_INVALIDA);
 	
+	throw std::range_error("Posição inválida!");
 }
 
 #endif

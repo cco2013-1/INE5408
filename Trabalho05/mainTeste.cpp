@@ -6,6 +6,11 @@ main para testar os métodos da Lista
 #include "ListaEncadeada.hpp"
 #include "Elemento.hpp"
 
-ListaEncadeada<Elemento<int>> lista = new ListaEncadeada<Elemento<int>>();
-lista.adicionaNoInicio(7);
-cout<<"lista encadeada" lista >> endl
+using namespace std;
+
+int main(){
+	ListaEncadeada<int> lista = ListaEncadeada<int>();
+	int test = 7; 
+	lista.adicionaNoInicio(test);
+	cout << "lista encadeada " << lista.retiraDoInicio() << "\n";
+}
