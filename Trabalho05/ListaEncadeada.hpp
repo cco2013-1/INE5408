@@ -5,110 +5,226 @@
  * Ciências da Computação
  * INE5408 - Estruturas de Dados
  *
- * Trabalho 05 - Trabalho de Sistema de Contabilidade Mafioso com Lista Encadeada Simples
+ * Trabalho 05 - Trabalho de Sistema de Contabilidade Mafioso
+ * com Lista Encadeada Simples
  * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
  *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
  *
  * ListaEncadeada.hpp
  */
 
-#ifndef _ListaEncadeada_hpp_
-#define _ListaEncadeada_hpp_
-#include "Elemento.hpp"
+#ifndef __lista_encadeada_hpp__
+#define __lista_encadeada_hpp__
 
-#include <stdexcept>
+#define TAMANHO_MAX 10
+#define ERRO_LISTA_CHEIA -1
+#define ERRO_LISTA_VAZIA -2
+#define ERRO_POSICAO_INEXISTENTE -3
+#define ERRO_ELEMENTO_INEXISTENTE -4
 
-#define ERRO_POSICAO_INVALIDA -2;
+#include <iostream>
+
+using namespace std;
 
 template <typename T>
 class ListaEncadeada {
 public:
-	ListaEncadeada();
-	~ListaEncadeada();
-	void adiciona(const T& informacao);
-	void adicionaNoInicio(const T& informacao);
-	void adicionaNaPosicao(const T& informacao, int posicao);
-	void adicionaEmOrdem(const T& informacao);
-	T retira();
-	T retiraDoInicio();
-	T retiraDaPosicao(int posicao);
-	void retiraEspecifico(const T& informacao);
-	bool estaVazia();
-	int posicao(const T& informacao);
-	bool contem(const T& informacao);
+    ListaEncadeada();
+    ~ListaEncadeada();
+    void adiciona(T *elemento); //adiciona o elemento na ultima posicao livre
+    void adicionaNoInicio(T *elemento); //adiciona o elemento no inicio da lista
+    void adicionaNaPosicao(T *elemento, int posicao); //adiciona o elemento na posicao desejada
+    T * elementoNaPosicao(int posicao);
+    void retiraDaPosicao(int posicao);
+    bool estaVazia();
+    int tamanho();
 private:
-	Elemento<T> *dados;
-	int tamanho;
-};
+    struct Capsula {
+        Capsula *proxima;
+        T *informacao;
+    };
+    Capsula *primeira;
+    Capsula *ultima;
+    int _tamanho;
+ };
 
- 
 template <typename T>
-ListaEncadeada<T>::ListaEncadeada():
-	tamanho(0),
-	dados(0)
-{}
+ListaEncadeada<T>::ListaEncadeada() {
+    _tamanho = 0;
+    primeira = 0; //Null
+}
 
 template <typename T>
 ListaEncadeada<T>::~ListaEncadeada() {
-	Elemento<T> *elemento = dados;
-	for (int i = 0; i < tamanho; ++i) {
-		Elemento<T> *proximo = elemento->pegarProximoElemento();
-		delete elemento;
-		elemento = proximo;
-	}	
+    Capsula *atual = primeira;
+
+    while(_tamanho > 0) {
+        retiraDaPosicao(0);
+    }
 }
 
 template <typename T>
 bool ListaEncadeada<T>::estaVazia() {
-	return tamanho == 0;
+    return _tamanho == 0;
 }
 
 template <typename T>
-void ListaEncadeada<T>::adicionaNoInicio(const T& informacao) {
-	try {
-		Elemento<T> *novoElemento = new Elemento<T>(informacao, dados);
-		dados = novoElemento;
-		++tamanho;
-	} catch (std::bad_alloc&) {
-		throw;
-	}
+void ListaEncadeada<T>::adiciona(T *elemento) {
+    Capsula *nova = new Capsula;
+
+    nova->informacao = elemento;
+    nova->proxima = 0; //null
+    if (_tamanho == 0) {
+        primeira = nova;
+    } else {
+        ultima->proxima = nova;
+    }
+    ultima = nova;
+    _tamanho += 1;
 }
 
 template <typename T>
-T ListaEncadeada<T>::retiraDoInicio() {
-	if (this->tamanho == 0) {
-		throw std::range_error("Lista vazia!");
-	}
-
-	T informacao(*this->dados->pegarInformacao());
-	Elemento<T> *elementoRetirado = dados;
-	dados = elementoRetirado->pegarProximoElemento();
-	delete elementoRetirado;
-	--tamanho;
-	return informacao;
+void ListaEncadeada<T>::adicionaNoInicio(T *elemento) {
+    Capsula *nova = new Capsula;
+    nova->informacao = elemento;
+    nova->proxima = primeira;
+    primeira = nova;
+    _tamanho += 1;
 }
 
 template <typename T>
-void ListaEncadeada<T>::adicionaNaPosicao(const T& informacao, int posicao) {
-	if (posicao == 0){
-		adicionaNoInicio(informacao);
-		return 0;
-	}
+T * ListaEncadeada<T>::elementoNaPosicao(int posicao) {
+    if (posicao < _tamanho && posicao >= 0) {
+        Capsula *atual = primeira;
+        int cont = 0;
 
-	if (posicao <= tamanho) {
-		Elemento<T> *ultimoElemento = dados;
+        while (true) {
+            if (cont == posicao) {
+                break;
+            }
+            atual = atual->proxima;
+            cont += 1;
+        }
 
-		for(int i = 0; i < (posicao - 1); i++) {
-			ultimoElemento = ultimoElemento->pegarProximoElemento();
-		}
-
-		Elemento<T> *novoElemento = new Elemento<T>(informacao, ultimoElemento->pegarProximoElemento());
-
-		ultimoElemento->adicionarProximoElemento(novoElemento);
-		++tamanho;
-	}
-	
-	throw std::range_error("Posição inválida!");
+        return atual->informacao;
+    }
+    throw(ERRO_POSICAO_INEXISTENTE);
 }
+
+template <typename T>
+int ListaEncadeada<T>::tamanho() {
+    return _tamanho;
+}
+
+template <typename T>
+void ListaEncadeada<T>::adicionaNaPosicao(T *elemento, int posicao) {
+    if (posicao <= _tamanho && posicao > 0) {
+        Capsula *nova = new Capsula;
+        nova->informacao = elemento;
+
+        Capsula *atual = primeira;
+        int cont = 0;
+
+        while (true) {
+            if (++cont == posicao) {
+                nova->proxima = atual->proxima;
+                atual->proxima = nova;
+                _tamanho += 1;
+                return;
+            }
+            atual = atual->proxima;
+        }
+    }
+    if (posicao == 0) {
+        adicionaNoInicio(elemento);
+        return;
+    }
+    throw (ERRO_POSICAO_INEXISTENTE);
+}
+
+template <typename T>
+void ListaEncadeada<T>::retiraDaPosicao(int posicao) {
+    if (posicao < _tamanho && posicao > 0) {
+
+        Capsula *atual = primeira;
+        int cont = 0;
+
+        while (true) {
+            if (++cont == posicao) {
+                Capsula *proxima = atual->proxima;
+                atual->proxima = proxima->proxima;
+                delete proxima;
+                if (posicao == _tamanho - 1) {
+                    ultima = atual;
+                    ultima->proxima = 0;
+                }
+                _tamanho -= 1;
+                return;
+            }
+            atual = atual->proxima;
+        }
+
+    }
+    if (posicao == 0) {
+        Capsula *auxiliar = primeira;
+        primeira = primeira->proxima;
+        delete auxiliar;
+        _tamanho -= 1;
+        return;
+    }
+    throw(ERRO_POSICAO_INEXISTENTE);
+}
+
+
+
+
+
+
+
+// template <typename T>
+// T Lista<T>::retiraDaPosicao(int posicao) {
+//     if (estaVazia()) {
+//         throw (ERRO_LISTA_VAZIA);
+//     }
+//     T elementoRetirado = dados[posicao];
+//     deslocarEsquerda(posicao);
+//     return elementoRetirado;
+// }
+
+
+
+// template <typename T>
+// void Lista<T>::retiraEspecifico(T elemento) {
+//     if (contem(elemento)) {
+//     	retiraDaPosicao(posicao(elemento));
+//     	return;
+//     }
+//     throw (ERRO_ELEMENTO_INEXISTENTE);
+// }
+
+// template <typename T>
+// bool Lista<T>::contem(T elemento) {
+//     if (!estaVazia()) {
+//         for (int i = 0 ; i <= ultimo ; i++) {
+//             if (elemento == dados[i]) {
+//                 return true;
+//             }
+//         }
+//     }
+//     return false;
+// }
+
+// template <typename T>
+// int Lista<T>::posicao(T elemento) {
+//     if (!estaVazia()) {
+//         for (int i = 0 ; i <= ultimo ; i++) {
+//             if (elemento == dados[i]) {
+//                 return i;
+//             }
+//             throw(ERRO_ELEMENTO_INEXISTENTE);
+//         }
+//     }
+//     throw(ERRO_LISTA_VAZIA);
+// }
 
 #endif
