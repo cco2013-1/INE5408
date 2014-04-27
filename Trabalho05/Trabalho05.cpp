@@ -132,10 +132,10 @@ void mostraSaldo() {
     double tCredito = 0;
     double tDebito = 0;
 
-    for (int i = 0; i <= listaCredito.tamanho(); i++) {
+    for (int i = 0; i < listaCredito.tamanho(); i++) {
         tCredito += listaCredito.verTransacao(i)->valor();
     }
-    for (int i = 0; i <= listaDebito.tamanho(); i++) {
+    for (int i = 0; i < listaDebito.tamanho(); i++) {
         tDebito += listaDebito.verTransacao(i)->valor();
     }
 

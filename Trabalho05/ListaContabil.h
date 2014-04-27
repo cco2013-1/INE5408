@@ -13,8 +13,11 @@
  * ListaContabil.h
  */
 
- #include "ListaEncadeada.hpp"
- #include "Lancamento.h"
+#ifndef __lista_contabil_h__
+#define __lista_contabil_h__
+
+#include "ListaEncadeada.hpp"
+#include "Lancamento.h"
 
 class ListaContabil: public ListaEncadeada<Lancamento> {
 public:
@@ -22,3 +25,5 @@ public:
     ~ListaContabil();
     Lancamento * verTransacao(int posicao);
 };
+
+#endif
