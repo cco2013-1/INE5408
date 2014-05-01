@@ -30,6 +30,7 @@ public:
     ~FilaEncadeada();
     void adiciona(const T& elemento); //adiciona o elemento na ultima posicao livre
     T retira();
+    T elementoEm(int posicao);
     bool estaVazia();
     int tamanho();
 private:
@@ -93,9 +94,9 @@ T FilaEncadeada<T>::retira() {
 
     Capsula *retirada = primeira;
     T informacao = primeira->informacao;
-    primeira->proxima = retirada->proxima;
+    primeira = primeira->proxima;
     delete retirada;
+    _tamanho--;
     return informacao;
 }
-
 #endif
