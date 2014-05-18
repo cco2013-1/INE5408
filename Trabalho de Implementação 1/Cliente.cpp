@@ -50,7 +50,7 @@ Cliente::Cliente(int chegada) {
 }
 
 /**
- * Destrutor do Cliente.
+ * Destrutor do Cliente
  * Vazio pois não há nada a destruir.
  */
 Cliente::~Cliente() {
@@ -66,15 +66,21 @@ double Cliente::valorCompras() {
 }
 
 /**
- * Método defineHorarioSaida
- * Define o horário de saída do cliente, após este ser
- * inserido em alguma fila do caixa.
- * @param saida horário de saída do cliente
+ * Método numProdutos
+ * Retorna a quantidade de produtos comprada pelo cliente
+ * @return quantidade de produtos
  */
-void Cliente::defineHorarioSaida(int saida) {
-    if (saida > horarioDeChegada) {
-        horarioDeSaida = saida;
-    } else throw (ERRO_HORARIO_SAIDA);
+int Cliente::quantidadeDeProdutos() {
+    return quantidadeProdutos;
+}
+
+/**
+ * Método obtemHorarioChegada
+ * Retorna o horário de chegada do cliente
+ * @return horário de chegada do cliente
+ */
+int Cliente::obtemHorarioChegada() {
+    return horarioDeChegada;
 }
 
 /**
@@ -85,6 +91,18 @@ void Cliente::defineHorarioSaida(int saida) {
  */
 int Cliente::obtemHorarioSaida() {
     return horarioDeSaida;
+}
+
+/**
+ * Método defineHorarioSaida
+ * Define o horário de saída do cliente, após este ser
+ * inserido em alguma fila do caixa.
+ * @param saida horário de saída do cliente
+ */
+void Cliente::defineHorarioSaida(int saida) {
+    if (saida > horarioDeChegada) {
+        horarioDeSaida = saida;
+    } else throw (ERRO_HORARIO_SAIDA);
 }
 
 /**

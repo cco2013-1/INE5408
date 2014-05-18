@@ -59,8 +59,10 @@ public:
     Cliente(int chegada);
     ~Cliente();
     double valorCompras();
-    void defineHorarioSaida(int saida);
+    int quantidadeDeProdutos();
+    int obtemHorarioChegada();
     int obtemHorarioSaida();
+    void defineHorarioSaida(int saida);
     tipoCliente obtemTipoCliente();
     formaPagamento obtemFormaPagamento();
 };

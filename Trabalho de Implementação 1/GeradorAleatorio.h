@@ -13,6 +13,9 @@
  * Gera números aleatórios de diversas maneiras.
  */
 class GeradorAleatorio {
+private:
+    bool hasSpare; /**<utilizado pelo método obtemDoubleDeDistribuicaoNormal>*/
+    double aleatorio1, aleatorio2; /**<utilizado pelo método obtemDoubleDeDistribuicaoNormal>*/
 public:
     GeradorAleatorio();
     ~GeradorAleatorio();
@@ -23,6 +26,7 @@ public:
     int obtemInteiroNoIntervalo(int inicio, int fim);
     double obtemDouble();
     double obtemDoubleNoIntervalo(double inicio, double fim);
+    double obtemDoubleDeDistribuicaoNormal(double media, double variancia);
 };
 
 #endif

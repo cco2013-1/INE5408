@@ -8,9 +8,13 @@
 #include "GeradorAleatorio.h"
 #include <stdlib.h>
 #include <time.h>
+#include <cmath>
+
+#define TWO_PI 6.2831853071795864769252866
 
 GeradorAleatorio::GeradorAleatorio() {
     defineSemente(time(NULL));
+    hasSpare = false;
 }
 
 GeradorAleatorio::~GeradorAleatorio() {
@@ -86,4 +90,31 @@ double GeradorAleatorio::obtemDouble() {
  */
 double GeradorAleatorio::obtemDoubleNoIntervalo(double inicio, double fim) {
     return obtemDouble() * (fim - inicio) + inicio;
+}
+
+/**
+ * Método obtemDoubleDeDistribuicaoNormal
+ * Retorna um número aleatório distribuido ao redor da média conforme
+ * a distribuição normal, com a variancia especificada.
+ * Adaptado de: http://en.wikipedia.org/wiki/Box-Muller_transform
+ * @param media valor médio da distribuição desejada
+ * @param variancai variancia desejada para a distribuição normal
+ * @return valor aleatório distriuído de acordo com a Normal
+ */
+double GeradorAleatorio::obtemDoubleDeDistribuicaoNormal(double media, double variancia) {
+    if (hasSpare) {
+        hasSpare = false;
+        return sqrt(variancia * aleatorio1) * sin(aleatorio2) + media;
+    }
+
+    hasSpare = true;
+
+    aleatorio1 = rand() / ((double) RAND_MAX);
+    if (aleatorio1 < 1e-100) {
+        aleatorio1 = 1e-100;
+    }
+    aleatorio1 = -2 * log(aleatorio1);
+    aleatorio2 = (rand() / ((double) RAND_MAX)) * TWO_PI;
+
+    return sqrt(variancia * aleatorio1) * cos(aleatorio2) + media;
 }
