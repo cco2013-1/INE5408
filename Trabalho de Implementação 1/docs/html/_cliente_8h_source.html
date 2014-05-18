@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>Simulação Supermercado: Código-Fonte de Cliente.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Simulação Supermercado
+   &#160;<span id="projectnumber">0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;Principal</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Arquivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;Arquivos</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funções</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Cliente.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef __cliente_h__</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __cliente_h__</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;GeradorAleatorio.h&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">enum</span> tipoCliente {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    MENOR_FILA, </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    FILA_COM_MENOS_PRODUTOS </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">enum</span> formaPagamento {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    CHEQUE, </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    DINHEIRO </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;};</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_cliente.html">   45</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_cliente.html">Cliente</a> {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    tipoCliente tipo;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    formaPagamento pagamento;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">int</span> quantidadeProdutos;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">double</span> valorTotal;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">int</span> horarioDeChegada;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">int</span> horarioDeSaida;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> defineTipoCliente();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> defineFormaPagamento();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> defineProdutos();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_gerador_aleatorio.html">GeradorAleatorio</a> *ga;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> numClientes;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_cliente.html#ad21139857bcde255f8926b661baeb99c">Cliente</a>(<span class="keywordtype">int</span> chegada);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_cliente.html#a29d1d53394350c66363109e33c990b58">~Cliente</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_cliente.html#a80ff8419f1cf1fd601add262b93e0edb">valorCompras</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_cliente.html#a4cd24028ee510e3facf1c4acac964b15">quantidadeDeProdutos</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_cliente.html#ab98c42fc3eff3b24856b4174ba6e5a2c">obtemHorarioChegada</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_cliente.html#ae013dc35dc00a2c8473e2bc94fa047fe">obtemHorarioSaida</a>();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_cliente.html#a80d448f76659d1feb3ebf4921faf4284">defineHorarioSaida</a>(<span class="keywordtype">int</span> saida);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    tipoCliente <a class="code" href="class_cliente.html#a69f3c85d52ebd6882b2896e8da0c9c75">obtemTipoCliente</a>();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    formaPagamento <a class="code" href="class_cliente.html#aa35def912b474a78674374ae43a94750">obtemFormaPagamento</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="class_cliente_html_ab98c42fc3eff3b24856b4174ba6e5a2c"><div class="ttname"><a href="class_cliente.html#ab98c42fc3eff3b24856b4174ba6e5a2c">Cliente::obtemHorarioChegada</a></div><div class="ttdeci">int obtemHorarioChegada()</div><div class="ttdoc">Método obtemHorarioChegada Retorna o horário de chegada do cliente. </div><div class="ttdef"><b>Definition:</b> Cliente.cpp:82</div></div>
+<div class="ttc" id="class_cliente_html_a29d1d53394350c66363109e33c990b58"><div class="ttname"><a href="class_cliente.html#a29d1d53394350c66363109e33c990b58">Cliente::~Cliente</a></div><div class="ttdeci">~Cliente()</div><div class="ttdoc">Destrutor do Cliente Vazio pois não há nada a destruir. </div><div class="ttdef"><b>Definition:</b> Cliente.cpp:56</div></div>
+<div class="ttc" id="class_cliente_html_a4cd24028ee510e3facf1c4acac964b15"><div class="ttname"><a href="class_cliente.html#a4cd24028ee510e3facf1c4acac964b15">Cliente::quantidadeDeProdutos</a></div><div class="ttdeci">int quantidadeDeProdutos()</div><div class="ttdoc">Método numProdutos Retorna a quantidade de produtos comprada pelo cliente. </div><div class="ttdef"><b>Definition:</b> Cliente.cpp:73</div></div>
+<div class="ttc" id="class_cliente_html_ad21139857bcde255f8926b661baeb99c"><div class="ttname"><a href="class_cliente.html#ad21139857bcde255f8926b661baeb99c">Cliente::Cliente</a></div><div class="ttdeci">Cliente(int chegada)</div><div class="ttdoc">Construtor do Cliente. </div><div class="ttdef"><b>Definition:</b> Cliente.cpp:38</div></div>
+<div class="ttc" id="class_cliente_html_ae013dc35dc00a2c8473e2bc94fa047fe"><div class="ttname"><a href="class_cliente.html#ae013dc35dc00a2c8473e2bc94fa047fe">Cliente::obtemHorarioSaida</a></div><div class="ttdeci">int obtemHorarioSaida()</div><div class="ttdoc">Método obtemHorarioSaida Retorna o horário de saída previamente definido para este cliente...</div><div class="ttdef"><b>Definition:</b> Cliente.cpp:92</div></div>
+<div class="ttc" id="class_cliente_html_aa35def912b474a78674374ae43a94750"><div class="ttname"><a href="class_cliente.html#aa35def912b474a78674374ae43a94750">Cliente::obtemFormaPagamento</a></div><div class="ttdeci">formaPagamento obtemFormaPagamento()</div><div class="ttdoc">Método obtemFormaPagamento Retorna a forma de pagamento do cliente. </div><div class="ttdef"><b>Definition:</b> Cliente.cpp:122</div></div>
+<div class="ttc" id="class_gerador_aleatorio_html"><div class="ttname"><a href="class_gerador_aleatorio.html">GeradorAleatorio</a></div><div class="ttdoc">Biblioteca para geração de números aleatórios. </div><div class="ttdef"><b>Definition:</b> GeradorAleatorio.h:15</div></div>
+<div class="ttc" id="class_cliente_html_a69f3c85d52ebd6882b2896e8da0c9c75"><div class="ttname"><a href="class_cliente.html#a69f3c85d52ebd6882b2896e8da0c9c75">Cliente::obtemTipoCliente</a></div><div class="ttdeci">tipoCliente obtemTipoCliente()</div><div class="ttdoc">Método obtemTipoCliente Retorna o tipo do cliente. </div><div class="ttdef"><b>Definition:</b> Cliente.cpp:113</div></div>
+<div class="ttc" id="class_cliente_html_a80ff8419f1cf1fd601add262b93e0edb"><div class="ttname"><a href="class_cliente.html#a80ff8419f1cf1fd601add262b93e0edb">Cliente::valorCompras</a></div><div class="ttdeci">double valorCompras()</div><div class="ttdoc">Método valorCompras. </div><div class="ttdef"><b>Definition:</b> Cliente.cpp:64</div></div>
+<div class="ttc" id="class_cliente_html"><div class="ttname"><a href="class_cliente.html">Cliente</a></div><div class="ttdoc">Classe Cliente. </div><div class="ttdef"><b>Definition:</b> Cliente.h:45</div></div>
+<div class="ttc" id="class_cliente_html_a80d448f76659d1feb3ebf4921faf4284"><div class="ttname"><a href="class_cliente.html#a80d448f76659d1feb3ebf4921faf4284">Cliente::defineHorarioSaida</a></div><div class="ttdeci">void defineHorarioSaida(int saida)</div><div class="ttdoc">Método defineHorarioSaida Define o horário de saída do cliente, após este ser inserido em alguma fila...</div><div class="ttdef"><b>Definition:</b> Cliente.cpp:102</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado em Domingo, 18 de Maio de 2014 16:45:54 para Simulação Supermercado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

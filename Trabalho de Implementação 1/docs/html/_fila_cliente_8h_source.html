@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>Simulação Supermercado: Código-Fonte de FilaCliente.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Simulação Supermercado
+   &#160;<span id="projectnumber">0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;Principal</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Arquivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;Arquivos</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funções</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">FilaCliente.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef __fila_cliente_h__</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __fila_cliente_h__</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;Cliente.h&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;ListaEncadeada.hpp&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_fila_cliente.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_fila_cliente.html">FilaCliente</a> {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_lista_encadeada.html">ListaEncadeada&lt;Cliente&gt;</a> *lista;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">int</span> numProdutos;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_fila_cliente.html#a79685d047be58e8321e3f1a111dbd714">FilaCliente</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_fila_cliente.html#a56ea7099367af24f183ae051ab7c52ab">~FilaCliente</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_fila_cliente.html#ac1345b6d536a8110a72f39d6217204bf">adicionaCliente</a>(<a class="code" href="class_cliente.html">Cliente</a> *c);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_fila_cliente.html#a5543f5cabe6f78ad835330fbee98529c">retiraCliente</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_cliente.html">Cliente</a>* <a class="code" href="class_fila_cliente.html#a3ac0a39ad4cbea8a9429298557e42d7d">proximoCliente</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_fila_cliente.html#a84c8331b69660b90150964c5aa7cfae8">obtemNumClientes</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_fila_cliente.html#a48c853f0f14657705efc2363097f7bff">obtemNumProdutos</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;};</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="class_fila_cliente_html_a79685d047be58e8321e3f1a111dbd714"><div class="ttname"><a href="class_fila_cliente.html#a79685d047be58e8321e3f1a111dbd714">FilaCliente::FilaCliente</a></div><div class="ttdeci">FilaCliente()</div><div class="ttdoc">Universidade Federal de Santa Catarina Centro Tecnológico Departamento de Informática e Estatística C...</div><div class="ttdef"><b>Definition:</b> FilaCliente.cpp:23</div></div>
+<div class="ttc" id="class_fila_cliente_html_a48c853f0f14657705efc2363097f7bff"><div class="ttname"><a href="class_fila_cliente.html#a48c853f0f14657705efc2363097f7bff">FilaCliente::obtemNumProdutos</a></div><div class="ttdeci">int obtemNumProdutos()</div><div class="ttdoc">Método obtemNumProdutos Retorna a quantidade total de produtos dos clientes que estão na fila...</div><div class="ttdef"><b>Definition:</b> FilaCliente.cpp:80</div></div>
+<div class="ttc" id="class_lista_encadeada_html"><div class="ttname"><a href="class_lista_encadeada.html">ListaEncadeada&lt; Cliente &gt;</a></div></div>
+<div class="ttc" id="class_fila_cliente_html_a56ea7099367af24f183ae051ab7c52ab"><div class="ttname"><a href="class_fila_cliente.html#a56ea7099367af24f183ae051ab7c52ab">FilaCliente::~FilaCliente</a></div><div class="ttdeci">~FilaCliente()</div><div class="ttdoc">Destrutor da Fila de Clientes Libera o espaço utilizado pela Lista Encadeada. </div><div class="ttdef"><b>Definition:</b> FilaCliente.cpp:32</div></div>
+<div class="ttc" id="class_fila_cliente_html"><div class="ttname"><a href="class_fila_cliente.html">FilaCliente</a></div><div class="ttdoc">Universidade Federal de Santa Catarina Centro Tecnológico Departamento de Informática e Estatística C...</div><div class="ttdef"><b>Definition:</b> FilaCliente.h:22</div></div>
+<div class="ttc" id="class_fila_cliente_html_a5543f5cabe6f78ad835330fbee98529c"><div class="ttname"><a href="class_fila_cliente.html#a5543f5cabe6f78ad835330fbee98529c">FilaCliente::retiraCliente</a></div><div class="ttdeci">void retiraCliente()</div><div class="ttdoc">Método retiraCliente Retira um cliente do inicio da Lista. </div><div class="ttdef"><b>Definition:</b> FilaCliente.cpp:53</div></div>
+<div class="ttc" id="class_fila_cliente_html_ac1345b6d536a8110a72f39d6217204bf"><div class="ttname"><a href="class_fila_cliente.html#ac1345b6d536a8110a72f39d6217204bf">FilaCliente::adicionaCliente</a></div><div class="ttdeci">void adicionaCliente(Cliente *c)</div><div class="ttdoc">Método adicionaCliente Adiciona um cliente no final da Lista, dando o comportamento de fila...</div><div class="ttdef"><b>Definition:</b> FilaCliente.cpp:42</div></div>
+<div class="ttc" id="class_fila_cliente_html_a84c8331b69660b90150964c5aa7cfae8"><div class="ttname"><a href="class_fila_cliente.html#a84c8331b69660b90150964c5aa7cfae8">FilaCliente::obtemNumClientes</a></div><div class="ttdeci">int obtemNumClientes()</div><div class="ttdoc">Método obtemNumClientes Retorna o número de clientes atualmente na fila. </div><div class="ttdef"><b>Definition:</b> FilaCliente.cpp:72</div></div>
+<div class="ttc" id="class_fila_cliente_html_a3ac0a39ad4cbea8a9429298557e42d7d"><div class="ttname"><a href="class_fila_cliente.html#a3ac0a39ad4cbea8a9429298557e42d7d">FilaCliente::proximoCliente</a></div><div class="ttdeci">Cliente * proximoCliente()</div><div class="ttdoc">Método proximoCliente Mostra o primeiro cliente da fila, sem removê-lo. </div><div class="ttdef"><b>Definition:</b> FilaCliente.cpp:63</div></div>
+<div class="ttc" id="class_cliente_html"><div class="ttname"><a href="class_cliente.html">Cliente</a></div><div class="ttdoc">Classe Cliente. </div><div class="ttdef"><b>Definition:</b> Cliente.h:45</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado em Domingo, 18 de Maio de 2014 16:45:54 para Simulação Supermercado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

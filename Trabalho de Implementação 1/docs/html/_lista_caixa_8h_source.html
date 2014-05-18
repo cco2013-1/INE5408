@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>Simulação Supermercado: Código-Fonte de ListaCaixa.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Simulação Supermercado
+   &#160;<span id="projectnumber">0.0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;Principal</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Arquivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;Arquivos</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Funções</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ListaCaixa.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef __lista_caixa_h__</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __lista_caixa_h__</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;ListaCircular.hpp&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;Caixa.h&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_lista_caixa.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_lista_caixa.html">ListaCaixa</a>: <span class="keyword">public</span> <a class="code" href="class_lista_circular.html">ListaCircular</a>&lt;Caixa&gt; {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    Capsula *atual;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_lista_caixa.html#aace9c5bfb519b2870050d08d5b4bf14d">ListaCaixa</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_lista_caixa.html#a5312cf4c69a7ee8b62e278fe4b270cb6">~ListaCaixa</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_lista_caixa.html#a15b994cb0f4bd8251e836ad0e38c25d7">estaNoInicio</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_lista_caixa.html#aa8ad53867ecb77e1481732a77943f401">adicionaCaixa</a>(<a class="code" href="class_caixa.html">Caixa</a> *c);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_caixa.html">Caixa</a>* <a class="code" href="class_lista_caixa.html#a9178ea9dcfe4a035a81ae66dad57d462">proximoCaixa</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_caixa.html">Caixa</a>* <a class="code" href="class_lista_caixa.html#aa4e6e1bf1bd11e0cd89a3b4f42dd94a4">caixaComMenorFila</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_caixa.html">Caixa</a>* <a class="code" href="class_lista_caixa.html#a691ecfe35edfa150b6360481039796a1">caixaComMenosProdutos</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;};</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="class_lista_caixa_html_a691ecfe35edfa150b6360481039796a1"><div class="ttname"><a href="class_lista_caixa.html#a691ecfe35edfa150b6360481039796a1">ListaCaixa::caixaComMenosProdutos</a></div><div class="ttdeci">Caixa * caixaComMenosProdutos()</div><div class="ttdoc">Método caixaComMenosProdutos Retorna o caixa com a menor quantidade de produtos na fila...</div><div class="ttdef"><b>Definition:</b> ListaCaixa.cpp:92</div></div>
+<div class="ttc" id="class_caixa_html"><div class="ttname"><a href="class_caixa.html">Caixa</a></div><div class="ttdoc">Universidade Federal de Santa Catarina Centro Tecnológico Departamento de Informática e Estatística C...</div><div class="ttdef"><b>Definition:</b> Caixa.h:26</div></div>
+<div class="ttc" id="class_lista_caixa_html_a15b994cb0f4bd8251e836ad0e38c25d7"><div class="ttname"><a href="class_lista_caixa.html#a15b994cb0f4bd8251e836ad0e38c25d7">ListaCaixa::estaNoInicio</a></div><div class="ttdeci">bool estaNoInicio()</div><div class="ttdoc">Método estaNoInicio Verifica so ponteiro atual da lista circular está apontando para o início da list...</div><div class="ttdef"><b>Definition:</b> ListaCaixa.cpp:36</div></div>
+<div class="ttc" id="class_lista_caixa_html"><div class="ttname"><a href="class_lista_caixa.html">ListaCaixa</a></div><div class="ttdoc">Universidade Federal de Santa Catarina Centro Tecnológico Departamento de Informática e Estatística C...</div><div class="ttdef"><b>Definition:</b> ListaCaixa.h:22</div></div>
+<div class="ttc" id="class_lista_caixa_html_aa8ad53867ecb77e1481732a77943f401"><div class="ttname"><a href="class_lista_caixa.html#aa8ad53867ecb77e1481732a77943f401">ListaCaixa::adicionaCaixa</a></div><div class="ttdeci">void adicionaCaixa(Caixa *c)</div><div class="ttdoc">Método adicionaCaixa Adiciona um caixa à lista circular e aponta o ponteiro atual para este caixa...</div><div class="ttdef"><b>Definition:</b> ListaCaixa.cpp:46</div></div>
+<div class="ttc" id="class_lista_caixa_html_aace9c5bfb519b2870050d08d5b4bf14d"><div class="ttname"><a href="class_lista_caixa.html#aace9c5bfb519b2870050d08d5b4bf14d">ListaCaixa::ListaCaixa</a></div><div class="ttdeci">ListaCaixa()</div><div class="ttdoc">Universidade Federal de Santa Catarina Centro Tecnológico Departamento de Informática e Estatística C...</div><div class="ttdef"><b>Definition:</b> ListaCaixa.cpp:18</div></div>
+<div class="ttc" id="class_lista_caixa_html_a9178ea9dcfe4a035a81ae66dad57d462"><div class="ttname"><a href="class_lista_caixa.html#a9178ea9dcfe4a035a81ae66dad57d462">ListaCaixa::proximoCaixa</a></div><div class="ttdeci">Caixa * proximoCaixa()</div><div class="ttdoc">Método proximoCaixa Retorna o proximo caixa na lista circular. </div><div class="ttdef"><b>Definition:</b> ListaCaixa.cpp:58</div></div>
+<div class="ttc" id="class_lista_circular_html"><div class="ttname"><a href="class_lista_circular.html">ListaCircular</a></div><div class="ttdef"><b>Definition:</b> ListaCircular.hpp:28</div></div>
+<div class="ttc" id="class_lista_caixa_html_aa4e6e1bf1bd11e0cd89a3b4f42dd94a4"><div class="ttname"><a href="class_lista_caixa.html#aa4e6e1bf1bd11e0cd89a3b4f42dd94a4">ListaCaixa::caixaComMenorFila</a></div><div class="ttdeci">Caixa * caixaComMenorFila()</div><div class="ttdoc">Método caixaComMenorFila Retorna o caixa com a menor fila. </div><div class="ttdef"><b>Definition:</b> ListaCaixa.cpp:69</div></div>
+<div class="ttc" id="class_lista_caixa_html_a5312cf4c69a7ee8b62e278fe4b270cb6"><div class="ttname"><a href="class_lista_caixa.html#a5312cf4c69a7ee8b62e278fe4b270cb6">ListaCaixa::~ListaCaixa</a></div><div class="ttdeci">~ListaCaixa()</div><div class="ttdoc">Destrutor ListaCaixa Vazio pois o destrutor da super classe já faz a limpeza necessária. </div><div class="ttdef"><b>Definition:</b> ListaCaixa.cpp:26</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado em Domingo, 18 de Maio de 2014 16:45:54 para Simulação Supermercado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

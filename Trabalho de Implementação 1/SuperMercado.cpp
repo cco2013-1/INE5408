@@ -29,6 +29,7 @@ SuperMercado::SuperMercado() {
     obterParametrosSimulacao();
     ga = new GeradorAleatorio();
     horario = 0;
+    varianciaChegadaNovoCliente = (int)(tempoMedioChegadaNovoCliente / 4.);
     horarioChegadaProximoCliente = (int) ga->obtemDoubleDeDistribuicaoNormal(tempoMedioChegadaNovoCliente, varianciaChegadaNovoCliente);
 }
 
@@ -36,24 +37,14 @@ SuperMercado::~SuperMercado() {
     delete caixas;
 }
 
+/**
+ * Método simular
+ * Roda a simulação do supermercado com os parâmetros fornecidos e
+ * mostra o relatório da simulação
+ */
 void SuperMercado::simular() {
-    /*verificando se inicializou corretamente*/
-    // while (true) {
-    //     Caixa *cx = caixas->proximoCaixa();
-
-    //     cout << "caixa: " << cx->obtemIdentificador() << endl;
-    //     cout << "salario: " << cx->obtemSalario() << endl;
-    //     cout << "clientesNaFila: " << cx->numeroClientesFila() << endl;
-    //     cout << "produtos fila: " << cx->quantidadeProdutosFila() << endl;
-
-    //     if (caixas->estaNoInicio()) {
-    //         break;
-    //     }
-    // }
-
     while (horario < horarioTerminoSimulacao) {
-        cout << "horario: " << horario << endl;
-        cout << "horarioChegadaProximoCliente: " << horarioChegadaProximoCliente << endl;
+        printf("\rhorario: %d\t Horario de Chegada do próximo cliente: %d", horario, horarioChegadaProximoCliente);
         if (horario == horarioChegadaProximoCliente) {
             Cliente *c = new Cliente(horario);
             if (!encontrarCaixa(c)) {
@@ -143,6 +134,9 @@ void SuperMercado::obterParametrosSimulacao() {
             break;
         }
     }
+
+    cout << "Pressione uma tecla para iniciar a simulação" << endl;
+    getchar();
 }
 
 /**
@@ -194,6 +188,7 @@ void SuperMercado::calcularDados() {
  */
 void SuperMercado::apresentarRelatorio() {
     calcularDados();
+    cout << endl << endl;
     cout << "Supermercado " << nome << endl;
     cout << "Simulação de operação" << endl;
     cout << "================================================================================" << endl;
@@ -217,6 +212,6 @@ void SuperMercado::apresentarRelatorio() {
 
     cout << "Tempo médio de permência em fila: " << tempoMedioPermanenciaFila << endl;
     cout << "Número de clientes que desistiram: " << numeroClientesDesistiram << endl;
-    cout << "Faturamento que deixou de ser realizado: " << valorComprasClientesDesistiram << endl;
+    printf("Faturamento que deixou de ser realizado: R$ %.2f\n", valorComprasClientesDesistiram);
 }
 
