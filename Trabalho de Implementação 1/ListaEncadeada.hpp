@@ -54,8 +54,6 @@ ListaEncadeada<T>::ListaEncadeada() {
 
 template <typename T>
 ListaEncadeada<T>::~ListaEncadeada() {
-    Capsula *atual = primeira;
-
     while(_tamanho > 0) {
         retiraDaPosicao(0);
     }

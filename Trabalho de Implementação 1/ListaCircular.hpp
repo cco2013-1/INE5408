@@ -54,8 +54,6 @@ ListaCircular<T>::ListaCircular() {
 
 template <typename T>
 ListaCircular<T>::~ListaCircular() {
-    Capsula *atual = primeira;
-
     while(_tamanho > 0) {
         retiraDaPosicao(0);
     }
