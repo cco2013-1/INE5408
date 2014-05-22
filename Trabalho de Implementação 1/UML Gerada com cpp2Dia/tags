@@ -1,0 +1,144 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CHEQUE	Cliente.h	37;"	e	enum:formaPagamento
+Caixa	Caixa.h	26;"	c
+Caixa	Caixa.h	39;"	p	class:Caixa	access:public
+Capsula	ListaCircular.hpp	40;"	s	class:ListaCircular	access:protected
+Capsula	ListaEncadeada.hpp	40;"	s	class:ListaEncadeada	access:private
+Cliente	Cliente.h	45;"	c
+Cliente	Cliente.h	59;"	p	class:Cliente	access:public
+DINHEIRO	Cliente.h	38;"	e	enum:formaPagamento
+FILA_COM_MENOS_PRODUTOS	Cliente.h	27;"	e	enum:tipoCliente
+FilaCliente	FilaCliente.h	22;"	c
+FilaCliente	FilaCliente.h	27;"	p	class:FilaCliente	access:public
+GeradorAleatorio	GeradorAleatorio.h	15;"	c
+GeradorAleatorio	GeradorAleatorio.h	20;"	p	class:GeradorAleatorio	access:public
+ListaCaixa	ListaCaixa.h	22;"	c	inherits:ListaCircular
+ListaCaixa	ListaCaixa.h	26;"	p	class:ListaCaixa	access:public
+ListaCircular	ListaCircular.hpp	28;"	c
+ListaCircular	ListaCircular.hpp	30;"	p	class:ListaCircular	access:public
+ListaEncadeada	ListaEncadeada.hpp	28;"	c
+ListaEncadeada	ListaEncadeada.hpp	30;"	p	class:ListaEncadeada	access:public
+MENOR_FILA	Cliente.h	26;"	e	enum:tipoCliente
+SuperMercado	SuperMercado.h	28;"	c
+SuperMercado	SuperMercado.h	50;"	p	class:SuperMercado	access:public
+_tamanho	ListaCircular.hpp	46;"	m	class:ListaCircular	access:protected
+_tamanho	ListaEncadeada.hpp	46;"	m	class:ListaEncadeada	access:private
+adiciona	ListaCircular.hpp	32;"	p	class:ListaCircular	access:public
+adiciona	ListaEncadeada.hpp	32;"	p	class:ListaEncadeada	access:public
+adicionaCaixa	ListaCaixa.h	29;"	p	class:ListaCaixa	access:public
+adicionaCliente	Caixa.h	41;"	p	class:Caixa	access:public
+adicionaCliente	FilaCliente.h	29;"	p	class:FilaCliente	access:public
+adicionaNaPosicao	ListaCircular.hpp	34;"	p	class:ListaCircular	access:public
+adicionaNaPosicao	ListaEncadeada.hpp	34;"	p	class:ListaEncadeada	access:public
+adicionaNoInicio	ListaCircular.hpp	33;"	p	class:ListaCircular	access:public
+adicionaNoInicio	ListaEncadeada.hpp	33;"	p	class:ListaEncadeada	access:public
+aleatorio1	GeradorAleatorio.h	18;"	m	class:GeradorAleatorio	access:private
+aleatorio2	GeradorAleatorio.h	18;"	m	class:GeradorAleatorio	access:private
+anterior	ListaCircular.hpp	42;"	m	struct:ListaCircular::Capsula	access:public
+apresentarRelatorio	SuperMercado.h	46;"	p	class:SuperMercado	access:private
+atendeCliente	Caixa.h	42;"	p	class:Caixa	access:public
+atual	ListaCaixa.h	24;"	m	class:ListaCaixa	access:private
+caixaComMenorFila	ListaCaixa.h	31;"	p	class:ListaCaixa	access:public
+caixaComMenosProdutos	ListaCaixa.h	32;"	p	class:ListaCaixa	access:public
+caixas	SuperMercado.h	39;"	m	class:SuperMercado	access:private
+calcularDados	SuperMercado.h	48;"	p	class:SuperMercado	access:private
+clientesAtendidos	Caixa.h	36;"	m	class:Caixa	access:private
+defineFormaPagamento	Cliente.h	54;"	p	class:Cliente	access:private
+defineHorarioSaida	Cliente.h	65;"	p	class:Cliente	access:public
+defineProdutos	Cliente.h	55;"	p	class:Cliente	access:private
+defineSemente	GeradorAleatorio.h	22;"	p	class:GeradorAleatorio	access:public
+defineTipoCliente	Cliente.h	53;"	p	class:Cliente	access:private
+elementoNaPosicao	ListaCircular.hpp	35;"	p	class:ListaCircular	access:public
+elementoNaPosicao	ListaEncadeada.hpp	35;"	p	class:ListaEncadeada	access:public
+encontrarCaixa	SuperMercado.h	47;"	p	class:SuperMercado	access:private
+estaNoInicio	ListaCaixa.h	28;"	p	class:ListaCaixa	access:public
+estaVazia	ListaCircular.hpp	37;"	p	class:ListaCircular	access:public
+estaVazia	ListaEncadeada.hpp	37;"	p	class:ListaEncadeada	access:public
+faturamento	Caixa.h	35;"	m	class:Caixa	access:private
+faturamentoMedio	SuperMercado.h	43;"	m	class:SuperMercado	access:private
+faturamentoTotal	SuperMercado.h	42;"	m	class:SuperMercado	access:private
+fila	Caixa.h	30;"	m	class:Caixa	access:private
+formaPagamento	Cliente.h	36;"	g
+ga	Cliente.h	56;"	m	class:Cliente	access:private
+ga	SuperMercado.h	38;"	m	class:SuperMercado	access:private
+hasSpare	GeradorAleatorio.h	17;"	m	class:GeradorAleatorio	access:private
+horario	SuperMercado.h	31;"	m	class:SuperMercado	access:private
+horarioAtendimentoProximoCliente	Caixa.h	33;"	m	class:Caixa	access:private
+horarioChegadaProximoCliente	SuperMercado.h	37;"	m	class:SuperMercado	access:private
+horarioDeChegada	Cliente.h	51;"	m	class:Cliente	access:private
+horarioDeSaida	Cliente.h	52;"	m	class:Cliente	access:private
+horarioTerminoSimulacao	SuperMercado.h	32;"	m	class:SuperMercado	access:private
+horasSimulacao	SuperMercado.h	33;"	m	class:SuperMercado	access:private
+identificador	Caixa.h	28;"	m	class:Caixa	access:private
+informacao	ListaCircular.hpp	43;"	m	struct:ListaCircular::Capsula	access:public
+informacao	ListaEncadeada.hpp	42;"	m	struct:ListaEncadeada::Capsula	access:public
+lista	FilaCliente.h	24;"	m	class:FilaCliente	access:private
+nome	SuperMercado.h	30;"	m	class:SuperMercado	access:private
+numClientes	Cliente.cpp	29;"	m	class:Cliente	file:
+numClientes	Cliente.h	57;"	m	class:Cliente	access:private
+numProdutos	FilaCliente.h	25;"	m	class:FilaCliente	access:private
+numeroCaixas	SuperMercado.h	36;"	m	class:SuperMercado	access:private
+numeroClientesAtendidos	Caixa.h	49;"	p	class:Caixa	access:public
+numeroClientesDesistiram	SuperMercado.h	40;"	m	class:SuperMercado	access:private
+numeroClientesFila	Caixa.h	45;"	p	class:Caixa	access:public
+obtemBoolean	GeradorAleatorio.h	23;"	p	class:GeradorAleatorio	access:public
+obtemBoolean	GeradorAleatorio.h	24;"	p	class:GeradorAleatorio	access:public
+obtemDouble	GeradorAleatorio.h	27;"	p	class:GeradorAleatorio	access:public
+obtemDoubleDeDistribuicaoNormal	GeradorAleatorio.h	29;"	p	class:GeradorAleatorio	access:public
+obtemDoubleNoIntervalo	GeradorAleatorio.h	28;"	p	class:GeradorAleatorio	access:public
+obtemFaturamento	Caixa.h	47;"	p	class:Caixa	access:public
+obtemFormaPagamento	Cliente.h	67;"	p	class:Cliente	access:public
+obtemHorarioChegada	Cliente.h	63;"	p	class:Cliente	access:public
+obtemHorarioSaida	Cliente.h	64;"	p	class:Cliente	access:public
+obtemIdentificador	Caixa.h	43;"	p	class:Caixa	access:public
+obtemInteiro	GeradorAleatorio.h	25;"	p	class:GeradorAleatorio	access:public
+obtemInteiroNoIntervalo	GeradorAleatorio.h	26;"	p	class:GeradorAleatorio	access:public
+obtemNumClientes	FilaCliente.h	32;"	p	class:FilaCliente	access:public
+obtemNumProdutos	FilaCliente.h	33;"	p	class:FilaCliente	access:public
+obtemSalario	Caixa.h	44;"	p	class:Caixa	access:public
+obtemTipoCliente	Cliente.h	66;"	p	class:Cliente	access:public
+obterParametrosSimulacao	SuperMercado.h	45;"	p	class:SuperMercado	access:private
+pagamento	Cliente.h	48;"	m	class:Cliente	access:private
+primeira	ListaCircular.hpp	45;"	m	class:ListaCircular	access:protected
+primeira	ListaEncadeada.hpp	44;"	m	class:ListaEncadeada	access:private
+proxima	ListaCircular.hpp	41;"	m	struct:ListaCircular::Capsula	access:public
+proxima	ListaEncadeada.hpp	41;"	m	struct:ListaEncadeada::Capsula	access:public
+proximoCaixa	ListaCaixa.h	30;"	p	class:ListaCaixa	access:public
+proximoCliente	FilaCliente.h	31;"	p	class:FilaCliente	access:public
+quantidadeDeProdutos	Cliente.h	62;"	p	class:Cliente	access:public
+quantidadeProdutos	Cliente.h	49;"	m	class:Cliente	access:private
+quantidadeProdutosFila	Caixa.h	46;"	p	class:Caixa	access:public
+retiraCliente	FilaCliente.h	30;"	p	class:FilaCliente	access:public
+retiraDaPosicao	ListaCircular.hpp	36;"	p	class:ListaCircular	access:public
+retiraDaPosicao	ListaEncadeada.hpp	36;"	p	class:ListaEncadeada	access:public
+salario	Caixa.h	29;"	m	class:Caixa	access:private
+simular	SuperMercado.h	52;"	p	class:SuperMercado	access:public
+tamanho	ListaCircular.hpp	38;"	p	class:ListaCircular	access:public
+tamanho	ListaEncadeada.hpp	38;"	p	class:ListaEncadeada	access:public
+tempoAtendimentoCliente	Caixa.h	34;"	p	class:Caixa	access:private
+tempoCheque	Caixa.h	32;"	m	class:Caixa	access:private
+tempoMedioChegadaNovoCliente	SuperMercado.h	34;"	m	class:SuperMercado	access:private
+tempoMedioPermanenciaFila	SuperMercado.h	44;"	m	class:SuperMercado	access:private
+tempoPermanenciaFila	Caixa.h	48;"	p	class:Caixa	access:public
+tempoPorProduto	Caixa.h	31;"	m	class:Caixa	access:private
+tempoTotalClientesFila	Caixa.h	37;"	m	class:Caixa	access:private
+tipo	Cliente.h	47;"	m	class:Cliente	access:private
+tipoCliente	Cliente.h	25;"	g
+ultima	ListaEncadeada.hpp	45;"	m	class:ListaEncadeada	access:private
+valorCompras	Cliente.h	61;"	p	class:Cliente	access:public
+valorComprasClientesDesistiram	SuperMercado.h	41;"	m	class:SuperMercado	access:private
+valorTotal	Cliente.h	50;"	m	class:Cliente	access:private
+varianciaChegadaNovoCliente	SuperMercado.h	35;"	m	class:SuperMercado	access:private
+~Caixa	Caixa.h	40;"	p	class:Caixa	access:public
+~Cliente	Cliente.h	60;"	p	class:Cliente	access:public
+~FilaCliente	FilaCliente.h	28;"	p	class:FilaCliente	access:public
+~GeradorAleatorio	GeradorAleatorio.h	21;"	p	class:GeradorAleatorio	access:public
+~ListaCaixa	ListaCaixa.h	27;"	p	class:ListaCaixa	access:public
+~ListaCircular	ListaCircular.hpp	31;"	p	class:ListaCircular	access:public
+~ListaEncadeada	ListaEncadeada.hpp	31;"	p	class:ListaEncadeada	access:public
+~SuperMercado	SuperMercado.h	51;"	p	class:SuperMercado	access:public

@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>Simulação Supermercado: Código-Fonte de ListaCircular.hpp</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Simulação Supermercado
+   &#160;<span id="projectnumber">0.0.1</span>
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Gerado por Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;Principal</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Arquivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;Arquivos</span></a></li>
+      <li><a href="globals.html"><span>Arquivos&#160;Membros</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">ListaCircular.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_lista_circular_8hpp.html">Vá para a documentação deste arquivo.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00016"></a>00016 <span class="preprocessor">#ifndef __lista_circular_hpp__</span>
+<a name="l00017"></a>00017 <span class="preprocessor"></span><span class="preprocessor">#define __lista_circular_hpp__</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span>
+<a name="l00019"></a><a class="code" href="_lista_circular_8hpp.html#a17d1cfa48ecf37a2a28b9e0e8b9dc6e1">00019</a> <span class="preprocessor">#define ERRO_LISTA_VAZIA -2</span>
+<a name="l00020"></a><a class="code" href="_lista_circular_8hpp.html#aaad9fdc951d1a7ce3ea877e4441bb72d">00020</a> <span class="preprocessor"></span><span class="preprocessor">#define ERRO_POSICAO_INEXISTENTE -3</span>
+<a name="l00021"></a><a class="code" href="_lista_circular_8hpp.html#a33f26a328674a49388fe431e67e8f91c">00021</a> <span class="preprocessor"></span><span class="preprocessor">#define ERRO_ELEMENTO_INEXISTENTE -4</span>
+<a name="l00022"></a>00022 <span class="preprocessor"></span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="keyword">using namespace </span>std;
+<a name="l00026"></a>00026 
+<a name="l00027"></a>00027 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00028"></a><a class="code" href="class_lista_circular.html">00028</a> <span class="keyword">class </span><a class="code" href="class_lista_circular.html">ListaCircular</a> {
+<a name="l00029"></a>00029 <span class="keyword">public</span>:
+<a name="l00030"></a>00030     <a class="code" href="class_lista_circular.html">ListaCircular</a>();
+<a name="l00031"></a>00031     ~<a class="code" href="class_lista_circular.html">ListaCircular</a>();
+<a name="l00032"></a>00032     <span class="keywordtype">void</span> adiciona(T *elemento); <span class="comment">//adiciona o elemento na ultima posicao livre</span>
+<a name="l00033"></a>00033     <span class="keywordtype">void</span> adicionaNoInicio(T *elemento); <span class="comment">//adiciona o elemento no inicio da lista</span>
+<a name="l00034"></a>00034     <span class="keywordtype">void</span> adicionaNaPosicao(T *elemento, <span class="keywordtype">int</span> posicao); <span class="comment">//adiciona o elemento na posicao desejada</span>
+<a name="l00035"></a>00035     T * elementoNaPosicao(<span class="keywordtype">int</span> posicao);
+<a name="l00036"></a>00036     <span class="keywordtype">void</span> retiraDaPosicao(<span class="keywordtype">int</span> posicao);
+<a name="l00037"></a>00037     <span class="keywordtype">bool</span> estaVazia();
+<a name="l00038"></a>00038     <span class="keywordtype">int</span> tamanho();
+<a name="l00039"></a>00039 <span class="keyword">protected</span>:
+<a name="l00040"></a><a class="code" href="struct_lista_circular_1_1_capsula.html">00040</a>     <span class="keyword">struct </span><a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> {
+<a name="l00041"></a><a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">00041</a>         <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
+<a name="l00042"></a><a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">00042</a>         <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>;
+<a name="l00043"></a><a class="code" href="struct_lista_circular_1_1_capsula.html#a347243168b13582b3a0b3efb4bdf9fa7">00043</a>         T *<a class="code" href="struct_lista_circular_1_1_capsula.html#a347243168b13582b3a0b3efb4bdf9fa7">informacao</a>;
+<a name="l00044"></a>00044     };
+<a name="l00045"></a><a class="code" href="class_lista_circular.html#a7b44f1f89faafd87c0d42f1670262eb1">00045</a>     Capsula *<a class="code" href="class_lista_circular.html#a7b44f1f89faafd87c0d42f1670262eb1">primeira</a>;
+<a name="l00046"></a><a class="code" href="class_lista_circular.html#a7a838a441e80d7fb68e9ac3aef743655">00046</a>     <span class="keywordtype">int</span> <a class="code" href="class_lista_circular.html#a7a838a441e80d7fb68e9ac3aef743655">_tamanho</a>;
+<a name="l00047"></a>00047  };
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00050"></a><a class="code" href="class_lista_circular.html#a257dc7d8b78f8312ac821ba437d9ab77">00050</a> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::ListaCircular</a>() {
+<a name="l00051"></a>00051     _tamanho = 0;
+<a name="l00052"></a>00052     primeira = 0; <span class="comment">//Null</span>
+<a name="l00053"></a>00053 }
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00056"></a><a class="code" href="class_lista_circular.html#a17151a2a3416edbcdb8d095e64068c05">00056</a> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::~ListaCircular</a>() {
+<a name="l00057"></a>00057     <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *atual = primeira;
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059     <span class="keywordflow">while</span>(_tamanho &gt; 0) {
+<a name="l00060"></a>00060         retiraDaPosicao(0);
+<a name="l00061"></a>00061     }
+<a name="l00062"></a>00062 }
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00065"></a><a class="code" href="class_lista_circular.html#a9f823d017eabe5627b35b11c7cf60e45">00065</a> <span class="keywordtype">bool</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::estaVazia</a>() {
+<a name="l00066"></a>00066     <span class="keywordflow">return</span> _tamanho == 0;
+<a name="l00067"></a>00067 }
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00070"></a><a class="code" href="class_lista_circular.html#a53fa2308b497f23b4627384f60fee94c">00070</a> <span class="keywordtype">void</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::adiciona</a>(T *elemento) {
+<a name="l00071"></a>00071     <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *nova = <span class="keyword">new</span> <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a>;
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073     nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a347243168b13582b3a0b3efb4bdf9fa7">informacao</a> = elemento;
+<a name="l00074"></a>00074     <span class="keywordflow">if</span> (_tamanho == 0) {
+<a name="l00075"></a>00075         primeira = nova;
+<a name="l00076"></a>00076         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = primeira;
+<a name="l00077"></a>00077         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = primeira;
+<a name="l00078"></a>00078     } <span class="keywordflow">else</span> {
+<a name="l00079"></a>00079         nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>;
+<a name="l00080"></a>00080         nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = nova;
+<a name="l00081"></a>00081         nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = primeira;
+<a name="l00082"></a>00082         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = nova;
+<a name="l00083"></a>00083     }
+<a name="l00084"></a>00084     _tamanho += 1;
+<a name="l00085"></a>00085 }
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00088"></a><a class="code" href="class_lista_circular.html#a97cd82567401256dcbcedc1d079ce83e">00088</a> T * <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::elementoNaPosicao</a>(<span class="keywordtype">int</span> posicao) {
+<a name="l00089"></a>00089     <span class="keywordflow">if</span> (posicao &lt; _tamanho &amp;&amp; posicao &gt;= 0) {
+<a name="l00090"></a>00090         <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *atual = primeira;
+<a name="l00091"></a>00091         <span class="keywordtype">int</span> cont = 0;
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093         <span class="keywordflow">while</span> (<span class="keyword">true</span>) {
+<a name="l00094"></a>00094             <span class="keywordflow">if</span> (cont == posicao) {
+<a name="l00095"></a>00095                 <span class="keywordflow">break</span>;
+<a name="l00096"></a>00096             }
+<a name="l00097"></a>00097             atual = atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
+<a name="l00098"></a>00098             cont += 1;
+<a name="l00099"></a>00099         }
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101         <span class="keywordflow">return</span> atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a347243168b13582b3a0b3efb4bdf9fa7">informacao</a>;
+<a name="l00102"></a>00102     }
+<a name="l00103"></a>00103     <span class="keywordflow">throw</span>(<a class="code" href="_lista_circular_8hpp.html#aaad9fdc951d1a7ce3ea877e4441bb72d">ERRO_POSICAO_INEXISTENTE</a>);
+<a name="l00104"></a>00104 }
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00107"></a><a class="code" href="class_lista_circular.html#ace59ba696832ec4768097aaa5b32f1d2">00107</a> <span class="keywordtype">int</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::tamanho</a>() {
+<a name="l00108"></a>00108     <span class="keywordflow">return</span> _tamanho;
+<a name="l00109"></a>00109 }
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00112"></a><a class="code" href="class_lista_circular.html#a48283f9b156148ee66ce310ae11541c2">00112</a> <span class="keywordtype">void</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::retiraDaPosicao</a>(<span class="keywordtype">int</span> posicao) {
+<a name="l00113"></a>00113     <span class="keywordflow">if</span> (posicao &lt; _tamanho &amp;&amp; posicao &gt; 0) {
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115         <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *atual = primeira;
+<a name="l00116"></a>00116         <span class="keywordtype">int</span> cont = 0;
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118         <span class="keywordflow">while</span> (<span class="keyword">true</span>) {
+<a name="l00119"></a>00119             <span class="keywordflow">if</span> (++cont == posicao) {
+<a name="l00120"></a>00120                 <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *proxima = atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
+<a name="l00121"></a>00121                 atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = proxima-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
+<a name="l00122"></a>00122                 proxima-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = atual;
+<a name="l00123"></a>00123                 <span class="keyword">delete</span> proxima;
+<a name="l00124"></a>00124                 _tamanho -= 1;
+<a name="l00125"></a>00125                 <span class="keywordflow">return</span>;
+<a name="l00126"></a>00126             }
+<a name="l00127"></a>00127             atual = atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
+<a name="l00128"></a>00128         }
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130     }
+<a name="l00131"></a>00131     <span class="keywordflow">if</span> (posicao == 0) {
+<a name="l00132"></a>00132         <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *auxiliar = primeira;
+<a name="l00133"></a>00133         primeira = primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
+<a name="l00134"></a>00134         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = auxiliar-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>;
+<a name="l00135"></a>00135         auxiliar-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = primeira;
+<a name="l00136"></a>00136         <span class="keyword">delete</span> auxiliar;
+<a name="l00137"></a>00137         _tamanho -= 1;
+<a name="l00138"></a>00138         <span class="keywordflow">return</span>;
+<a name="l00139"></a>00139     }
+<a name="l00140"></a>00140     <span class="keywordflow">throw</span>(<a class="code" href="_lista_circular_8hpp.html#aaad9fdc951d1a7ce3ea877e4441bb72d">ERRO_POSICAO_INEXISTENTE</a>);
+<a name="l00141"></a>00141 }
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Arquivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funções</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variáveis</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerações</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valores enumerados</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Definições e Macros</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+
+
+<hr class="footer"/><address class="footer"><small>
+Gerado em Quarta, 21 de Maio de 2014 19:45:36 para Simulação Supermercado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

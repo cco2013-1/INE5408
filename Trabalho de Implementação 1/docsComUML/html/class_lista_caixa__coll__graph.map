@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$class_lista_circular.html" title="{ListaCircular\&lt; Caixa \&gt;\n|# primeira\l# _tamanho\l|+ ListaCircular()\l+ ~ListaCircular()\l+ adiciona()\l+ adicionaNoInicio()\l+ adicionaNaPosicao()\l+ elementoNaPosicao()\l+ retiraDaPosicao()\l+ estaVazia()\l+ tamanho()\l}" alt="" coords="23,502,180,743"/>
+<area shape="rect" id="node4" href="$struct_lista_circular_1_1_capsula.html" title="{ListaCircular\&lt; T \&gt;::Capsula\n|+ proxima\l+ anterior\l+ informacao\l|}" alt="" coords="39,5,220,125"/>
+<area shape="rect" id="node7" href="$class_lista_circular.html" title="{ListaCircular\&lt; T \&gt;\n|# primeira\l# _tamanho\l|+ ListaCircular()\l+ ~ListaCircular()\l+ adiciona()\l+ adicionaNoInicio()\l+ adicionaNaPosicao()\l+ elementoNaPosicao()\l+ retiraDaPosicao()\l+ estaVazia()\l+ tamanho()\l}" alt="" coords="155,193,312,434"/>
+</map>
