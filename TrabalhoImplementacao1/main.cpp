@@ -36,7 +36,7 @@ void run() {
             run();
             break;
         default:
-            exit(0);
+            return;
     }
 }
 
