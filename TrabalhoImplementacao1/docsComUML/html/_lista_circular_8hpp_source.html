@@ -121,93 +121,91 @@ var searchBox = new SearchBox("searchBox", "search",false,'Busca');
 <a name="l00054"></a>00054 
 <a name="l00055"></a>00055 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
 <a name="l00056"></a><a class="code" href="class_lista_circular.html#a17151a2a3416edbcdb8d095e64068c05">00056</a> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::~ListaCircular</a>() {
-<a name="l00057"></a>00057     <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *atual = primeira;
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059     <span class="keywordflow">while</span>(_tamanho &gt; 0) {
-<a name="l00060"></a>00060         retiraDaPosicao(0);
-<a name="l00061"></a>00061     }
-<a name="l00062"></a>00062 }
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00065"></a><a class="code" href="class_lista_circular.html#a9f823d017eabe5627b35b11c7cf60e45">00065</a> <span class="keywordtype">bool</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::estaVazia</a>() {
-<a name="l00066"></a>00066     <span class="keywordflow">return</span> _tamanho == 0;
-<a name="l00067"></a>00067 }
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00070"></a><a class="code" href="class_lista_circular.html#a53fa2308b497f23b4627384f60fee94c">00070</a> <span class="keywordtype">void</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::adiciona</a>(T *elemento) {
-<a name="l00071"></a>00071     <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *nova = <span class="keyword">new</span> <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a>;
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073     nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a347243168b13582b3a0b3efb4bdf9fa7">informacao</a> = elemento;
-<a name="l00074"></a>00074     <span class="keywordflow">if</span> (_tamanho == 0) {
-<a name="l00075"></a>00075         primeira = nova;
-<a name="l00076"></a>00076         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = primeira;
-<a name="l00077"></a>00077         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = primeira;
-<a name="l00078"></a>00078     } <span class="keywordflow">else</span> {
-<a name="l00079"></a>00079         nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>;
-<a name="l00080"></a>00080         nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = nova;
-<a name="l00081"></a>00081         nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = primeira;
-<a name="l00082"></a>00082         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = nova;
-<a name="l00083"></a>00083     }
-<a name="l00084"></a>00084     _tamanho += 1;
-<a name="l00085"></a>00085 }
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00088"></a><a class="code" href="class_lista_circular.html#a97cd82567401256dcbcedc1d079ce83e">00088</a> T * <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::elementoNaPosicao</a>(<span class="keywordtype">int</span> posicao) {
-<a name="l00089"></a>00089     <span class="keywordflow">if</span> (posicao &lt; _tamanho &amp;&amp; posicao &gt;= 0) {
-<a name="l00090"></a>00090         <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *atual = primeira;
-<a name="l00091"></a>00091         <span class="keywordtype">int</span> cont = 0;
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093         <span class="keywordflow">while</span> (<span class="keyword">true</span>) {
-<a name="l00094"></a>00094             <span class="keywordflow">if</span> (cont == posicao) {
-<a name="l00095"></a>00095                 <span class="keywordflow">break</span>;
-<a name="l00096"></a>00096             }
-<a name="l00097"></a>00097             atual = atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
-<a name="l00098"></a>00098             cont += 1;
-<a name="l00099"></a>00099         }
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101         <span class="keywordflow">return</span> atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a347243168b13582b3a0b3efb4bdf9fa7">informacao</a>;
-<a name="l00102"></a>00102     }
-<a name="l00103"></a>00103     <span class="keywordflow">throw</span>(<a class="code" href="_lista_circular_8hpp.html#aaad9fdc951d1a7ce3ea877e4441bb72d">ERRO_POSICAO_INEXISTENTE</a>);
-<a name="l00104"></a>00104 }
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00107"></a><a class="code" href="class_lista_circular.html#ace59ba696832ec4768097aaa5b32f1d2">00107</a> <span class="keywordtype">int</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::tamanho</a>() {
-<a name="l00108"></a>00108     <span class="keywordflow">return</span> _tamanho;
-<a name="l00109"></a>00109 }
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00112"></a><a class="code" href="class_lista_circular.html#a48283f9b156148ee66ce310ae11541c2">00112</a> <span class="keywordtype">void</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::retiraDaPosicao</a>(<span class="keywordtype">int</span> posicao) {
-<a name="l00113"></a>00113     <span class="keywordflow">if</span> (posicao &lt; _tamanho &amp;&amp; posicao &gt; 0) {
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115         <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *atual = primeira;
-<a name="l00116"></a>00116         <span class="keywordtype">int</span> cont = 0;
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118         <span class="keywordflow">while</span> (<span class="keyword">true</span>) {
-<a name="l00119"></a>00119             <span class="keywordflow">if</span> (++cont == posicao) {
-<a name="l00120"></a>00120                 <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *proxima = atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
-<a name="l00121"></a>00121                 atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = proxima-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
-<a name="l00122"></a>00122                 proxima-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = atual;
-<a name="l00123"></a>00123                 <span class="keyword">delete</span> proxima;
-<a name="l00124"></a>00124                 _tamanho -= 1;
-<a name="l00125"></a>00125                 <span class="keywordflow">return</span>;
-<a name="l00126"></a>00126             }
-<a name="l00127"></a>00127             atual = atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
-<a name="l00128"></a>00128         }
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130     }
-<a name="l00131"></a>00131     <span class="keywordflow">if</span> (posicao == 0) {
-<a name="l00132"></a>00132         <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *auxiliar = primeira;
-<a name="l00133"></a>00133         primeira = primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
-<a name="l00134"></a>00134         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = auxiliar-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>;
-<a name="l00135"></a>00135         auxiliar-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = primeira;
-<a name="l00136"></a>00136         <span class="keyword">delete</span> auxiliar;
-<a name="l00137"></a>00137         _tamanho -= 1;
-<a name="l00138"></a>00138         <span class="keywordflow">return</span>;
-<a name="l00139"></a>00139     }
-<a name="l00140"></a>00140     <span class="keywordflow">throw</span>(<a class="code" href="_lista_circular_8hpp.html#aaad9fdc951d1a7ce3ea877e4441bb72d">ERRO_POSICAO_INEXISTENTE</a>);
-<a name="l00141"></a>00141 }
-<a name="l00142"></a>00142 
-<a name="l00143"></a>00143 <span class="preprocessor">#endif</span>
+<a name="l00057"></a>00057     <span class="keywordflow">while</span>(_tamanho &gt; 0) {
+<a name="l00058"></a>00058         retiraDaPosicao(0);
+<a name="l00059"></a>00059     }
+<a name="l00060"></a>00060 }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00063"></a><a class="code" href="class_lista_circular.html#a9f823d017eabe5627b35b11c7cf60e45">00063</a> <span class="keywordtype">bool</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::estaVazia</a>() {
+<a name="l00064"></a>00064     <span class="keywordflow">return</span> _tamanho == 0;
+<a name="l00065"></a>00065 }
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00068"></a><a class="code" href="class_lista_circular.html#a53fa2308b497f23b4627384f60fee94c">00068</a> <span class="keywordtype">void</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::adiciona</a>(T *elemento) {
+<a name="l00069"></a>00069     <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *nova = <span class="keyword">new</span> <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a>;
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071     nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a347243168b13582b3a0b3efb4bdf9fa7">informacao</a> = elemento;
+<a name="l00072"></a>00072     <span class="keywordflow">if</span> (_tamanho == 0) {
+<a name="l00073"></a>00073         primeira = nova;
+<a name="l00074"></a>00074         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = primeira;
+<a name="l00075"></a>00075         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = primeira;
+<a name="l00076"></a>00076     } <span class="keywordflow">else</span> {
+<a name="l00077"></a>00077         nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>;
+<a name="l00078"></a>00078         nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = nova;
+<a name="l00079"></a>00079         nova-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = primeira;
+<a name="l00080"></a>00080         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = nova;
+<a name="l00081"></a>00081     }
+<a name="l00082"></a>00082     _tamanho += 1;
+<a name="l00083"></a>00083 }
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00086"></a><a class="code" href="class_lista_circular.html#a97cd82567401256dcbcedc1d079ce83e">00086</a> T * <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::elementoNaPosicao</a>(<span class="keywordtype">int</span> posicao) {
+<a name="l00087"></a>00087     <span class="keywordflow">if</span> (posicao &lt; _tamanho &amp;&amp; posicao &gt;= 0) {
+<a name="l00088"></a>00088         <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *atual = primeira;
+<a name="l00089"></a>00089         <span class="keywordtype">int</span> cont = 0;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091         <span class="keywordflow">while</span> (<span class="keyword">true</span>) {
+<a name="l00092"></a>00092             <span class="keywordflow">if</span> (cont == posicao) {
+<a name="l00093"></a>00093                 <span class="keywordflow">break</span>;
+<a name="l00094"></a>00094             }
+<a name="l00095"></a>00095             atual = atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
+<a name="l00096"></a>00096             cont += 1;
+<a name="l00097"></a>00097         }
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099         <span class="keywordflow">return</span> atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a347243168b13582b3a0b3efb4bdf9fa7">informacao</a>;
+<a name="l00100"></a>00100     }
+<a name="l00101"></a>00101     <span class="keywordflow">throw</span>(<a class="code" href="_lista_circular_8hpp.html#aaad9fdc951d1a7ce3ea877e4441bb72d">ERRO_POSICAO_INEXISTENTE</a>);
+<a name="l00102"></a>00102 }
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00105"></a><a class="code" href="class_lista_circular.html#ace59ba696832ec4768097aaa5b32f1d2">00105</a> <span class="keywordtype">int</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::tamanho</a>() {
+<a name="l00106"></a>00106     <span class="keywordflow">return</span> _tamanho;
+<a name="l00107"></a>00107 }
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00110"></a><a class="code" href="class_lista_circular.html#a48283f9b156148ee66ce310ae11541c2">00110</a> <span class="keywordtype">void</span> <a class="code" href="class_lista_circular.html">ListaCircular&lt;T&gt;::retiraDaPosicao</a>(<span class="keywordtype">int</span> posicao) {
+<a name="l00111"></a>00111     <span class="keywordflow">if</span> (posicao &lt; _tamanho &amp;&amp; posicao &gt; 0) {
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113         <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *atual = primeira;
+<a name="l00114"></a>00114         <span class="keywordtype">int</span> cont = 0;
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116         <span class="keywordflow">while</span> (<span class="keyword">true</span>) {
+<a name="l00117"></a>00117             <span class="keywordflow">if</span> (++cont == posicao) {
+<a name="l00118"></a>00118                 <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *proxima = atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
+<a name="l00119"></a>00119                 atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = proxima-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
+<a name="l00120"></a>00120                 proxima-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = atual;
+<a name="l00121"></a>00121                 <span class="keyword">delete</span> proxima;
+<a name="l00122"></a>00122                 _tamanho -= 1;
+<a name="l00123"></a>00123                 <span class="keywordflow">return</span>;
+<a name="l00124"></a>00124             }
+<a name="l00125"></a>00125             atual = atual-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
+<a name="l00126"></a>00126         }
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128     }
+<a name="l00129"></a>00129     <span class="keywordflow">if</span> (posicao == 0) {
+<a name="l00130"></a>00130         <a class="code" href="struct_lista_circular_1_1_capsula.html">Capsula</a> *auxiliar = primeira;
+<a name="l00131"></a>00131         primeira = primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a>;
+<a name="l00132"></a>00132         primeira-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a> = auxiliar-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>;
+<a name="l00133"></a>00133         auxiliar-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#a27f9fb5cf6107fc1cd40f49e308dfbed">anterior</a>-&gt;<a class="code" href="struct_lista_circular_1_1_capsula.html#ac6846b870f940ef95d02254881420f50">proxima</a> = primeira;
+<a name="l00134"></a>00134         <span class="keyword">delete</span> auxiliar;
+<a name="l00135"></a>00135         _tamanho -= 1;
+<a name="l00136"></a>00136         <span class="keywordflow">return</span>;
+<a name="l00137"></a>00137     }
+<a name="l00138"></a>00138     <span class="keywordflow">throw</span>(<a class="code" href="_lista_circular_8hpp.html#aaad9fdc951d1a7ce3ea877e4441bb72d">ERRO_POSICAO_INEXISTENTE</a>);
+<a name="l00139"></a>00139 }
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -226,7 +224,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Busca');
 
 
 <hr class="footer"/><address class="footer"><small>
-Gerado em Quarta, 21 de Maio de 2014 19:45:36 para Simulação Supermercado por &#160;<a href="http://www.doxygen.org/index.html">
+Gerado em Terça, 27 de Maio de 2014 15:36:13 para Simulação Supermercado por &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

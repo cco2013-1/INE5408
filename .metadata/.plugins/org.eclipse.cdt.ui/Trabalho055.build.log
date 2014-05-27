@@ -1,0 +1,11 @@
+15:34:53 **** Incremental Build of configuration Debug for project Trabalho055 ****
+make all 
+Building file: ../mainFuncionamento.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"mainFuncionamento.d" -MT"mainFuncionamento.d" -o "mainFuncionamento.o" "../mainFuncionamento.cpp"
+../mainFuncionamento.cpp:4:24: erro fatal: Lancamento.h: Arquivo ou diretório não encontrado
+compilação terminada.
+make: ** [mainFuncionamento.o] Erro 1
+
+15:34:53 Build Finished (took 370ms)
+

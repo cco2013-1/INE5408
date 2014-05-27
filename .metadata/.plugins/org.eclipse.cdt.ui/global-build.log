@@ -1,0 +1,25 @@
+15:34:34 **** Incremental Build of configuration Debug for project Trabalho055 ****
+make all 
+Building file: ../main.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"main.d" -MT"main.d" -o "main.o" "../main.cpp"
+In file included from ../main.cpp:4:0:
+../FilaEncadeada.hpp: No destrutor ‘FilaEncadeada<T>::~FilaEncadeada() [with T = int]’:
+../main.cpp:10:20:   instanciado a partir daqui
+../FilaEncadeada.hpp:55:14: aviso: unused variable ‘atual’ [-Wunused-variable]
+Finished building: ../main.cpp
+ 
+Building file: ../mainFuncionamento.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"mainFuncionamento.d" -MT"mainFuncionamento.d" -o "mainFuncionamento.o" "../mainFuncionamento.cpp"
+../mainFuncionamento.cpp:4:24: erro fatal: Lancamento.h: Arquivo ou diretório não encontrado
+compilação terminada.
+make: ** [mainFuncionamento.o] Erro 1
+15:34:53 **** Incremental Build of configuration Debug for project Trabalho055 ****
+make all 
+Building file: ../mainFuncionamento.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"mainFuncionamento.d" -MT"mainFuncionamento.d" -o "mainFuncionamento.o" "../mainFuncionamento.cpp"
+../mainFuncionamento.cpp:4:24: erro fatal: Lancamento.h: Arquivo ou diretório não encontrado
+compilação terminada.
+make: ** [mainFuncionamento.o] Erro 1

@@ -1,0 +1,7 @@
+digraph G {
+	node [label="\N"];
+	graph [bb="0,0,184.21,49.639"];
+	Lista [pos="36.5,30.139", width="0.97222", height="0.51389"];
+	ListaContabil [pos="107.71,19.5", width="2.0833", height="0.51389"];
+	Lista -> ListaContabil [pos="e,70.866,25.005 70.436,25.069 70.508,25.058 70.58,25.047 70.651,25.037"];
+}
