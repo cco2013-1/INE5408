@@ -33,6 +33,19 @@ SuperMercado::SuperMercado() {
     horarioChegadaProximoCliente = (int) ga->obtemDoubleDeDistribuicaoNormal(tempoMedioChegadaNovoCliente, varianciaChegadaNovoCliente);
 }
 
+SuperMercado::SuperMercado(string nomeSuperMercado, int duracaoSimulacaoHoras,
+    int tempoEntreChegadaClientes, ListaCaixa *lc) {
+    nome = nomeSuperMercado;
+    horasSimulacao = duracaoSimulacaoHoras;
+    horarioTerminoSimulacao = horasSimulacao * 60 * 60;
+    tempoMedioChegadaNovoCliente = tempoEntreChegadaClientes;
+    caixas = lc;
+    ga = new GeradorAleatorio();
+    horario = 0;
+    varianciaChegadaNovoCliente = (int)(tempoMedioChegadaNovoCliente / 4.);
+    horarioChegadaProximoCliente = (int) ga->obtemDoubleDeDistribuicaoNormal(tempoMedioChegadaNovoCliente, varianciaChegadaNovoCliente);
+}
+
 SuperMercado::~SuperMercado() {
     delete caixas;
 }
@@ -43,6 +56,7 @@ SuperMercado::~SuperMercado() {
  * mostra o relatório da simulação
  */
 void SuperMercado::simular() {
+    cout << "horario " << horario << " horarioTerminoSimulacao " << horarioTerminoSimulacao << endl;
     while (horario < horarioTerminoSimulacao) {
         printf("\rhorario: %d\t Horario de Chegada do próximo cliente: %d", horario, horarioChegadaProximoCliente);
         if (horario == horarioChegadaProximoCliente) {
@@ -213,5 +227,7 @@ void SuperMercado::apresentarRelatorio() {
     cout << "Tempo médio de permência em fila: " << tempoMedioPermanenciaFila << endl;
     cout << "Número de clientes que desistiram: " << numeroClientesDesistiram << endl;
     printf("Faturamento que deixou de ser realizado: R$ %.2f\n", valorComprasClientesDesistiram);
+    cout << "================================================================================" << endl;
+    cout << endl << endl << endl;
 }
 

@@ -48,6 +48,8 @@ private:
     void calcularDados();
 public:
     SuperMercado();
+    SuperMercado(string nomeSuperMercado, int duracaoSimulacaoHoras,
+        int tempoEntreChegadaClientes, ListaCaixa *lc);
     ~SuperMercado();
     void simular();
 };
