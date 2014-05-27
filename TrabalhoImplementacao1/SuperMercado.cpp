@@ -56,7 +56,6 @@ SuperMercado::~SuperMercado() {
  * mostra o relatório da simulação
  */
 void SuperMercado::simular() {
-    cout << "horario " << horario << " horarioTerminoSimulacao " << horarioTerminoSimulacao << endl;
     while (horario < horarioTerminoSimulacao) {
         printf("\rhorario: %d\t Horario de Chegada do próximo cliente: %d", horario, horarioChegadaProximoCliente);
         if (horario == horarioChegadaProximoCliente) {
