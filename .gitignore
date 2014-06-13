@@ -2,3 +2,5 @@
 *.out
 *.o
 *.zip
+/Trabalho07/build/
+/Trabalho07/dist/
