@@ -2,9 +2,7 @@
 *.out
 *.o
 *.zip
-<<<<<<< HEAD
 /Trabalho07/build/
 /Trabalho07/dist/
-=======
 .metadata
->>>>>>> 13deb4f323156e33ea279c57150030ae17bf889b
+*.pdf

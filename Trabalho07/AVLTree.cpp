@@ -34,6 +34,12 @@ void AVLTree::remove(int key) {
     // TODO
 }
 
+/**
+ * Method createNode
+ * creates an empty node, with NULL pointers to children and to parent
+ * and with 0 height
+ * @return newly created node, without parent or children
+ */
 AVLTree::node * AVLTree::createNode(int key, string value) {
     node *newNode = new node;
     newNode->key = key;
@@ -46,6 +52,14 @@ AVLTree::node * AVLTree::createNode(int key, string value) {
     return newNode;
 }
 
+/**
+ * Method insert
+ * Private method for inserting a given node in a given subtree
+ * Using insights from:
+ * Cormen, Leiserson, Rivest and Stein - Introduction to Algorithms, 3rd Edition
+ * and
+ * http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/MIT6_006F11_lec06_orig.pdf
+ */
 void AVLTree::insert(node *newNode, node *subTreeRoot) {
 
     node *y = NULL;
@@ -72,9 +86,8 @@ void AVLTree::insert(node *newNode, node *subTreeRoot) {
         y->rightChild = newNode;
     }
 
-    //update heights
+    //update heights and ensuring balance
     //reusing x and y variables
-
     x = newNode;
     while (x->parent != NULL) {
         y = x->parent;
@@ -82,12 +95,44 @@ void AVLTree::insert(node *newNode, node *subTreeRoot) {
             y->height += 1;
         }
 
-
-
         x = y;
+
+        if (!balanced(x)) {
+            if (height(x->rightChild) > height(x->leftChild)) {
+                y = x->rightChild;
+                if (height(y->rightChild) >= height(y->leftChild)) {
+                    rotateLeft(x);
+                } else {
+                    rotateRight(y);
+                    rotateLeft(x);
+                }
+            } else {
+                y = x->leftChild;
+                if (height(y->leftChild) >= height(y->rightChild)) {
+                    rotateRight(x);
+                } else {
+                    rotateLeft(y);
+                    rotateRight(x);
+                }
+            }
+        }
+
+
     }
 }
 
+void AVLTree::rotateRight(node *n) {
+
+}
+
+void AVLTree::rotateLeft(node *n) {
+
+}
+
+/**
+ * Method height
+ * Returns the height of a given node. If it is NULL, return -1.
+ */
 int AVLTree::height(node *n) {
     if (n == NULL) {
         return -1;
@@ -95,6 +140,10 @@ int AVLTree::height(node *n) {
     else return n->height;
 }
 
+/**
+ * Method balanced
+ * Verifies whether a given subtree is balanced.
+ */
 bool AVLTree::balanced(node *n) {
     return abs(height(n->leftChild) - height(n->rightChild)) <= 1;
 }
