@@ -49,7 +49,7 @@ public:
     node *root;
     int size;
     node * createNode(int key, string value);
-    void insert(node *newNode, node *subTreeRoot);
+    void insert(node *newNode);
     void rotateRight(node *x);
     void rotateLeft(node *x);
     bool balanced(node *n);

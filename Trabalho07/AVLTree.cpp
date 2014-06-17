@@ -27,7 +27,7 @@ AVLTree::~AVLTree() {
 
 void AVLTree::insert(int key, string value) {
     node *newNode = createNode(key, value);
-    insert(newNode, root);
+    insert(newNode);
 }
 
 
@@ -37,9 +37,9 @@ void AVLTree::insert(int key, string value) {
  * and rebalances the tree if necessary.
  * @parameter key
  * @see Cormen, Leiserson, Rivest and Stein - Introduction to Algorithms, 3rd Edition, page 297
- * TODO refactor!!!!!
  */
 void AVLTree::remove(int key) {
+
     node *x = root;
     while (x != NULL) {
         if (key < x->key) {
@@ -53,120 +53,28 @@ void AVLTree::remove(int key) {
 
     if (x && x->key == key) {
 
-        //Case a: no left child
         if (!x->leftChild) {
-            node *rightChild = x->rightChild;
-            if (x->parent && x->parent->leftChild == x) {
-                x->parent->leftChild = rightChild;
-            } else if (x->parent) {
-                x->parent->rightChild = rightChild;
-            } else {
-                root = rightChild;
-            }
-
-            //right child might be null
-            //if it is not null, then update its parent to point
-            //to the parent of the removed node
-            if (x->rightChild) {
-                x->rightChild->parent = x->parent;
-            }
-
+            transplant(x, x->rightChild);
+            rebalance(x->rightChild);
             delete x;
-
-            rebalance(rightChild);
-
             return;
         }
-
-        /*
-         * Case b: no right child
-         */
         if (!x->rightChild) {
-            node *leftChild = x->leftChild;
-            if (x->parent && x->parent->leftChild == x) {
-                x->parent->leftChild = leftChild;
-            } else if (x->parent) {
-                x->parent->rightChild = leftChild;
-            } else {
-                root = leftChild;
-            }
-
-            //left child might be null
-            //if it is not null, then update its parent to point
-            //to the parent of the removed node
-            if (x->leftChild) {
-                x->leftChild->parent = x->parent;
-            }
-
+            transplant(x, x->leftChild);
+            rebalance(x->leftChild);
             delete x;
-
-            rebalance(leftChild);
-
             return;
         }
-
-        /*
-         * Case c: Node has two children and its right child
-         * has no left child. This means that node's right child
-         * is the node's successor.
-         */
-        if (!x->rightChild->leftChild) {
-            node *rightChild = x->rightChild;
-            if (x->parent && x->parent->leftChild == x) {
-                x->parent->leftChild = rightChild;
-            } else if (x->parent) {
-                x->parent->rightChild = rightChild;
-            }
-            rightChild->parent = x->parent;
-            rightChild->leftChild = x->leftChild;
-            x->leftChild->parent = rightChild;
-
-            delete x;
-
-            rebalance(rightChild);
-
-            return;
+        node *y = minimum(x->rightChild);
+        if (y->parent != x) {
+            transplant(y, y->rightChild);
+            y->rightChild = x->rightChild;
+            y->rightChild->parent = y;
         }
-
-        /*
-         * Case d: Node to be deleted ́ has two children
-         * (left child l and right child r), and its
-         * successor y != r lies within the subtree
-         * rooted at r
-         */
-
-        node * x_successor = successor(x);
-
-        //move y (x_successor) right child to y position
-        x_successor->parent->leftChild = x_successor->rightChild;
-        if (x_successor->rightChild) {
-            x_successor->rightChild->parent = x_successor->parent;
-        }
-
-        //make x_successor be x right child's parent
-        x_successor->rightChild = x->rightChild;
-        if (x_successor->rightChild) {
-            x->rightChild->parent = x_successor;
-        }
-
-        //move x_successor to x position
-        if (x->parent && x->parent->leftChild == x) {
-            x->parent->leftChild = x_successor;
-        } else if (x->parent) {
-            x->parent->rightChild = x_successor;
-        } else {
-            root = x_successor;
-        }
-        x_successor->parent = x->parent;
-
-        x_successor->leftChild = x->leftChild;
-        x->leftChild->parent = x_successor;
-
-        delete x;
-
-        rebalance(x_successor->rightChild);
-
-        return;
+        transplant(x, y);
+        y->leftChild = x->leftChild;
+        y->leftChild->parent = y;
+        rebalance(y->rightChild);
     }
 }
 
@@ -205,7 +113,7 @@ AVLTree::node * AVLTree::minimum() {
 /**
  * Private method minimum
  * returns the node with the mininum key in the
- * three rooted at subTreeRoot
+ * three rooted at subTreeRootsubTreeRoot
  * @param subTreeRoot sub-tree's root
  * @return node with minimum key within the subtree
  */
@@ -242,14 +150,15 @@ AVLTree::node * AVLTree::createNode(int key, string value) {
 /**
  * Method insert
  * Private method for inserting a given node in a given subtree
- * Using insights from:
- * @see Cormen, Leiserson, Rivest and Stein - Introduction to Algorithms, 3rd Edition
+ * @param newNode the new node beeing inserted
+ * @see Cormen, Leiserson, Rivest and Stein - Introduction to
+ * Algorithms, 3rd Edition
  * @see http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/MIT6_006F11_lec06_orig.pdf
  */
-void AVLTree::insert(node *newNode, node *subTreeRoot) {
+void AVLTree::insert(node *newNode) {
 
     node *y = NULL;
-    node *x = subTreeRoot;
+    node *x = root;
 
     //Find insertion position
     while (x != NULL) {
@@ -277,9 +186,10 @@ void AVLTree::insert(node *newNode, node *subTreeRoot) {
 }
 
 /**
- * Method rabalance
+ * Method rebalance
  * Update heights and rebalances the tree
- * as to mantain AVL property
+ * in order to mantain AVL property
+ * @param n the node beeing rebalanced
  */
 void AVLTree::rebalance(node *n) {
     if (!n) {
@@ -319,8 +229,8 @@ void AVLTree::rebalance(node *n) {
  * Method rotateRight
  * Performs a right rotation of the given node
  * and updates nodes' heights
- * See:
- * http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/MIT6_006F11_lec06_orig.pdf *
+ * @param x the node beeing rotated to the right
+ * @see http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/MIT6_006F11_lec06_orig.pdf *
  */
 void AVLTree::rotateRight(node *x) {
     node *y = x->leftChild;
@@ -345,8 +255,8 @@ void AVLTree::rotateRight(node *x) {
  * Method rotateLeft
  * Performs a left rotation of the given node
  * and updates nodes' heights
- * See:
- * http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/MIT6_006F11_lec06_orig.pdf *
+ * @param x the node beeing rotated to de left
+ * @see http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/MIT6_006F11_lec06_orig.pdf *
  */
 void AVLTree::rotateLeft(node *x) {
     node *y = x->rightChild;
@@ -368,8 +278,10 @@ void AVLTree::rotateLeft(node *x) {
 }
 
 /**
- * Method height
+ * Private method height
  * Returns the height of a given node. If it is NULL, return -1.
+ * @param n the node of which the height is beeing calculated
+ * @return the node's height
  */
 int AVLTree::height(node *n) {
     if (n == NULL) {
@@ -379,13 +291,27 @@ int AVLTree::height(node *n) {
 }
 
 /**
- * Method balanced
+ * Private method balanced
  * Verifies whether a given subtree is balanced.
+ * @param n root of the subtree that is beeing checked for balance
+ * @return true if subtree is balanced, false otherwise
  */
 bool AVLTree::balanced(node *n) {
     return abs(height(n->leftChild) - height(n->rightChild)) <= 1;
 }
 
+/**
+ * Private method transplant
+ * Replaces one subtree as a child of its parent
+ * with another subtree.
+ * When TRANSPLANT replaces the subtree rooted at node u
+ * with the subtree rooted at node v, node u’s parent becomes
+ * node v’s parent, and u’s parent ends up having v as its
+ * appropriate child.
+ * @param u, v nodes to be transplanted
+ * @see Cormen, Leiserson, Rivest and Stein - Introduction to
+ * Algorithms, 3rd Edition, page 296
+ */
 void AVLTree::transplant(node *u, node *v) {
     if (!u->parent) {
         root = v;
