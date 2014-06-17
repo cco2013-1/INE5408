@@ -16,32 +16,43 @@
 #include "AVLTree.h"
 #include <stdlib.h>
 
+//////// Public methods:
+
 AVLTree::AVLTree() {
     root = NULL;
     size = 0;
 }
 
 AVLTree::~AVLTree() {
-    // TODO
+    while (root) {
+        remove(root->key);
+    }
 }
 
+/**
+ * Method insert
+ * Creates a new node with the given key and value
+ * and inserts it in the tree.
+ * @param key the key to the new value
+ * @param value the new value
+ */
 void AVLTree::insert(int key, string value) {
     node *newNode = createNode(key, value);
     insert(newNode);
+    size += 1;
 }
-
 
 /**
  * Method remove
  * Removes a node based in the provided key,
  * and rebalances the tree if necessary.
  * @parameter key
- * @see Cormen, Leiserson, Rivest and Stein - Introduction to Algorithms, 3rd Edition, page 297
+ * @see Cormen, Leiserson, Rivest and Stein - Introduction to
+ * Algorithms, 3rd Edition, page 298
  */
 void AVLTree::remove(int key) {
-
     node *x = root;
-    while (x != NULL) {
+    while (x) {
         if (key < x->key) {
             x = x->leftChild;
         } else if (key > x->key) {
@@ -52,38 +63,78 @@ void AVLTree::remove(int key) {
     }
 
     if (x && x->key == key) {
+        node *toRebalance;
 
+        //Case a: no left child
         if (!x->leftChild) {
             transplant(x, x->rightChild);
-            rebalance(x->rightChild);
-            delete x;
-            return;
+            if (x->rightChild) {
+                toRebalance = x->rightChild;
+            } else {
+                //hack! since the rebalance method immediately
+                //points to the parent of the given node, this works
+                //well, particularly when the unbalanced node is the
+                //root (x parent)
+                toRebalance = x;
+            }
         }
-        if (!x->rightChild) {
+        //Case b: no right child
+        else if (!x->rightChild) {
             transplant(x, x->leftChild);
-            rebalance(x->leftChild);
-            delete x;
-            return;
+            if (x->leftChild) {
+                toRebalance = x->leftChild;
+            } else {
+                //hack! since the rebalance method immediately
+                //points to the parent of the given node, this works
+                //well, particularly when the unbalanced node is the
+                //root (x parent)
+                toRebalance = x;
+            }
         }
-        node *y = minimum(x->rightChild);
-        if (y->parent != x) {
-            transplant(y, y->rightChild);
-            y->rightChild = x->rightChild;
-            y->rightChild->parent = y;
+        //Cases c and d:
+        else {
+            node *y = minimum(x->rightChild);
+            //Case d specific:
+            if (y->parent != x) {
+                transplant(y, y->rightChild);
+                y->rightChild = x->rightChild;
+                y->rightChild->parent = y;
+            }
+            transplant(x, y);
+            y->leftChild = x->leftChild;
+            y->leftChild->parent = y;
+            toRebalance = minimum(y->rightChild);
         }
-        transplant(x, y);
-        y->leftChild = x->leftChild;
-        y->leftChild->parent = y;
-        rebalance(y->rightChild);
+
+        delete x;
+        rebalance(toRebalance);
+        size -= 1;
     }
 }
 
 /**
+ * Method minimum
+ * Finds the node with the minimum key in the tree
+ * @return node with minimum key
+ */
+AVLTree::node * AVLTree::minimum() {
+    return minimum(root);
+}
+
+/**
+ * Method maximum
+ * Finds the node with the maximum key in the tree
+ * @return node with maximum key
+ */
+AVLTree::node * AVLTree::maximum() {
+    return maximum(root);
+}
+
+/**
  * Method successor
- * Finds the element that the key that is successor to
- * the given key
- * @param key reference key of which the successor will be located
- * @return node successor to the given key
+ * Finds the successor of the given node
+ * @param n node for which one wants to find a successor
+ * @return node successor to the given node
  */
 AVLTree::node * AVLTree::successor(node *n) {
     node *x = n;
@@ -102,33 +153,57 @@ AVLTree::node * AVLTree::successor(node *n) {
 }
 
 /**
- * Method minimum
- * Finds the node with the minimum key in the tree
- * @return node with minimum key
+ * Method predecessor
+ * Finds the predecessor node of the given node
+ * @param n node for which one wants to find a predecessor
+ * @return node successor to the given node
  */
-AVLTree::node * AVLTree::minimum() {
-    return minimum(root);
+AVLTree::node * AVLTree::predecessor(node *n) {
+    node *x = n;
+    if (x->leftChild) {
+        return maximum(x->leftChild);
+    } else {
+        node *pred;
+        while((pred = x->parent)) {
+            if (pred->rightChild ==x) {
+                return pred;
+            }
+            x = pred;
+        }
+    }
+    return NULL;
 }
 
 /**
- * Private method minimum
- * returns the node with the mininum key in the
- * three rooted at subTreeRootsubTreeRoot
- * @param subTreeRoot sub-tree's root
- * @return node with minimum key within the subtree
+ * Method find
+ * Returns the node that has the given key
+ * @param key the key to be found
+ * @return node that has the given key
  */
-AVLTree::node * AVLTree::minimum(node *subTreeRoot) {
-    node *min = subTreeRoot;
+AVLTree::node * AVLTree::find(int key) {
 
-    while (min->leftChild) {
-        min = min->leftChild;
+    node *x = root;
+    while (x != NULL) {
+        if (key < x->key) {
+            x = x->leftChild;
+        } else if (key > x->key) {
+            x = x->rightChild;
+        } else {
+            break;
+        }
     }
 
-    return min;
+    if (x && x->key == key) {
+        return x;
+    }
+
+    return NULL;
 }
 
+/////// Private methods:
+
 /**
- * Method createNode
+ * Private method createNode
  * creates an empty node, with NULL pointers to children and to parent
  * and with 0 height
  * @param key
@@ -148,7 +223,7 @@ AVLTree::node * AVLTree::createNode(int key, string value) {
 }
 
 /**
- * Method insert
+ * Private method insert
  * Private method for inserting a given node in a given subtree
  * @param newNode the new node beeing inserted
  * @see Cormen, Leiserson, Rivest and Stein - Introduction to
@@ -186,7 +261,7 @@ void AVLTree::insert(node *newNode) {
 }
 
 /**
- * Method rebalance
+ * Private method rebalance
  * Update heights and rebalances the tree
  * in order to mantain AVL property
  * @param n the node beeing rebalanced
@@ -226,7 +301,17 @@ void AVLTree::rebalance(node *n) {
 }
 
 /**
- * Method rotateRight
+ * Private method balanced
+ * Verifies whether a given subtree is balanced.
+ * @param n root of the subtree that is beeing checked for balance
+ * @return true if subtree is balanced, false otherwise
+ */
+bool AVLTree::balanced(node *n) {
+    return abs(height(n->leftChild) - height(n->rightChild)) <= 1;
+}
+
+/**
+ * Private method rotateRight
  * Performs a right rotation of the given node
  * and updates nodes' heights
  * @param x the node beeing rotated to the right
@@ -252,7 +337,7 @@ void AVLTree::rotateRight(node *x) {
 }
 
 /**
- * Method rotateLeft
+ * Private method rotateLeft
  * Performs a left rotation of the given node
  * and updates nodes' heights
  * @param x the node beeing rotated to de left
@@ -291,13 +376,30 @@ int AVLTree::height(node *n) {
 }
 
 /**
- * Private method balanced
- * Verifies whether a given subtree is balanced.
- * @param n root of the subtree that is beeing checked for balance
- * @return true if subtree is balanced, false otherwise
+ * Private method minimum
+ * returns the node with the mininum key in the
+ * three rooted at subTreeRoot
+ * @param subTreeRoot sub-tree's root
+ * @return node with minimum key within the subtree
  */
-bool AVLTree::balanced(node *n) {
-    return abs(height(n->leftChild) - height(n->rightChild)) <= 1;
+AVLTree::node * AVLTree::minimum(node *subTreeRoot) {
+    node *min = subTreeRoot;
+
+    while (min->leftChild) {
+        min = min->leftChild;
+    }
+
+    return min;
+}
+
+AVLTree::node * AVLTree::maximum(node *subTreeRoot) {
+    node *max = subTreeRoot;
+
+    while (max->rightChild) {
+        max = max->rightChild;
+    }
+
+    return max;
 }
 
 /**

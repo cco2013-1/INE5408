@@ -20,8 +20,6 @@
 
 using namespace std;
 
-
-
 class AVLTree {
 public:
     AVLTree();
@@ -41,19 +39,18 @@ public:
     node * minimum();
     node * maximum();
     node * successor(node *n);
-    node * predecessor(int key);
+    node * predecessor(node *n);
     node * find(int key);
 
-// private:
-
+private:
     node *root;
     int size;
     node * createNode(int key, string value);
     void insert(node *newNode);
+    void rebalance(node *x);
+    bool balanced(node *n);
     void rotateRight(node *x);
     void rotateLeft(node *x);
-    bool balanced(node *n);
-    void rebalance(node *x);
     int height(node *n);
     node * minimum(node *subTreeRoot);
     node * maximum(node *subTreeRoot);
