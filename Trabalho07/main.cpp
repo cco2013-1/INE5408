@@ -1,4 +1,5 @@
 #include <iostream>
+
 using std::cout;
 
 #include "ArvoreAVL.h"
@@ -9,4 +10,5 @@ int main (){
     arvore.inserir('c');
     arvore.inserir('b');
     cout << arvore.toString();
+
 }

@@ -13,20 +13,20 @@
  * AVLTree.h
  */
 
-#ifndef __avl_tree_hpp__
-#define __avl_tree_hpp__
+#ifndef __avl_tree_h__
+#define __avl_tree_h__
 
-#import <string>
+#include <string>
 
 using namespace std;
+
+
 
 class AVLTree {
 public:
     AVLTree();
     ~AVLTree();
-    void insert(int key, string value);
-    void remove(int key);
-// private:
+
     struct node {
         node *leftChild;
         node *rightChild;
@@ -35,14 +35,29 @@ public:
         string value;
         int height;
     };
+
+    void insert(int key, string value);
+    void remove(int key);
+    node * minimum();
+    node * maximum();
+    node * successor(node *n);
+    node * predecessor(int key);
+    node * find(int key);
+
+// private:
+
     node *root;
     int size;
     node * createNode(int key, string value);
     void insert(node *newNode, node *subTreeRoot);
-    void rotateRight(node *n);
-    void rotateLeft(node *n);
+    void rotateRight(node *x);
+    void rotateLeft(node *x);
     bool balanced(node *n);
+    void rebalance(node *x);
     int height(node *n);
+    node * minimum(node *subTreeRoot);
+    node * maximum(node *subTreeRoot);
+    void transplant(node *u, node *v);
 };
 
 #endif
