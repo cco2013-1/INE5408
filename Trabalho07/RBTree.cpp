@@ -169,7 +169,7 @@ void RBTree::rebalanceInsertion(node *z) {
             }
         } else {
             y = z->parent->parent->leftChild;
-            if (y->color == RED) {
+            if (y && y->color == RED) {
                 z->parent->color = BLACK;
                 y->color = BLACK;
                 z->parent->parent->color = RED;
