@@ -10,24 +10,24 @@
  * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
  *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
  *
- * AVLTree.h
+ * RBTree.h
  */
 
-#ifndef __avl_tree_h__
-#define __avl_tree_h__
+#ifndef __rb_tree_h__
+#define __rb_tree_h__
 
 #include "BSTree.h"
 
-class AVLTree: public BSTree {
+class RBTree: public BSTree {
 public:
-    AVLTree();
-    ~AVLTree();
+    RBTree();
+    ~RBTree();
     void remove(int key);
 
 private:
-    void insert(node *newNode);
-    void rebalance(node *x);
-    bool balanced(node *n);
+    void insert(node *n);
+    void rebalanceInsertion(node *z);
+    void rebalanceDeletion(node *x);
 };
 
 #endif

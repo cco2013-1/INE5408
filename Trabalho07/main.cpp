@@ -10,5 +10,4 @@ int main (){
     arvore.inserir('c');
     arvore.inserir('b');
     cout << arvore.toString();
-
 }
