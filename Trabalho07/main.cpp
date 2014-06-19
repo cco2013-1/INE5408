@@ -103,7 +103,6 @@ int main() {
         int indexOfSep = readLine.find_first_of("|");
         string streetName = readLine.substr(0, indexOfSep);
         int cep = atoi(readLine.substr(indexOfSep + 1, readLine.size() - indexOfSep).c_str());
-        cout << cep << endl;
 
         clock_t start, finish;
         double timeToInsert;
@@ -114,15 +113,27 @@ int main() {
 
         timeToInsert = ((double)(finish - start));//CLOCKS_PER_SEC * 1000;
 
-        cout << "num elements: " << tree->getSize() << "\ttime to insert: " << timeToInsert << " ms" << endl;
+        cout << "num elements: " << tree->getSize() << "\ttime to insert: " << timeToInsert << endl;
 
         string output = to_string(tree->getSize()) + "\t" + to_string(timeToInsert) + "\n";
         fputs(output.c_str(), resultsFileInsertion);
     }
 
-    // cout << "root: " << tree->getRoot()->key << endl;
-    // cout << "root successor: " << tree->successor(tree->getRoot())->key << endl;
-    // cout << "root height: " << tree->getRoot()->height << endl;
+    cout << "root: " << tree->getRoot()->key << endl;
+    cout << "root successor: " << tree->successor(tree->getRoot())->key << endl;
+    cout << "root height: " << tree->getRoot()->height << endl;
+
+    while (true) {
+        cout << "busca de cep. insira o cep a buscar: ";
+        int cep = obterInteiro();
+        if (cep <= 0) break;
+        node *result = tree->find(cep);
+        if (result) {
+            cout << "o cep " << cep << " refere-se à rua " << result->value << endl;
+        } else {
+            cout << "cep não encontrado" << endl;
+        }
+    }
 }
 
 void printTree(node *subTreeRoot) {

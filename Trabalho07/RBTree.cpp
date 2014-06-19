@@ -181,7 +181,7 @@ void RBTree::rebalanceInsertion(node *z) {
                 }
                 z->parent->color = BLACK;
                 z->parent->parent->color = RED;
-                rotateLeft(z);
+                rotateLeft(z->parent->parent);
             }
         }
     }
