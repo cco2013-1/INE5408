@@ -185,6 +185,26 @@ node * BSTree::find(int key) {
     return NULL;
 }
 
+/**
+ * Method inOrder
+ * returns a pointer to an array of pointers to nodes
+ * with nodes ordered by key
+ * @return pointer to array of pointers to nodes, with nodes in order
+ */
+node ** BSTree::inOrder() {
+    node ** arrayInOrder = new node *[getSize()];
+    node * next = minimum();
+    int index = 0;
+    while (true) {
+        arrayInOrder[index] = next;
+        next = successor(next);
+        if (!next) {
+            break;
+        }
+    }
+    return arrayInOrder;
+}
+
 node * BSTree::getRoot() {
     return root;
 }

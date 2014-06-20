@@ -194,6 +194,26 @@ node * RBTreeV2::find(int key) {
     return NULL;
 }
 
+/**
+ * Method inOrder
+ * returns a pointer to an array of pointers to nodes
+ * with nodes ordered by key
+ * @return pointer to array of pointers to nodes, with nodes in order
+ */
+node ** RBTreeV2::inOrder() {
+    node ** arrayInOrder = new node *[getSize()];
+    node * next = minimum();
+    int index = 0;
+    while (true) {
+        arrayInOrder[index] = next;
+        next = successor(next);
+        if (next != nilNode) {
+            break;
+        }
+    }
+    return arrayInOrder;
+}
+
 node * RBTreeV2::getRoot() {
     return root;
 }

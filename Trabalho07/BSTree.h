@@ -45,6 +45,7 @@ public:
     virtual node * successor(node *n);
     virtual node * predecessor(node *n);
     virtual node * find(int key);
+    virtual node ** inOrder();
     virtual node * getRoot();
     virtual node * getNil();
 

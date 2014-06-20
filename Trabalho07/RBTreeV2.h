@@ -33,6 +33,7 @@ public:
     node * successor(node *x);
     node * predecessor(node *x);
     node * find(int key);
+    node ** inOrder();
     node * getRoot();
     node * getNil();
 
