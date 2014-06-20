@@ -1,6 +1,6 @@
-OBJS = BSTree.o AVLTree.o RBTree.o main.o
+OBJS = BSTree.o AVLTree.o RBTreeV2.o main.o
 CC = g++
-DEBUG = -g
+DEBUG = -g -O0
 CFLAGS = -Wall -c $(DEBUG)
 LFLAGS = -Wall $(DEBUG)
 
@@ -13,8 +13,8 @@ BSTree.o : BSTree.h BSTree.cpp
 AVLTree.o : BSTree.h AVLTree.h AVLTree.cpp
 	$(CC) $(CFLAGS) AVLTree.cpp
 
-RBTree.o : BSTree.h RBTree.h RBTree.cpp
-	$(CC) $(CFLAGS) RBTree.cpp
+RBTreeV2.o : BSTree.h RBTreeV2.h RBTreeV2.cpp
+	$(CC) $(CFLAGS) RBTreeV2.cpp
 
 main.o : main.cpp BSTree.h AVLTree.h RBTree.h
 	$(CC) $(CFLAGS) main.cpp

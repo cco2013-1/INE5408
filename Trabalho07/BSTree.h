@@ -37,27 +37,28 @@ class BSTree {
 public:
     BSTree();
     ~BSTree();
-    void insert(int key, string value);
+    virtual void insert(int key, string value);
     virtual void remove(int key);
-    int getSize();
-    node * minimum();
-    node * maximum();
-    node * successor(node *n);
-    node * predecessor(node *n);
-    node * find(int key);
-    node * getRoot();
+    virtual int getSize();
+    virtual node * minimum();
+    virtual node * maximum();
+    virtual node * successor(node *n);
+    virtual node * predecessor(node *n);
+    virtual node * find(int key);
+    virtual node * getRoot();
+    virtual node * getNil();
 
 protected:
     node *root;
     int size;
-    node * createNode(int key, string value);
+    virtual node * createNode(int key, string value);
     virtual void insert(node *newNode);
-    void rotateRight(node *n);
-    void rotateLeft(node *n);
+    virtual void rotateRight(node *n);
+    virtual void rotateLeft(node *n);
     int height(node *n);
-    node * minimum(node *subTreeRoot);
-    node * maximum(node *subTreeRoot);
-    void transplant(node *u, node *v);
+    virtual node * minimum(node *subTreeRoot);
+    virtual node * maximum(node *subTreeRoot);
+    virtual void transplant(node *u, node *v);
 };
 
 #endif

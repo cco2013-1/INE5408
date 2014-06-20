@@ -151,7 +151,7 @@ node * BSTree::predecessor(node *n) {
     } else {
         node *pred;
         while((pred = x->parent)) {
-            if (pred->rightChild ==x) {
+            if (pred->rightChild == x) {
                 return pred;
             }
             x = pred;
@@ -168,7 +168,7 @@ node * BSTree::predecessor(node *n) {
  */
 node * BSTree::find(int key) {
     node *x = root;
-    while (x != NULL) {
+    while (x) {
         if (key < x->key) {
             x = x->leftChild;
         } else if (key > x->key) {
@@ -185,9 +185,12 @@ node * BSTree::find(int key) {
     return NULL;
 }
 
-//TODO remove this method
 node * BSTree::getRoot() {
     return root;
+}
+
+node * BSTree::getNil() {
+    return NULL;
 }
 
 /**
@@ -278,7 +281,7 @@ void BSTree::rotateRight(node *x) {
 }
 
 /**
- * Private method rotateLeft
+ * Protected method rotateLeft
  * Performs a left rotation of the given node
  * and updates nodes' heights
  * @param x the node being rotated to de left

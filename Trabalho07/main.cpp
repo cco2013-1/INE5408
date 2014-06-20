@@ -20,17 +20,19 @@
 #include <ctime>
 #include "AVLTree.h"
 #include "BSTree.h"
-#include "RBTree.h"
+#include "RBTreeV2.h"
+#include "gnuplot_i.hpp"
 
 void printTree(node *subTreeRoot);
-int obterInteiro();
-string obterString();
+int getInteger();
 
 int main() {
     BSTree *tree;
     string inputFile;
     string outputFileInsertion = "results_";
     string outpuFileDeletion;
+    string graphOutputFileInsertion = "graph_";
+    string graphOutputFileDeletion;
 
     cout << "Bem vindo." << endl;
 
@@ -40,25 +42,29 @@ int main() {
         cout << "2 - SC" << endl;
         cout << "3 - SP" << endl;
         cout << "4 - Todos concatenados" << endl;
-        int opt = obterInteiro();
+        int opt = getInteger();
         if (opt == 1) {
             inputFile = "df.cep";
             outputFileInsertion += "DF_";
+            graphOutputFileInsertion += "DF_";
             break;
         }
         if (opt == 2) {
             inputFile = "sc.cep";
             outputFileInsertion += "SC_";
+            graphOutputFileInsertion += "SC_";
             break;
         }
         if (opt == 3) {
             inputFile = "sp.cep";
             outputFileInsertion += "SP_";
+            graphOutputFileInsertion += "SP_";
             break;
         }
         if (opt == 4) {
             inputFile = "todos.cep";
             outputFileInsertion += "todos_";
+            graphOutputFileInsertion += "todos_";
             break;
         }
         cout << "errou feio, errou rude." << endl;
@@ -66,15 +72,17 @@ int main() {
 
     while (true) {
         cout << "Escolha a árvore. 1 para AVL, 2 para RedBlack." << endl;
-        int opt = obterInteiro();
+        int opt = getInteger();
         if (opt == 1) {
             tree = new AVLTree();
             outputFileInsertion += "AVLTree.dat";
+            graphOutputFileInsertion += "AVLTree.png";
             break;
         }
         if (opt == 2) {
-            tree = new RBTree();
+            tree = new RBTreeV2();
             outputFileInsertion += "RedBlackTree.dat";
+            graphOutputFileInsertion += "RedBlackTree.png";
             break;
         }
         cout << "errou feio, errou rude." << endl;
@@ -83,8 +91,12 @@ int main() {
     outpuFileDeletion = "deletion_" + outputFileInsertion;
     outputFileInsertion = "insertion_" + outputFileInsertion;
 
+    graphOutputFileDeletion = "deletion_" + graphOutputFileInsertion;
+    graphOutputFileInsertion = "insertion_" + graphOutputFileInsertion;
+
     FILE * cepFile = fopen(inputFile.c_str(), "r");
     FILE * resultsFileInsertion = fopen(outputFileInsertion.c_str(), "w");
+
 
     if (!cepFile) {
         cout << "Erro ao ler arquivo de CEPs." << endl;
@@ -119,13 +131,11 @@ int main() {
         fputs(output.c_str(), resultsFileInsertion);
     }
 
-    cout << "root: " << tree->getRoot()->key << endl;
-    cout << "root successor: " << tree->successor(tree->getRoot())->key << endl;
-    cout << "root height: " << tree->getRoot()->height << endl;
+    fclose(resultsFileInsertion);
 
     while (true) {
-        cout << "busca de cep. insira o cep a buscar: ";
-        int cep = obterInteiro();
+        cout << "busca de cep. insira o cep a buscar (0 para sair): ";
+        int cep = getInteger();
         if (cep <= 0) break;
         node *result = tree->find(cep);
         if (result) {
@@ -134,42 +144,50 @@ int main() {
             cout << "cep não encontrado" << endl;
         }
     }
+
+    cout << "Removendo entradas da árvore:" << endl;
+    FILE * resultsFileDeletion = fopen(outpuFileDeletion.c_str(), "w");
+
+    while (tree->getRoot() != tree->getNil()) {
+        clock_t start, finish;
+        double timeToRemove;
+
+        start = clock();
+        tree->remove(tree->minimum()->key);
+        finish = clock();
+
+        timeToRemove = ((double)(finish - start));//CLOCKS_PER_SEC * 1000;
+
+        cout << "num elements: " << tree->getSize() << "\ttime to remove: " << timeToRemove << endl;
+
+        string output = to_string(tree->getSize()) + "\t" + to_string(timeToRemove) + "\n";
+        fputs(output.c_str(), resultsFileDeletion);
+    }
+
+    fclose(resultsFileDeletion);
+
+    cout << "Gerando graficos." << endl;
+    Gnuplot gp;
+    string cmd = "set term png";
+    gp.cmd(cmd);
+    cmd = "set output '" + graphOutputFileInsertion + "'";
+    gp.cmd(cmd);
+    cmd = "plot '" + outputFileInsertion + "'";
+    gp.cmd(cmd);
+    cmd = "set output '" + graphOutputFileDeletion + "'";
+    gp.cmd(cmd);
+    cmd = "plot '" + outpuFileDeletion + "'";
+    gp.cmd(cmd);
 }
 
-void printTree(node *subTreeRoot) {
-    if (!subTreeRoot) {
-        cout << "empty tree" << endl;
-        return;
-    }
-    cout << subTreeRoot->key << "\t" << subTreeRoot->height << "\t"
-        << (subTreeRoot->color == RED ? "red" : "black") << endl;
-    if (subTreeRoot->leftChild) {
-        printTree(subTreeRoot->leftChild);
-    } else {
-        cout << " NULL left" << endl;
-    }
-    if (subTreeRoot->rightChild) {
-        printTree(subTreeRoot->rightChild);
-    } else {
-        cout << " NULL right " << endl;
-    }
-
-}
-
-int obterInteiro() {
+int getInteger() {
     string input = "";
-    int inteiro = 0;
+    int integer = 0;
 
     getline(cin, input);
 
     stringstream myStream(input);
-    myStream >> inteiro;
+    myStream >> integer;
 
-    return inteiro;
-}
-
-string obterString() {
-    string input = "";
-    getline(cin, input);
-    return input;
+    return integer;
 }
