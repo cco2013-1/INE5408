@@ -207,7 +207,8 @@ node ** RBTreeV2::inOrder() {
     while (true) {
         arrayInOrder[index] = next;
         next = successor(next);
-        if (next != nilNode) {
+        index += 1;
+        if (!next) {
             break;
         }
     }

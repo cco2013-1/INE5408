@@ -198,6 +198,7 @@ node ** BSTree::inOrder() {
     while (true) {
         arrayInOrder[index] = next;
         next = successor(next);
+        index += 1;
         if (!next) {
             break;
         }
