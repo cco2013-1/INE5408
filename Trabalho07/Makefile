@@ -1,6 +1,6 @@
 OBJS = BSTree.o AVLTree.o RBTreeV2.o main.o
 CC = g++
-DEBUG = -g -O0
+DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
 LFLAGS = -Wall $(DEBUG)
 
