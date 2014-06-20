@@ -196,6 +196,12 @@ void readAndInsertCeps(const string &inputFile, const string &outputFileInsertio
     fclose(resultsFileInsertion);
 }
 
+/**
+ * Function showCepSearch
+ * Allows the user to search the ceps inserted, showing the
+ * corresponding street.
+ * @param tree the tree where the ceps have been stored
+ */
 void showCepSearch(BSTree *tree) {
     while (true) {
         cout << "busca de cep. insira o cep a buscar (0 para sair): ";
@@ -210,6 +216,14 @@ void showCepSearch(BSTree *tree) {
     }
 }
 
+/**
+ * Function removeCepsFromTree
+ * Removes all ceps from the tree and records the time taken
+ * for each removal.
+ * @param outputFileDeletion name of the file where the times will
+ * be recorded
+ * @param tree the tree from which the ceps will be removed
+ */
 void removeCepsFromTree(const string &outpuFileDeletion, BSTree *tree) {
     cout << "Removendo entradas da árvore:" << endl;
     FILE * resultsFileDeletion = fopen(outpuFileDeletion.c_str(), "w");
@@ -233,6 +247,13 @@ void removeCepsFromTree(const string &outpuFileDeletion, BSTree *tree) {
     fclose(resultsFileDeletion);
 }
 
+/**
+ * Function generateGraphs
+ * This function calls gnuplot to generate graphs from the
+ * output files. The graphs are saved in the working directory
+ * as png files.
+ * The module used can be obtained at https://code.google.com/p/gnuplot-cpp/
+ */
 void generateGraphs(const string &outputFileInsertion, const string &outpuFileDeletion,
                     const string &graphOutputFileInsertion, const string &graphOutputFileDeletion) {
     cout << "Gerando graficos." << endl;
