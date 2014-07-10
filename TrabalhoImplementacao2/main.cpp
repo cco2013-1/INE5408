@@ -9,11 +9,13 @@ using namespace std;
 Lista<string> listManPages();
 Lista<string> tokenizer(string str, string sep);
 string exec(char* cmd);
+// Lista<string> tokenizer(char text[], char limiters[]);
+Lista<string> tokenizer(string text, string limiters);
 
 int main() {
-    Lista<string> tokens = tokenizer("Antonio Vinicius Gomes Teixeira", " ");
-    for (int i = 0; i < tokens.tamanho(); i++) {
-        cout << "elem " << i << " " << tokens.elementoNaPosicao(i) << endl;
+    Lista<string> ls = listManPages();
+    for (int i = 0; i < ls.tamanho(); i++) {
+        cout << i << " : " << ls.elementoNaPosicao(i) << endl;
     }
     return 0;
 }
@@ -26,10 +28,7 @@ int main() {
 Lista<string> listManPages() {
     string cmd = string("ls ") + string(PATH_TO_MANPAGES);
     string ls = exec((char *)cmd.c_str());
-
-    while (ls != "") {
-        // string token =
-    }
+    return tokenizer(ls, "\n");
 }
 
 /**
@@ -48,14 +47,29 @@ string exec(char* cmd) {
     return result;
 }
 
-Lista<string> tokenizer(string str, string sep) {
+Lista<string> tokenizer(char text[], char limiters[]){
+    Lista<string> words;
+    char *word = strtok(text, limiters);
+    for(int i = 0; word; i++) {
+        words.adiciona(string(word));
+        word = strtok(NULL, limiters);
+    }
+    return words;
+}
+
+Lista<string> tokenizer(string text, string limiters) {
     Lista<string> tokens;
-    string token;
-    while (str != "") {
-        unsigned found = str.find_first_of(sep);
-        token = str.substr(found);
+    string str = text;
+
+    while(true) {
+        size_t found = str.find_first_of(limiters);
+        string token = str.substr(0, found);
+        cout << token << endl;
         tokens.adiciona(token);
-        str = str.substr(found, string::npos);
+        str = str.substr(found + 1, string::npos);
+        if (found == string::npos) {
+            break;
+        }
     }
     return tokens;
 }
