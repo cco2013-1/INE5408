@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <stdio.h>
 #include "Lista.hpp"
 
 #define PATH_TO_MANPAGES "ManPages/"
@@ -9,11 +10,13 @@ using namespace std;
 Lista<string> listManPages();
 Lista<string> tokenizer(string str, string sep);
 string exec(char* cmd);
-// Lista<string> tokenizer(char text[], char limiters[]);
-Lista<string> tokenizer(string text, string limiters);
+Lista<string> tokenizer(char text[], char limiters[]);
+// Lista<string> tokenizer(string text, string limiters);
+
+char limiters[] = {' ', '-', '/','.'};
 
 int main() {
-    Lista<string> ls = listManPages();
+    Lista<string> ls = tokenizer("Antonio Vinicius Gomes Teixeira", limiters); //listManPages();
     for (int i = 0; i < ls.tamanho(); i++) {
         cout << i << " : " << ls.elementoNaPosicao(i) << endl;
     }
@@ -28,7 +31,7 @@ int main() {
 Lista<string> listManPages() {
     string cmd = string("ls ") + string(PATH_TO_MANPAGES);
     string ls = exec((char *)cmd.c_str());
-    return tokenizer(ls, "\n");
+    return tokenizer((char *)ls.c_str(), "\n");
 }
 
 /**
@@ -57,19 +60,19 @@ Lista<string> tokenizer(char text[], char limiters[]){
     return words;
 }
 
-Lista<string> tokenizer(string text, string limiters) {
-    Lista<string> tokens;
-    string str = text;
+// Lista<string> tokenizer(string text, string limiters) {
+//     Lista<string> tokens;
+//     string str = text;
 
-    while(true) {
-        size_t found = str.find_first_of(limiters);
-        string token = str.substr(0, found);
-        cout << token << endl;
-        tokens.adiciona(token);
-        str = str.substr(found + 1, string::npos);
-        if (found == string::npos) {
-            break;
-        }
-    }
-    return tokens;
-}
+//     while(true) {
+//         size_t found = str.find_first_of(limiters);
+//         string token = str.substr(0, found);
+//         cout << token << endl;
+//         tokens.adiciona(token);
+//         str = str.substr(found + 1, string::npos);
+//         if (found == string::npos) {
+//             break;
+//         }
+//     }
+//     return tokens;
+// }
