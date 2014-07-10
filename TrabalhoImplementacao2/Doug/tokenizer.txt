@@ -1,0 +1,9 @@
+Lista<string> tokenizer(char text[], char[] limiters){
+    Lista<string> words;
+    char *word = strtok(text, limiters);
+    for(int i = 0; word; i++) {
+        words.adiciona(string(word));
+        word = strtok(NULL, limiters);
+    }
+    return words;
+}
