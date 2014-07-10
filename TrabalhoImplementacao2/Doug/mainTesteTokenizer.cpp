@@ -26,7 +26,7 @@ using namespace std;
 
 Lista<string> lista;
 Lista<string> lista2;
-char text[] = "Matheus Ben-Hur/de Melo.Leite or as but Luiz";
+char text[] = "Vinicius and gay but when dá o cú";
 char limiters[] = {' ', '-', '/','.'};
 unordered_set<string> conjunctions = {"and", "that", "but", "or", "as", "if", "when","than", "because", "while", "where", 
 "after", "so", "though", "since", "until", "whether", "before", "although", "nor", "like", "once", "unless", 
