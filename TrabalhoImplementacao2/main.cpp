@@ -16,7 +16,8 @@ Lista<string> tokenizer(char text[], char limiters[]);
 char limiters[] = {' ', '-', '/','.'};
 
 int main() {
-    Lista<string> ls = tokenizer("Antonio Vinicius Gomes Teixeira", limiters); //listManPages();
+    // char text[] = "Antonio Vinicius Gomes Teixeira";
+    Lista<string> ls = listManPages();
     for (int i = 0; i < ls.tamanho(); i++) {
         cout << i << " : " << ls.elementoNaPosicao(i) << endl;
     }
@@ -26,7 +27,9 @@ int main() {
 /**
  * Função listManPages
  * Executa comando `ls` e retorna uma lista com os resultados
- * utilizado para
+ * utilizado para gerar lista com os arquivos de manpages a serem
+ * processados
+ * @return Lista contendo o título das manpages encontradas
  */
 Lista<string> listManPages() {
     string cmd = string("ls ") + string(PATH_TO_MANPAGES);
@@ -35,6 +38,10 @@ Lista<string> listManPages() {
 }
 
 /**
+ * Função exec
+ * Executa o comando passado como parâmetro na shell
+ * @param comando a ser executado
+ * @return stdout gerado pelo comando executado
  * @see http://stackoverflow.com/questions/478898/how-to-execute-a-command-and-get-output-of-command-within-c
  */
 string exec(char* cmd) {
