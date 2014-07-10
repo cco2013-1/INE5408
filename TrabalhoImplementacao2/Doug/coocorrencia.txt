@@ -1,0 +1,35 @@
+vector<Manpage> ManpageUtils::buscaCoocorrencia(char* indexes, string palavra1, string palavra2, char* registros){
+	ifstream input(indexes, ios::in | ios::binary);
+
+	Palavra p1;
+	while(input.read((char *) &p1, sizeof(struct Palavra))){
+		if(p1.chave == palavra1){
+			break;
+		}
+	}
+	
+	Palavra p2;
+	while(input.read((char *) &p2, sizeof(struct Palavra))){
+		if(p2.chave == palavra2){
+			break;
+		}
+	}
+
+	input.close();
+	vector<Manpage> vetor;
+	for(int i = 0; i < (sizeof(p1.indexes)/sizeof(p1.indexes[0])); i++){
+		if(p1.indexes[i] == -1){
+			break;
+		}
+		for(int j = 0; j < (sizeof(p2.indexes)/sizeof(p2.indexes[0])); j++ ){
+			if(p2.indexes[j] == -1){
+			break;
+		}
+			if(p1.indexes[i] == p2.indexes[j]){
+				vetor.insert(vetor.begin(), leRegistros(registros,p1.indexes[i]));
+				break;
+			}
+		}
+	}
+	return vetor;
+}
