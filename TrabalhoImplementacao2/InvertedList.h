@@ -1,4 +1,4 @@
-#ifndef _InvertedList_h__
+#ifndef __InvertedList_h__
 #define __InvertedList_h__
 
 using namespace std;
