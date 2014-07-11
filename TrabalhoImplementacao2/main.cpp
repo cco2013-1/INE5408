@@ -9,18 +9,18 @@ using namespace std;
 
 Lista<string> listManPages();
 Lista<string> tokenizer(string str, string sep);
-string exec(char* cmd);
+string exec(string cmd);
 Lista<string> tokenizer(char text[], char limiters[]);
-// Lista<string> tokenizer(string text, string limiters);
-
-char limiters[] = {' ', '-', '/','.'};
+void readManPageFile(string filename, char * conteudo);
 
 int main() {
-    // char text[] = "Antonio Vinicius Gomes Teixeira";
     Lista<string> ls = listManPages();
     for (int i = 0; i < ls.tamanho(); i++) {
         cout << i << " : " << ls.elementoNaPosicao(i) << endl;
     }
+
+
+
     return 0;
 }
 
@@ -44,8 +44,8 @@ Lista<string> listManPages() {
  * @return stdout gerado pelo comando executado
  * @see http://stackoverflow.com/questions/478898/how-to-execute-a-command-and-get-output-of-command-within-c
  */
-string exec(char* cmd) {
-    FILE* pipe = popen(cmd, "r");
+string exec(string cmd) {
+    FILE* pipe = popen(cmd.c_str(), "r");
     if (!pipe) return "ERROR";
     char buffer[128];
     string result = "";
@@ -67,19 +67,48 @@ Lista<string> tokenizer(char text[], char limiters[]){
     return words;
 }
 
-// Lista<string> tokenizer(string text, string limiters) {
-//     Lista<string> tokens;
-//     string str = text;
+/**
+ * Função readManPageFile
+ * Dado um nome de arquivo de manpage, esta função lê o seu conteúdo
+ * e o escreve no parametro conteudo.
+ * @param filename o nome do arquivo a ser lido
+ * @param conteudo local onde será escrito o conteúdo do mapage lido
+ * @see http://stackoverflow.com/questions/3747086/reading-the-whole-text-file-into-a-char-array-in-c
+ */
+void readManPageFile(string filename, char * conteudo) {
+    string completeFilename = "ManPages/" + filename;
 
-//     while(true) {
-//         size_t found = str.find_first_of(limiters);
-//         string token = str.substr(0, found);
-//         cout << token << endl;
-//         tokens.adiciona(token);
-//         str = str.substr(found + 1, string::npos);
-//         if (found == string::npos) {
-//             break;
-//         }
-//     }
-//     return tokens;
-// }
+    FILE *fp;
+    long lSize;
+    char *buffer;
+
+    fp = fopen (completeFilename.c_str(), "rb");
+    if(!fp) {
+        cout << "Erro ao abrir arquivo" << endl;
+    }
+
+    fseek(fp , 0L , SEEK_END);
+    lSize = ftell( fp );
+    rewind(fp);
+
+    /* allocate memory for entire content */
+    buffer = new char[lSize + 1];
+    if (!buffer){
+        fclose(fp);
+        fputs("memory alloc fails",stderr);
+        exit(1);
+    }
+
+    /* copy the file into the buffer */
+    if (!fread(buffer, lSize, 1, fp)) {
+        fclose(fp);
+        free(buffer);
+        fputs("entire read fails",stderr);
+        exit(1);
+    }
+    fclose(fp);
+
+    strcpy(conteudo, buffer);
+
+    free(buffer);
+}

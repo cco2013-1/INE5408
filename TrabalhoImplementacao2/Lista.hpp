@@ -16,7 +16,7 @@
 #ifndef __lista_hpp__
 #define __lista_hpp__
 
-#define TAMANHO_MAX 10
+#define TAMANHO_INICIAL 10
 #define ERRO_LISTA_CHEIA -1
 #define ERRO_LISTA_VAZIA -2
 #define ERRO_POSICAO_INEXISTENTE -3
@@ -40,14 +40,18 @@ public:
     bool contem(T elemento);
     int tamanho();
 private:
-    T dados[TAMANHO_MAX];
+    T *dados;
     int ultimo; //valor da posição do ultimo elemento inserido na lista
+    int capacidade;
+    void aumentaCapacidade();
     void deslocarEsquerda(int posicao); //desloca os elementos da lista para a esquerda a partir da posição passada por parâmetro
     void deslocarDireita(int posicao); //desloca os elementos da lista para a direita a partir da posição passada por parâmetro
  };
 
 template <typename T>
 Lista<T>::Lista() {
+    dados = new T[TAMANHO_INICIAL];
+    capacidade = TAMANHO_INICIAL;
     ultimo = -1;
 }
 
@@ -58,7 +62,7 @@ Lista<T>::~Lista() {
 
 template <typename T>
 bool Lista<T>::estaCheia() {
-    return ultimo == TAMANHO_MAX - 1;
+    return ultimo == capacidade - 1;
 }
 
 template <typename T>
@@ -71,11 +75,22 @@ bool Lista<T>::estaVazia() {
 
 template <typename T>
 void Lista<T>::adiciona(T elemento) {
-    if (!estaCheia()) {
-        dados[++ultimo]=elemento;
-        return;
+    if (estaCheia()) {
+        aumentaCapacidade();
     }
-    throw (ERRO_LISTA_CHEIA);
+
+    dados[++ultimo]=elemento;
+}
+
+template <typename T>
+void Lista<T>::aumentaCapacidade() {
+    capacidade = 2 * capacidade;
+    T * novosDados = new T[capacidade];
+    for (int i = 0; i < tamanho(); i ++) {
+        novosDados[i] = dados[i];
+    }
+    delete [] dados;
+    dados = novosDados;
 }
 
 template <typename T>
@@ -108,7 +123,10 @@ T Lista<T>::retiraDaPosicao(int posicao) {
 
 template <typename T>
 void Lista<T>::adicionaNaPosicao(T elemento, int posicao) {
-    if (!estaCheia() && posicao <= ultimo + 1 && posicao >= 0) {
+    if (estaCheia()) {
+        aumentaCapacidade();
+    }
+    if (posicao <= ultimo + 1 && posicao >= 0) {
         deslocarDireita(posicao);
         dados[posicao] = elemento;
         return;
@@ -153,7 +171,7 @@ int Lista<T>::posicao(T elemento) {
 template <typename T>
 void Lista<T>::deslocarDireita(int posicao) {
     if (estaCheia()) {
-        throw (ERRO_LISTA_CHEIA);
+        aumentaCapacidade();
     }
 
     ultimo++;
