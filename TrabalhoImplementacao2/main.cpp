@@ -1,7 +1,11 @@
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
+#include <sstream>
 #include "Lista.hpp"
+#include "AVLTree.h"
+#include "BSTree.h"
+
 
 #define PATH_TO_MANPAGES "ManPages/"
 
@@ -12,14 +16,12 @@ Lista<string> tokenizer(string str, string sep);
 string exec(string cmd);
 Lista<string> tokenizer(char text[], char limiters[]);
 void readManPageFile(string filename, char * conteudo);
+void createIndices(Lista<string> manPageList);
+string getString();
 
 int main() {
-    Lista<string> ls = listManPages();
-    for (int i = 0; i < ls.tamanho(); i++) {
-        cout << i << " : " << ls.elementoNaPosicao(i) << endl;
-    }
-
-
+    Lista<string> mpList = listManPages();
+    createIndices(mpList);
 
     return 0;
 }
@@ -57,6 +59,15 @@ string exec(string cmd) {
     return result;
 }
 
+/**
+ * Função tokenizer
+ * Separa o texto passado em tokens (palavras), de acordo com os
+ * separadores definidos no parametro limiters, retornando uma
+ * lista com as palavras encontradas.
+ * @param text o texto a ser separado em palavras
+ * @param limiters os separadores que limitam as palavras
+ * @return lista de strings com as palavras encontradas
+ */
 Lista<string> tokenizer(char text[], char limiters[]){
     Lista<string> words;
     char *word = strtok(text, limiters);
@@ -65,6 +76,39 @@ Lista<string> tokenizer(char text[], char limiters[]){
         word = strtok(NULL, limiters);
     }
     return words;
+}
+
+void createIndices(Lista<string> manPageList) {
+    BSTree *tree = new AVLTree();
+    for (int i = 0; i < manPageList.tamanho(); i++) {
+        char conteudo[140000];
+        string filename = manPageList.elementoNaPosicao(i);
+        readManPageFile(filename, conteudo);
+        string comando = filename.substr(0, filename.find_last_of("."));
+        tree->insert(comando, string(conteudo));
+        cout << i << " : " << comando << endl;
+        if (i == 1836) {
+            cout << "chegou na porcaria" << endl;
+            cout << "vamos ver o q vai dar" << endl;
+        }
+    }
+
+    while (true) {
+        cout << "Pesquisa de manpages. Insira o nome da manpage a procurar. Vazio para sair" << endl;
+        string comando = getString();
+        if (comando == "") {
+            break;
+        }
+        node * result = tree->find(comando);
+        if (!result) {
+            cout << "comando nao encontrado" << endl;
+        } else {
+            cout << "comando: " << comando << endl;
+            cout << "conteúdo da manpage:" << endl;
+            cout << result->value << endl;
+        }
+
+    }
 }
 
 /**
@@ -111,4 +155,26 @@ void readManPageFile(string filename, char * conteudo) {
     strcpy(conteudo, buffer);
 
     free(buffer);
+}
+
+int getInt() {
+    string input = "";
+    int inteiro = 0;
+
+    while (true) {
+        getline(cin, input);
+        stringstream myStream(input);
+        if (myStream >> inteiro) {
+            break;
+        }
+        cout << "Formato inválido. Insira um inteiro" << endl;
+    }
+
+    return inteiro;
+}
+
+string getString() {
+    string input = "";
+    getline(cin, input);
+    return input;
 }
