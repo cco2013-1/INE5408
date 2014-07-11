@@ -19,6 +19,7 @@
 BSTree::BSTree() {
     root = NULL;
     size = 0;
+    diskIndexCounter = 0;
 }
 
 BSTree::~BSTree() {
@@ -204,6 +205,58 @@ node ** BSTree::inOrder() {
         }
     }
     return arrayInOrder;
+}
+
+void BSTree::saveToDisk(string filename) {
+    diskIndexCounter = 0;
+    resolveDiskIndices(root);
+    writeTreeToDisk(root, filename);
+}
+
+void BSTree::writeTreeToDisk(node *n, string filename) {
+    writeNodeToDisk(n, filename);
+    if (n->leftChild) {
+        writeTreeToDisk(n->leftChild, filename);
+    }
+    if (n->rightChild) {
+        writeTreeToDisk(n->rightChild, filename);
+    }
+}
+
+void BSTree::writeNodeToDisk(node *n, string filename) {
+    ofstream output(filename.c_str(), ios::app | ios::binary);
+
+    if (!output) {
+        cout << "Erro ao gravar árvore em disco" << endl;
+        return;
+    }
+
+    diskNode dn = createDiskNode(n);
+
+    output.write((char *) &dn, sizeof(struct diskNode));
+    output.close();
+}
+
+diskNode BSTree::createDiskNode(node *n) {
+    diskNode dn;
+    strcpy(dn.key, (n->key).c_str());
+    strcpy(dn.value, (n->value).c_str());
+    dn.parent = n->parent ? n->parent->diskIndex : -1;
+    dn.leftChild = n->leftChild ? n->leftChild->diskIndex : -1;
+    dn.rightChild = n->rightChild ? n->rightChild->diskIndex : -1;
+    return dn;
+}
+
+void BSTree::resolveDiskIndices(node *n) {
+    n->diskIndex = diskIndexCounter;
+    diskIndexCounter++;
+    if (n->leftChild) {
+        resolveDiskIndices(n->leftChild);
+    }
+    if (n->rightChild) {
+        resolveDiskIndices(n->rightChild);
+    }
+
 }
 
 node * BSTree::getRoot() {

@@ -6,6 +6,8 @@
 #define ERRO_ABRIR_ARQUIVO -1;
 
 #include "AVLTree.h"
+#include "BSTree.h"
+#include "Lista.hpp"
 
 using namespace std;
 
@@ -27,11 +29,46 @@ string getString();
 int getInt();
 int getNumberOfRecords();
 string exec(char* cmd);
+void imprimeArvore(node * n);
+
+Lista<string> tokenizer(char text[], char limiters[]){
+    Lista<string> words;
+    char *word = strtok(text, limiters);
+    for(int i = 0; word; i++) {
+        words.adiciona(string(word));
+        word = strtok(NULL, limiters);
+    }
+    return words;
+}
 
 int main() {
-    string ls = exec("ls ManPages");
-    cout << "ls result:" << endl;
-    cout << ls << endl;
+
+    BSTree *tree = new AVLTree();
+
+    char mussuzins[500] = "Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.";
+
+    Lista<string> palavras = tokenizer(mussuzins, " ");
+
+    cout << "numero de palavras " << palavras.tamanho() << endl;
+    for (int i = 0; i < palavras.tamanho(); i++) {
+        tree->insert(palavras.elementoNaPosicao(i), string(mussuzins));
+    }
+
+    tree->resolveDiskIndices(tree->getRoot());
+
+    diskNode dn = tree->createDiskNode(tree->getRoot()->leftChild);
+
+    cout << "key " << dn.key << endl;
+    cout << "value " << dn.value << endl;
+    cout << "parent " << dn.parent << endl;
+    cout << "leftChild " << dn.leftChild << endl;
+    cout << "rightChild " << dn.rightChild << endl;
+
+
+
+    // string ls = exec("ls ManPages");
+    // cout << "ls result:" << endl;
+    // cout << ls << endl;
 
     // while (true) {
     //     cout << "insira arquivo a processar" << endl;
@@ -63,6 +100,20 @@ int main() {
 
 
     return 0;
+}
+
+void imprimeArvore(node * n) {
+    cout << "key: " << n->key << "\tdiskIndex: " << n->diskIndex << endl;
+    if (n->leftChild) {
+        imprimeArvore(n->leftChild);
+    } else {
+        cout << "null" << endl;
+    }
+    if (n->rightChild) {
+        imprimeArvore(n->rightChild);
+    } else {
+        cout << "null" << endl;
+    }
 }
 
 int getNumberOfRecords() {

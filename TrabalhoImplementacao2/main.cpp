@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <sstream>
+#include <ctime>
 #include "Lista.hpp"
 #include "AVLTree.h"
 #include "BSTree.h"
@@ -92,6 +93,14 @@ void createIndices(Lista<string> manPageList) {
             cout << "vamos ver o q vai dar" << endl;
         }
     }
+
+    clock_t begin = clock();
+    tree->saveToDisk("manpages.dat");
+    clock_t end = clock();
+
+    double elapsedSecs = double(end - begin) / CLOCKS_PER_SEC;
+
+    cout << "Tempo necessário para salvar árvore de busca em disco: " << elapsedSecs << " s" << endl;
 
     while (true) {
         cout << "Pesquisa de manpages. Insira o nome da manpage a procurar. Vazio para sair" << endl;

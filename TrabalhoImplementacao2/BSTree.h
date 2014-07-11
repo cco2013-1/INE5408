@@ -16,7 +16,9 @@
 #ifndef __bs_tree_h__
 #define __bs_tree_h__
 
-#include <string>
+#include <string.h>
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -31,6 +33,15 @@ public:
     string value;
     int height;
     Color color;
+    int diskIndex;
+};
+
+struct diskNode {
+    char key[100];
+    char value[140000];
+    int parent;
+    int leftChild;
+    int rightChild;
 };
 
 class BSTree {
@@ -48,6 +59,7 @@ public:
     virtual node ** inOrder();
     virtual node * getRoot();
     virtual node * getNil();
+    void saveToDisk(string filename);
 
 protected:
     node *root;
@@ -60,6 +72,12 @@ protected:
     virtual node * minimum(node *subTreeRoot);
     virtual node * maximum(node *subTreeRoot);
     virtual void transplant(node *u, node *v);
+    void resolveDiskIndices(node *n);
+    diskNode createDiskNode(node *n);
+    void writeTreeToDisk(node *n, string filename);
+    void writeNodeToDisk(node *n, string filename);
+
+    int diskIndexCounter;
 };
 
 #endif
