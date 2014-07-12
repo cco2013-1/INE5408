@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <sstream>
+#include <fstream>
 #include <ctime>
 #include "Lista.hpp"
 #include "AVLTree.h"
@@ -9,6 +10,7 @@
 
 
 #define PATH_TO_MANPAGES "ManPages/"
+#define MANPAGES_FILE "manpages.dat"
 
 using namespace std;
 
@@ -23,6 +25,23 @@ string getString();
 int main() {
     Lista<string> mpList = listManPages();
     createIndices(mpList);
+
+    BSTree *tree = new AVLTree();
+    while (true) {
+        cout << "Pesquisa de manpages. Insira o nome da manpage a procurar. Vazio para sair" << endl;
+        string comando = getString();
+        if (comando == "") {
+            break;
+        }
+        string result = tree->findInDisk(comando, MANPAGES_FILE);
+        if (result == "") {
+            cout << "comando nao encontrado" << endl;
+        } else {
+            cout << "comando: " << comando << endl;
+            cout << "conteúdo da manpage:" << endl;
+            cout << result << endl;
+        }
+    }
 
     return 0;
 }
@@ -80,44 +99,31 @@ Lista<string> tokenizer(char text[], char limiters[]){
 }
 
 void createIndices(Lista<string> manPageList) {
-    BSTree *tree = new AVLTree();
-    for (int i = 0; i < manPageList.tamanho(); i++) {
-        char conteudo[140000];
-        string filename = manPageList.elementoNaPosicao(i);
-        readManPageFile(filename, conteudo);
-        string comando = filename.substr(0, filename.find_last_of("."));
-        tree->insert(comando, string(conteudo));
-        cout << i << " : " << comando << endl;
-        if (i == 1836) {
-            cout << "chegou na porcaria" << endl;
-            cout << "vamos ver o q vai dar" << endl;
+    ifstream input(MANPAGES_FILE, ios::in | ios::binary);
+
+    if (!input) {
+        cout << "Arquivo de registro de manpages não encontrado." << endl;
+        cout << "Realizando leitura dos arquivos e criando arquivo de registros " << MANPAGES_FILE << endl;
+
+        BSTree *tree = new AVLTree();
+        for (int i = 0; i < manPageList.tamanho(); i++) {
+            char conteudo[140000];
+            string filename = manPageList.elementoNaPosicao(i);
+            readManPageFile(filename, conteudo);
+            string comando = filename.substr(0, filename.find_last_of("."));
+            tree->insert(comando, string(conteudo));
         }
+
+        clock_t begin = clock();
+        tree->saveToDisk(MANPAGES_FILE);
+        clock_t end = clock();
+
+        double elapsedSecs = double(end - begin) / CLOCKS_PER_SEC;
+
+        cout << "Tempo necessário para salvar árvore de busca em disco: " << elapsedSecs << " s" << endl;
     }
 
-    clock_t begin = clock();
-    tree->saveToDisk("manpages.dat");
-    clock_t end = clock();
-
-    double elapsedSecs = double(end - begin) / CLOCKS_PER_SEC;
-
-    cout << "Tempo necessário para salvar árvore de busca em disco: " << elapsedSecs << " s" << endl;
-
-    while (true) {
-        cout << "Pesquisa de manpages. Insira o nome da manpage a procurar. Vazio para sair" << endl;
-        string comando = getString();
-        if (comando == "") {
-            break;
-        }
-        node * result = tree->find(comando);
-        if (!result) {
-            cout << "comando nao encontrado" << endl;
-        } else {
-            cout << "comando: " << comando << endl;
-            cout << "conteúdo da manpage:" << endl;
-            cout << result->value << endl;
-        }
-
-    }
+    input.close();
 }
 
 /**

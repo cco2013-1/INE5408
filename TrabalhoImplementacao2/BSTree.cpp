@@ -237,6 +237,53 @@ void BSTree::writeNodeToDisk(node *n, string filename) {
     output.close();
 }
 
+string BSTree::findInDisk(string key, string filename) {
+    diskNode dn = findNodeInDisk(key, 0, filename);
+    return string(dn.value);
+}
+
+diskNode BSTree::findNodeInDisk(string key, int index, string filename) {
+    diskNode dn = readNodeFromDisk(index, filename);
+    diskNode notFound;
+    strcpy(notFound.value, "");
+
+    if (string(dn.key) == key) {
+        return dn;
+    }
+    if (key < string(dn.key)) {
+        if (dn.leftChild == -1) {
+            return notFound;
+        } else {
+            return findNodeInDisk(key, dn.leftChild, filename);
+        }
+    } else {
+        if (dn.rightChild == -1) {
+            return notFound;
+        } else {
+            return findNodeInDisk(key, dn.rightChild, filename);
+        }
+    }
+}
+
+diskNode BSTree::readNodeFromDisk(int index, string filename) {
+    ifstream input(filename.c_str(), ios::in | ios::binary);
+
+    if (!input) {
+        cout << "Não foi possível ler arquivo da árvore. ";
+        cout << "Nome do arquivo fornecido: " << filename << endl;
+        throw "Erro ao ler arquivo da arvore";
+    }
+
+    diskNode dn;
+
+    input.seekg(streampos(index * sizeof(struct diskNode)));
+    input.read((char *) &dn, sizeof(struct diskNode));
+    input.close();
+
+    return dn;
+}
+
+
 diskNode BSTree::createDiskNode(node *n) {
     diskNode dn;
     strcpy(dn.key, (n->key).c_str());
