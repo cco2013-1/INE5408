@@ -34,15 +34,18 @@ void SortedList<T>::add(T element) {
 
 template <typename T>
 int SortedList<T>::findPosition(T element) {
-	int position = binarySearch(0, sortedList.tamanho(), element);
+	int position = binarySearch(0, sortedList.tamanho()-1, element);
 	return position;
 }
 
 template <typename T> 
 int SortedList<T>::binarySearch(int begin, int end, T element) {
 	if(begin >= end) {
-		if(sortedList.elementoNaPosicao(begin) < element) {
-			return begin++;
+		if(sortedList.elementoNaPosicao(begin) < element) { 
+			if(sortedList.estaVazia()) {
+				return begin;
+			}
+			return ++begin;
 		}
 		return begin;
 	}

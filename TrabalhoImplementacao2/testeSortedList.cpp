@@ -22,12 +22,12 @@ Lista<string> tokenizer(char text[], char limiters[]){
 
 
 int main() {
-    char text[] = {"aa aa aa aa aa aa pp pp pp pp dd dd dd bb bb aa dddd dd pp aa ab bb bb bb bb bb acc cc cc cc"};
+    char text[] = {"lorem ipsum dolor sit amet consectetur adipiscing elit integer ut ligula et leo viverra egestas eu nec risus praesent blandit vel nisi quis sagittis nunc eget fermentum ipsum nullam sed sapien suscipit imperdiet neque a venenatis nibh ut facilisis aliquet dolor quis venenatis pellentesque vel tellus lorem nulla erat diam"};
     char limiters[] = {" "};
     Lista<string> lista2;
     lista2 = tokenizer(text, limiters);
     int tamanho2 = lista2.tamanho();
-    for(int i = 0; i <= 15 ; i++) {
+    for(int i = 0; i <= 49 ; i++) {
         lista.add(lista2.retira());
     }
     int tamanho = lista.size();
