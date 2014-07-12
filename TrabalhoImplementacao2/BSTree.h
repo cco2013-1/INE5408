@@ -60,6 +60,7 @@ public:
     virtual node * getRoot();
     virtual node * getNil();
     void saveToDisk(string filename);
+    string findInDisk(string key, string filename);
 
 protected:
     node *root;
@@ -76,6 +77,8 @@ protected:
     diskNode createDiskNode(node *n);
     void writeTreeToDisk(node *n, string filename);
     void writeNodeToDisk(node *n, string filename);
+    diskNode findNodeInDisk(string key, int index, string filename);
+    diskNode readNodeFromDisk(int index, string filename);
 
     int diskIndexCounter;
 };
