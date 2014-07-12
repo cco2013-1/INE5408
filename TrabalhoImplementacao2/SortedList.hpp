@@ -11,7 +11,9 @@ public:
 	SortedList();
 	void add(T element);
 	int size();
+	int position (T element);
 	T get();
+	T getInPosition(int position);
 
 private: 
 	Lista<T> sortedList;
@@ -22,7 +24,7 @@ private:
 
 template <typename T> 
 SortedList<T>::SortedList() {
-
+	
 }
 
 template <typename T>
@@ -68,6 +70,16 @@ int SortedList<T>::size() {
 template <typename T>
 T SortedList<T>::get() {
 	return sortedList.retira();
+}
+
+template <typename T>
+T SortedList<T>::getInPosition(int position) {
+	return sortedList.retiraDaPosicao(position);
+}
+
+template <typename T>
+int SortedList<T>::position(T element) {
+	return sortedList.posicao(element);
 }
 
 

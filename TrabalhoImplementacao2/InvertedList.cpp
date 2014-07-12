@@ -1,5 +1,6 @@
 #include "InvertedList.h"
 #include "Lista.hpp"
+#include "SortedList.hpp"
 
 
 InvertedList::InvertedList() {
@@ -20,11 +21,33 @@ void InvertedList::insert(Lista<string> words, int index) {
 	}
 	wordOccurrences newOccurrence;
 	newOccurrence.word = words.retira(); 
-	newOccurrence.occurrences.adiciona(index);
-	if(occurrences.posicao(newOccurrence) == -1) {
-		occurrences.adicionaEmOrdem(newOccurrence);
+	newOccurrence.occurrences.add(index);
+	if(occurrences.position(newOccurrence) == -1) {
+		occurrences.add(newOccurrence);
 	}
-	wordOccurrences occAux = occurrences.pegar(occurrences.posicao(newOccurrence));
-	occAux.occurrences.adicionaEmOrdem(index);
+	wordOccurrences occAux = occurrences.getInPosition(occurrences.position(newOccurrence));
+	occAux.occurrences.add(index);
 	insert(words, index);	
+}
+
+/*
+*Funcao search
+*recebe uma lista de palavras e retorna uma lista com as posições do texto na qual elas
+*estão contidas.
+*/
+Lista<int> InvertedList::search(Lista<string> word) {
+	//TODO
+}
+
+Lista<string> InvertedList::get() {
+	int size = occurrences.size();
+	Lista<string> lista;
+	for(int i =0; i< size; i++) {
+		lista.adiciona(occurrences.get().word);
+	}
+	return lista;
+}
+
+int InvertedList::size() {
+	return occurrences.size();
 }
