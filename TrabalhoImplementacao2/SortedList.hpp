@@ -44,7 +44,7 @@ int SortedList<T>::binarySearch(int begin, int end, T element) {
 		if(sortedList.elementoNaPosicao(begin) < element) {
 			return begin++;
 		}
-		return begin--;
+		return begin;
 	}
 	int average = (end - begin)/2 + begin;
 	if(sortedList.elementoNaPosicao(average) < element) {
