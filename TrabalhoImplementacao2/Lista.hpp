@@ -162,7 +162,7 @@ int Lista<T>::posicao(T elemento) {
             if (elemento == dados[i]) {
                 return i;
             }
-            throw(ERRO_ELEMENTO_INEXISTENTE);
+            return -1;
         }
     }
     throw(ERRO_LISTA_VAZIA);

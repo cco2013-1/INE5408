@@ -14,6 +14,7 @@ public:
 	int position (T element);
 	T get();
 	T getInPosition(int position);
+	bool isEmpty();
 
 private: 
 	Lista<T> sortedList;
@@ -82,5 +83,9 @@ int SortedList<T>::position(T element) {
 	return sortedList.posicao(element);
 }
 
+template <typename T>
+bool SortedList<T>::isEmpty() {
+	return sortedList.estaVazia();
+}
 
 #endif

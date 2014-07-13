@@ -3,8 +3,8 @@
 
 #include "Lista.hpp"
 #include "SortedList.hpp"
+#include <cstring>
 #include <string>
-
 
 using namespace std;
 
@@ -14,20 +14,21 @@ struct wordOccurrences {
 
     bool operator<(const wordOccurrences& rhs) const
 {
-	if (strcmp(word,rhs.word) < 0) return true;
-	return false;
+       if (word < rhs.word) return true;
+       return false;
 }
 
-bool operator>(const wordOccurrences& rhs) const
+    bool operator>(const wordOccurrences& rhs) const
 {
-	if (strcmp(word,rhs.word) > 0) return true;
-	return false;
-
-bool operator==(const wordOccurrences& rhs) const
-{
-	if(strcmp(word, rhs.word) == 0) return true;
-	return false;
+       if (word > rhs.word) return true;
+       return false;
 }
+    bool operator==(const wordOccurrences& rhs) const
+{
+       if(word == rhs.word) return true;
+       return false;
+}
+
 };
 
 class InvertedList {
@@ -40,7 +41,8 @@ public:
     int size();
 
 private:
-	SortedList<wordOccurrences> occurrences; 
+	SortedList<wordOccurrences> occurrences;
+    wordOccurrences newOccurrence; 
 };
 
 

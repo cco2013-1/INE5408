@@ -2,6 +2,7 @@
 #include "Lista.hpp"
 #include "SortedList.hpp"
 
+using namespace std;
 
 InvertedList::InvertedList() {
 	//TODO
@@ -19,12 +20,17 @@ void InvertedList::insert(Lista<string> words, int index) {
 	if(words.estaVazia()) {
 		return;
 	}
-	wordOccurrences newOccurrence;
 	newOccurrence.word = words.retira(); 
 	newOccurrence.occurrences.add(index);
+	if(occurrences.isEmpty()) {
+		occurrences.add(newOccurrence);
+		insert(words, index);
+	}
 	if(occurrences.position(newOccurrence) == -1) {
 		occurrences.add(newOccurrence);
+		insert(words, index);
 	}
+
 	wordOccurrences occAux = occurrences.getInPosition(occurrences.position(newOccurrence));
 	occAux.occurrences.add(index);
 	insert(words, index);	
