@@ -14,18 +14,18 @@ struct wordOccurrences {
 
     bool operator<(const wordOccurrences& rhs) const
 {
-       if (word < rhs.word) return true;
+       if (word.compare(rhs.word) < 0) return true;
        return false;
 }
 
     bool operator>(const wordOccurrences& rhs) const
 {
-       if (word > rhs.word) return true;
+       if (word.compare(rhs.word) > 0) return true;
        return false;
 }
     bool operator==(const wordOccurrences& rhs) const
 {
-       if(word == rhs.word) return true;
+       if(word.compare(rhs.word) == 0) return true;
        return false;
 }
 

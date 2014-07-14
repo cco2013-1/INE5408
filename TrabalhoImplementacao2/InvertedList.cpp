@@ -25,15 +25,19 @@ void InvertedList::insert(Lista<string> words, int index) {
 	if(occurrences.isEmpty()) {
 		occurrences.add(newOccurrence);
 		insert(words, index);
+		return;
 	}
 	if(occurrences.position(newOccurrence) == -1) {
 		occurrences.add(newOccurrence);
 		insert(words, index);
+		return;
 	}
-
 	wordOccurrences occAux = occurrences.getInPosition(occurrences.position(newOccurrence));
-	occAux.occurrences.add(index);
-	insert(words, index);	
+	if(occAux.occurrences.position(index) == -1) {
+		occAux.occurrences.add(index);	
+	}
+	insert(words, index);
+	return;	
 }
 
 /*
