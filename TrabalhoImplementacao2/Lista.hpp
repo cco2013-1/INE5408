@@ -65,7 +65,6 @@ Lista<T>::Lista() {
  */
 template <typename T>
 Lista<T>::~Lista() {
-    delete [] dados;
 }
 
 /**
