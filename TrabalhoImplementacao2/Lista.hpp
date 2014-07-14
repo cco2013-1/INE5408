@@ -162,8 +162,8 @@ int Lista<T>::posicao(T elemento) {
             if (elemento == dados[i]) {
                 return i;
             }
-            return -1;
         }
+        return -1;
     }
     throw(ERRO_LISTA_VAZIA);
 }
