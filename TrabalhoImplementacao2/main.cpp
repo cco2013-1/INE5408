@@ -100,6 +100,8 @@ void secondaryKeySearch(Lista<string> manPageList) {
 
         cout << "Resultado: " << endl;
         char *searchString = (char *)searchParams.c_str();
+
+
         Lista<int> result = il->searchInDisk(tokenizer(searchString, " "), WORDS_INDICES_FILE);
 
         for (int i = 0; i < result.tamanho(); i++) {
@@ -191,7 +193,7 @@ void createIndices(Lista<string> manPageList) {
         clock_t begin = clock();
         tree->saveToDisk(MANPAGES_FILE);
         clock_t end = clock();
-        cout << "CONCLUÏDO!" << endl;
+        cout << "CONCLUÍDO!" << endl;
         double elapsedSecs = double(end - begin) / CLOCKS_PER_SEC;
         cout << "Tempo necessário para salvar árvore de busca em disco: " << elapsedSecs << " s" << endl;
 
@@ -199,7 +201,7 @@ void createIndices(Lista<string> manPageList) {
         begin = clock();
         il->saveToDisk(WORDS_INDICES_FILE);
         end = clock();
-        cout << "CONCLUÏDO!" << endl;
+        cout << "CONCLUÍDO!" << endl;
         elapsedSecs = double(end - begin) / CLOCKS_PER_SEC;
         cout << "Tempo necessário para salvar arquivo de índices de palavras em disco: " << elapsedSecs << " s" << endl;
         cout << "----------------------------------------------------------------------------------" << endl;

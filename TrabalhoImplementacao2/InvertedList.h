@@ -14,6 +14,7 @@ using namespace std;
 struct diskElement {
     char word[65];
     int occurrences[5642];
+    int numberOfOccurrences;
 };
 
 class InvertedList {

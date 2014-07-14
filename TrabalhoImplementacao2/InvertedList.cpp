@@ -122,13 +122,18 @@ Lista<int> InvertedList::searchInDisk(Lista<string> searchParams, string filenam
 	for (int i = 0; i < searchParams.tamanho(); i++) {
 		string word = searchParams.elementoNaPosicao(i);
 
+		int indexOfWord = findWordInDisk(word, filename);
 		//Se palavra não existe no índice
-		if (findWordInDisk(word, filename) == -1) {
+		if (indexOfWord == -1) {
 			Lista<int> emptyList;
 			return emptyList;
 		}
 
-		Lista<int> partialResult = occurrences.get(occurrences.position(word))->getOccurences();
+		diskElement de = readElementFromDisk(indexOfWord, filename);
+		Lista<int> partialResult;
+		for (int i = 0; i < de.numberOfOccurrences; i++) {
+			partialResult.adiciona(de.occurrences[i]);
+		}
 
 		if (!resultInitialized) {
 			result = partialResult;
@@ -197,12 +202,13 @@ diskElement InvertedList::createDiskElement(WordOccurrences *wo) {
 	for (int i = 0; i < occurrences.tamanho(); i++) {
 		de.occurrences[i] = occurrences.elementoNaPosicao(i);
 	}
+	de.numberOfOccurrences = wo->getOccurences().tamanho();
 
 	return de;
 }
 
 int InvertedList::findWordInDisk(string word, string filename) {
-	return binarySearch(0, numberOfElementsInDisk() - 1, word, filename);
+	return binarySearch(0, numberOfElementsInDisk(filename) - 1, word, filename);
 }
 
 int InvertedList::binarySearch(int begin, int end, string word, string filename) {
@@ -222,8 +228,15 @@ int InvertedList::binarySearch(int begin, int end, string word, string filename)
     }
 }
 
-int numberOfElementsInDisk(string filename) {
+int InvertedList::numberOfElementsInDisk(string filename) {
+	ifstream input(filename.c_str(), ios::in | ios::binary);
 
+	if (!input) {
+		return 0;
+	}
+
+	input.seekg(0, input.end);
+	return input.tellg() / sizeof(struct diskElement);
 }
 
 diskElement InvertedList::readElementFromDisk(int index, string filename) {
