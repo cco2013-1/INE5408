@@ -1,7 +1,26 @@
+/**
+ * Universidade Federal de Santa Catarina
+ * Centro Tecnológico
+ * Departamento de Informática e Estatística
+ * Ciências da Computação
+ * INE5408 - Estruturas de Dados
+ *
+ * Trabalho de Implementação 2 - Pesquisa de ManPages
+ *
+ * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
+ *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
+ *
+ * InvertedList.cpp
+ */
+
 #include "InvertedList.h"
 
 using namespace std;
 
+/**
+ * Construtor InvertedList
+ * Lê as conjunções do arquivo de conjunções
+ */
 InvertedList::InvertedList() {
 	conjunctions = readConjunctions();
 }
@@ -10,7 +29,7 @@ InvertedList::~InvertedList() {
 }
 
 /**
- * Função proccess
+ * Método proccess
  * Recebe uma lista contendo as palavras de um texto e
  * o índice deste texto.
  * Processa o texto, filtrando conjunções e registrando a

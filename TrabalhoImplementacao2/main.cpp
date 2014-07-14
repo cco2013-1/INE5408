@@ -1,5 +1,21 @@
+/**
+ * Universidade Federal de Santa Catarina
+ * Centro Tecnológico
+ * Departamento de Informática e Estatística
+ * Ciências da Computação
+ * INE5408 - Estruturas de Dados
+ *
+ * Trabalho de Implementação 2 - Pesquisa de ManPages
+ *
+ * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
+ *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
+ *
+ * main.cpp
+ */
+
 #include <iostream>
 #include <string.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <sstream>
 #include <fstream>
@@ -61,6 +77,10 @@ int main() {
     return 0;
 }
 
+/**
+ * Função primaryKeySearch
+ * Realiza busca de manpages por chave primária.
+ */
 void primaryKeySearch() {
 
     BSTree *tree = new AVLTree();
@@ -85,6 +105,10 @@ void primaryKeySearch() {
     }
 }
 
+/**
+ * Função secondaryKeySearch
+ * Realiza pesquisa de manpages por chave secundária.
+ */
 void secondaryKeySearch(Lista<string> manPageList) {
     InvertedList *il = new InvertedList();
 
@@ -113,9 +137,9 @@ void secondaryKeySearch(Lista<string> manPageList) {
 
 /**
  * Função listManPages
- * Executa comando `ls` e retorna uma lista com os resultados
- * utilizado para gerar lista com os arquivos de manpages a serem
- * processados
+ * Executa comando `ls` e retorna uma lista com os resultados.
+ * Utilizado para gerar lista com os arquivos de manpages a serem
+ * processados.
  * @return Lista contendo o título das manpages encontradas
  */
 Lista<string> listManPages() {
@@ -163,6 +187,14 @@ Lista<string> tokenizer(char text[], char limiters[]){
     return words;
 }
 
+/**
+ * Função createIndices
+ * Lê os arquivos das manpages e cria os índices para busca
+ * por chave primária e secundária. Este processo só ocorre
+ * caso os arquivos MANPAGES_FILE ou WORDS_INDICES_FILE não
+ * existam no diretório atual.
+ * @param manPageList Lista contendo o nome das manpages a serem lidas
+ */
 void createIndices(Lista<string> manPageList) {
     ifstream mpFile(MANPAGES_FILE, ios::in | ios::binary);
     ifstream wordsIndicesFile(WORDS_INDICES_FILE, ios::in | ios::binary);
@@ -233,7 +265,7 @@ void readManPageFile(string filename, char * conteudo) {
     }
 
     fseek(fp , 0L , SEEK_END);
-    lSize = ftell( fp );
+    lSize = ftell(fp);
     rewind(fp);
 
     /* allocate memory for entire content */
@@ -258,6 +290,11 @@ void readManPageFile(string filename, char * conteudo) {
     free(buffer);
 }
 
+/**
+ * Função getInt
+ * Lê um inteiro inserido pelo usuário
+ * @return inteiro inserido pelo usuário
+ */
 int getInt() {
     string input = "";
     int inteiro = 0;
@@ -274,6 +311,11 @@ int getInt() {
     return inteiro;
 }
 
+/**
+ * Função getString
+ * Lê uma string inserida pelo usuário
+ * @return string inserida pelo usuário
+ */
 string getString() {
     string input = "";
     getline(cin, input);

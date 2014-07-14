@@ -5,7 +5,7 @@
  * Ciências da Computação
  * INE5408 - Estruturas de Dados
  *
- * Trabalho 07 - Busca e Balanceamento em Árvores
+ * Trabalho de Implementação 2 - Pesquisa de ManPages
  *
  * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
  *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765

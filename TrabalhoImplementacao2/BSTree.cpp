@@ -5,7 +5,7 @@
  * Ciências da Computação
  * INE5408 - Estruturas de Dados
  *
- * Trabalho 07 - Busca e Balanceamento em Árvores
+ * Trabalho de Implementação 2 - Pesquisa de ManPages
  *
  * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
  *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
@@ -16,12 +16,18 @@
 #include "BSTree.h"
 #include <stdlib.h>
 
+/**
+ * Construtor de BST
+ */
 BSTree::BSTree() {
     root = NULL;
     size = 0;
     diskIndexCounter = 0;
 }
 
+/**
+ * Destrutor de BST
+ */
 BSTree::~BSTree() {
     while (root) {
         remove(root->key);
@@ -207,12 +213,23 @@ node ** BSTree::inOrder() {
     return arrayInOrder;
 }
 
+/**
+ * Método saveToDisk
+ * Salva a árvore para o disco
+ * @param filename nome do arquivo no qual a árvore será salva
+ */
 void BSTree::saveToDisk(string filename) {
     diskIndexCounter = 0;
     resolveDiskIndices(root);
     writeTreeToDisk(root, filename);
 }
 
+/**
+ * Método writeTreeToDisk
+ * Método recursivo utilizado para salvar a árvore em disco.
+ * @param n raiz da sub-árvore sendo salva
+ * @param filename nome do arquivo no qual a árvore será salva
+ */
 void BSTree::writeTreeToDisk(node *n, string filename) {
     writeNodeToDisk(n, filename);
     if (n->leftChild) {
@@ -223,6 +240,12 @@ void BSTree::writeTreeToDisk(node *n, string filename) {
     }
 }
 
+/**
+ * Método writeNodeToDisk
+ * Grava as informações de um nó da árvore em disco
+ * @param n nó a ser gravado em disco
+ * @param filename nome do arquivo no qual são gravados os nós
+ */
 void BSTree::writeNodeToDisk(node *n, string filename) {
     ofstream output(filename.c_str(), ios::app | ios::binary);
 
@@ -237,11 +260,24 @@ void BSTree::writeNodeToDisk(node *n, string filename) {
     output.close();
 }
 
+/**
+ * Método findInDisk
+ * Faz uma busca na árvore após sua gravação em disco.
+ * @param key chave primária a ser buscada em disco
+ * @string filename nome do arquivo onde a árvore foi salva previamente.
+ */
 string BSTree::findInDisk(string key, string filename) {
     diskNode dn = findNodeInDisk(key, 0, filename);
     return string(dn.value);
 }
 
+/**
+ * Método findNodeInDisk
+ * Busca nó previamente salvo em disco que contenha a chave key
+ * @param key chave primária do elemento sendo gravado
+ * @param index índice para busca do elemento buscado. utilizado na busca recursiva.
+ * @param filename nome do arquivo em que foi salva a árvore
+ */
 diskNode BSTree::findNodeInDisk(string key, int index, string filename) {
     diskNode dn = readNodeFromDisk(index, filename);
     diskNode notFound;
@@ -265,6 +301,12 @@ diskNode BSTree::findNodeInDisk(string key, int index, string filename) {
     }
 }
 
+/**
+ * Método readNodeFromDisk
+ * Lê o nó salvo na posição index no arquivo onde a árvore foi salva previamente
+ * @param index posição a ser lida no arquivo onde a árvore foi salva previamente
+ * @param filename nome do arquivo onde a árvore foi salvas
+ */
 diskNode BSTree::readNodeFromDisk(int index, string filename) {
     ifstream input(filename.c_str(), ios::in | ios::binary);
 
@@ -283,7 +325,12 @@ diskNode BSTree::readNodeFromDisk(int index, string filename) {
     return dn;
 }
 
-
+/**
+ * Método createDiskNode
+ * Cria um struct diskNode a partir de um nó da árvore
+ * @param n nó para o qual será criado o struct diskNode
+ * @return struct diskNode representando o nó fornecido
+ */
 diskNode BSTree::createDiskNode(node *n) {
     diskNode dn;
     strcpy(dn.key, (n->key).c_str());
@@ -294,6 +341,12 @@ diskNode BSTree::createDiskNode(node *n) {
     return dn;
 }
 
+/**
+ * Método resolveDiskIndices
+ * Método utilizado na indexação dos nós. Preenche o parametro
+ * diskIndex recursivamente de todos os nós da árvore
+ * @param n raiz da sub-árvore na recursão
+ */
 void BSTree::resolveDiskIndices(node *n) {
     n->diskIndex = diskIndexCounter;
     diskIndexCounter++;
