@@ -1,18 +1,48 @@
+/**
+ * Universidade Federal de Santa Catarina
+ * Centro Tecnológico
+ * Departamento de Informática e Estatística
+ * Ciências da Computação
+ * INE5408 - Estruturas de Dados
+ *
+ * Trabalho de Implementação 2 - Pesquisa de ManPages
+ *
+ * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
+ *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
+ *
+ * ListOfOccurrences.cpp
+ */
+
 #include "ListOfOccurrences.h"
 
+/**
+ * Construtor de ListOfOccurrences
+ */
 ListOfOccurrences::ListOfOccurrences() {
-
 }
 
+/**
+ * Destrutor de ListOfOccurrences
+ */
 ListOfOccurrences::~ListOfOccurrences() {
-
 }
 
+/**
+ * Método add
+ * Adiciona novo objeto de WordOccurrences à lista de ocorrencias
+ * @param wo objeto do tipo WordOccurrences a ser adicionado
+ */
 void ListOfOccurrences::add(WordOccurrences * wo) {
     int position = findPosition(wo);
     sortedList.adicionaNaPosicao(wo, position);
 }
 
+/**
+ * Método get
+ * Obtém o elemento da lista de ocorrencias dado pelo parametro position
+ * @param position posição da lista de ocorrências qu se deseja obter
+ * @return ponteiro para o objeto na posição informada
+ */
 WordOccurrences * ListOfOccurrences::get(int position) {
     return sortedList.elementoNaPosicao(position);
 }

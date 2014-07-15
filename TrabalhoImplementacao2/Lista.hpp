@@ -22,6 +22,15 @@
 #define ERRO_POSICAO_INEXISTENTE -3
 #define ERRO_ELEMENTO_INEXISTENTE -4
 
+/**
+ * Classe Lista
+ * Lista genérica baseada em arrays
+ * Suporta as operações de adição, consulta e remoção.
+ * Complexidade O(1) para consulta, O(1) para inserção no caso médio
+ * e O(n) no pior caso, O(n) para deleção em posição arbitrária e O(1)
+ * para deleção no fim da lista. A lista aumenta sua capacidade
+ * automaticamente, conforme necessidade.
+ */
 template <typename T>
 class Lista {
 public:

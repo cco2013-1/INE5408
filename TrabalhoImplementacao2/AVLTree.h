@@ -18,6 +18,15 @@
 
 #include "BSTree.h"
 
+/**
+ * Classe AVLTree
+ * Estrutura de dados de Árvore de Busca Binária Semi-Balanceada
+ * Armazena os elementos em ordem em uma estrutura de árvore binária,
+ * permitindo consultas, inserções e deleções. Garante o semi-balanceamento
+ * da árvore, realizando rebalanceamentos na inserção ou na deleção, conforme
+ * necessidade. Garante complexidade O(log n) para consultas, inserções e
+ * deleções.
+ */
 class AVLTree: public BSTree {
 public:
     AVLTree();

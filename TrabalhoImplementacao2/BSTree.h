@@ -44,6 +44,16 @@ struct diskNode {
     int rightChild;
 };
 
+/**
+ * Classe BSTree
+ * Estrutura de dados de Árvore de Busca Binária Não-Balanceada
+ * Armazena os elementos em ordem em uma estrutura de árvore binária,
+ * permitindo consultas, inserções e deleções. Como esta árvore não
+ * possui rebalanceamento, a complexidade das operações depende da ordem
+ * em que os elementos forem inseridos, podendo ser de O(log n) no melhor caso
+ * e O(n) no pior. A altura da árvore é o que determina sua complexidade, valendo
+ * para todos os casos a complexidade de O(h) onde h é a altura da árvore.
+ */
 class BSTree {
 public:
     BSTree();

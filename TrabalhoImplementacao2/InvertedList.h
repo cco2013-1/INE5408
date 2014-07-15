@@ -26,12 +26,24 @@
 
 using namespace std;
 
+/**
+ * struct diskElement
+ * Estrutura utilizada para representar em disco objetos do
+ * tipo WordOccurrence.
+ */
 struct diskElement {
     char word[65];
     int occurrences[5642];
     int numberOfOccurrences;
 };
 
+/**
+ * Classe InvertedList
+ * Representa uma lista invertida de ocorrencia de palavras,
+ * possibilitando busca por chave secundária. A lista deve
+ * ser montada em memória podendo posteriormente ser salva
+ * e consultada em disco.
+ */
 class InvertedList {
 public:
     InvertedList();
@@ -41,8 +53,6 @@ public:
     int size();
     void saveToDisk(string filename);
     Lista<int> searchInDisk(Lista<string> searchParams, string filename);
-    string findBiggestWord();
-    WordOccurrences * findMostFrequentWord();
 
 private:
     ListOfOccurrences occurrences;

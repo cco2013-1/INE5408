@@ -1,9 +1,0 @@
-vector<char*> split(char text[], char delimiter[]){
-    vector<char*> result;
-    char *p = strtok(text, delimiter);
-    for(int i = 0; p; i++) {
-        result.insert(result.begin()+i, p);
-        p = strtok(NULL, delimiter);
-    }
-    return result;
-}

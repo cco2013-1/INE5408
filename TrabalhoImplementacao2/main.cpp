@@ -141,8 +141,9 @@ void secondaryKeySearch(Lista<string> manPageList) {
  * @return Lista contendo o título das manpages encontradas
  */
 Lista<string> listManPages() {
+    exec(string("rm ") + PATH_TO_MANPAGES + "*.dat" + "&>/dev/null");
     string cmd = string("ls ") + string(PATH_TO_MANPAGES);
-    string ls = exec((char *)cmd.c_str());
+    string ls = exec(cmd);
     return tokenizer((char *)ls.c_str(), "\n");
 }
 
@@ -203,7 +204,7 @@ void createIndices(Lista<string> manPageList) {
 
         cout << "Arquivos de registro de manpages e de palavras não encontrados." << endl;
         cout << "Removendo possíveis arquivos corrompidos" << endl;
-        exec(string("rm ") + MANPAGES_FILE + " " + WORDS_INDICES_FILE);
+        exec(string("rm ") + MANPAGES_FILE + " " + WORDS_INDICES_FILE + " &>/dev/null");
         cout << "Realizando leitura dos arquivos de texto e criando arquivos de registros " << endl;
 
         BSTree *tree = new AVLTree(); //Árvore para busca por chave primária
