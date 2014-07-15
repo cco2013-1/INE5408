@@ -72,8 +72,6 @@ int main() {
         }
     }
 
-
-
     return 0;
 }
 
@@ -211,6 +209,8 @@ void createIndices(Lista<string> manPageList) {
         BSTree *tree = new AVLTree(); //Árvore para busca por chave primária
         InvertedList *il = new InvertedList(); //Lista Invertida para busca por chave secundária
 
+        cout << "Montando estruturas de índices e registros em memória...";
+        clock_t begin = clock();
         for (int i = 0; i < manPageList.tamanho(); i++) {
             char conteudo[140000];
             string filename = manPageList.elementoNaPosicao(i);
@@ -220,13 +220,18 @@ void createIndices(Lista<string> manPageList) {
             Lista<string> text = tokenizer(conteudo, " ,.\n:;!?<>-+_\\/#*");
             il->proccess(text, i);
         }
+        clock_t end = clock();
+        double elapsedSecs = double(end - begin) / CLOCKS_PER_SEC;
+
+        cout << "CONCLUÍDO" << endl;
+        cout << "Tempo necessário para montar estruturas em memória: " << elapsedSecs << " s" << endl;
 
         cout << "Gravando árvore de busca primária em disco... ";
-        clock_t begin = clock();
+        begin = clock();
         tree->saveToDisk(MANPAGES_FILE);
-        clock_t end = clock();
+        end = clock();
         cout << "CONCLUÍDO!" << endl;
-        double elapsedSecs = double(end - begin) / CLOCKS_PER_SEC;
+        elapsedSecs = double(end - begin) / CLOCKS_PER_SEC;
         cout << "Tempo necessário para salvar árvore de busca em disco: " << elapsedSecs << " s" << endl;
 
         cout << "Gravando arquivo de índices de palavras em disco... ";
