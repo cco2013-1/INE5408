@@ -5,7 +5,7 @@
  * Ciências da Computação
  * INE5408 - Estruturas de Dados
  *
- * Trabalho de Implementação 2 - Pesquisa de ManPages
+ * Trabalho 08 - Método de Ordenação
  *
  * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
  *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765

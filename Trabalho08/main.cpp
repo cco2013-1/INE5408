@@ -1,5 +1,21 @@
+/**
+ * Universidade Federal de Santa Catarina
+ * Centro Tecnológico
+ * Departamento de Informática e Estatística
+ * Ciências da Computação
+ * INE5408 - Estruturas de Dados
+ *
+ * Trabalho 08 - Método de Ordenação
+ *
+ * Alunos: Antonio Vinicius Gomes Teixeira  Matrícula: 13100731
+ *         Matheus Ben-Hur de Melo Leite    Matrícula: 13100765
+ *
+ * main.cpp
+ */
+
 #include <iostream>
 #include <fstream>
+#include <ctime>
 #include "Lista.hpp"
 
 using namespace std;
@@ -9,9 +25,20 @@ int integerCmp(const int & a, const int & b);
 
 int main() {
 
+    cout << "Iniciando leitura do arquivo de dados... ";
     Lista<int> listaAOrdenar = readFile("arquivo.dat");
+    cout << "CONCLUÍDO!" << endl;
 
+    cout << "Iniciando ordenação da lista de inteiros... ";
+    clock_t begin = clock();
     listaAOrdenar.ordenar(integerCmp);
+    clock_t end = clock();
+    double elapsed_time = double(end-begin) / CLOCKS_PER_SEC;
+    cout << "CONCLUÍDO!" << endl;
+    cout << "Tempo necessário para ordenar a lista: " << elapsed_time << " s" << endl << endl;
+
+    cout << "Pressione uma tecla para exibir a lista ordenada" << endl;
+    getchar();
 
     for (int i = 0; i < listaAOrdenar.tamanho(); i++) {
         cout << i << ": " << listaAOrdenar.elementoNaPosicao(i) << endl;
